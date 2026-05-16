@@ -211,13 +211,10 @@ const valueProps = [
   .hero {
     position: relative;
     width: 100%;
-    min-height: clamp(520px, 65vh, 760px);
+    min-height: clamp(580px, 70vh, 840px);
     overflow: hidden;
     display: flex;
     align-items: center;
-    /* Pull the hero out of the body's atmospheric vignette so the
-       photo is the dominant visual at the top. */
-    margin-top: calc(-1 * var(--space-4));
   }
 
   .hero__bg {
@@ -226,9 +223,10 @@ const valueProps = [
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Bias slightly toward center-right so the Nova stays in frame
-       at narrow viewports. */
-    object-position: 60% 50%;
+    /* Bias the visible window UP and slightly right so we see more
+       of the top of the photo (Nova's full top bezel + space above)
+       while keeping the Nova itself centered horizontally. */
+    object-position: 55% 32%;
     z-index: 0;
     /* The PNG ships with a black backdrop already — it blends with
        the page edges naturally, no vignette needed here. */
@@ -268,10 +266,14 @@ const valueProps = [
     z-index: 2;
     padding-block: var(--space-10);
     width: 100%;
+    /* Break out of the standard 1280px container so the copy can
+       sit close to the actual left edge of the viewport. */
+    max-width: none;
+    padding-inline: clamp(1.5rem, 5vw, 4rem);
   }
 
   .hero__copy {
-    max-width: 560px;
+    max-width: 500px;
   }
 
   .hero__eyebrow {
@@ -388,17 +390,16 @@ const valueProps = [
     color: var(--text-secondary);
   }
 
-  /* The bulletproof container — padding-top establishes 4:3 ratio,
-     overflow:hidden ensures the image cannot escape. */
+  /* The bulletproof container — padding-top establishes 4:3 ratio.
+     NO overflow:hidden and NO background here — overflow:hidden was
+     clipping the emblem's drop-shadow at the rectangular boundary,
+     which created the visible "box" outline. Letting the shadow
+     extend naturally lets the emblem appear to float on the card. */
   .iris-card__media {
     position: relative;
     width: 100%;
     padding-top: 75%;
     margin-block: var(--space-2);
-    border-radius: 12px;
-    overflow: hidden;
-    background:
-      radial-gradient(ellipse 70% 60% at 50% 50%, var(--accent-soft), transparent 70%);
   }
 
   .iris-card__emblem {
