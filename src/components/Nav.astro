@@ -92,11 +92,14 @@ const logoSrc = line === 'consumer'
   .site-nav__logo:hover { opacity: 0.85; }
 
   .site-nav__logo-img {
-    height: 56px;
+    height: 76px;
     width: auto;
-    /* Black backdrop in the PNG dissolves into the nav blur via screen.
-       The bright wordmark and starburst remain crisp. */
-    mix-blend-mode: screen;
+    /* lighten + contrast crushes near-black PNG compression noise
+       to pure black, which the lighten blend then makes invisible
+       against the nav. Cleaner than screen, which slightly lifts
+       near-blacks and leaves a faint rectangle around the logo. */
+    mix-blend-mode: lighten;
+    filter: contrast(1.08);
   }
 
   /* ── Nav menu ───────────────────────────────────────────── */
@@ -154,6 +157,6 @@ const logoSrc = line === 'consumer'
   /* ── Mobile ─────────────────────────────────────────────── */
   @media (max-width: 900px) {
     .site-nav__menu { display: none; }
-    .site-nav__logo-img { height: 44px; }
+    .site-nav__logo-img { height: 60px; }
   }
 </style>
