@@ -1,4 +1,6 @@
 ---
+import { path } from '../utils/url';
+
 export interface Props {
   current?: 'products' | 'consumer' | 'professional' | 'support' | 'company' | 'community';
   line?: 'consumer' | 'professional';
@@ -8,24 +10,24 @@ const { current, line = 'consumer' } = Astro.props;
 
 const items = line === 'consumer'
   ? [
-      { id: 'products',     label: 'Products',     href: '/products' },
-      { id: 'consumer',     label: 'Consumer',     href: '/consumer' },
-      { id: 'support',      label: 'Support',      href: '/support' },
-      { id: 'company',      label: 'Company',      href: '/company' },
-      { id: 'community',    label: 'Community',    href: '/community' },
+      { id: 'products',     label: 'Products',     href: path('/products') },
+      { id: 'consumer',     label: 'Consumer',     href: path('/consumer') },
+      { id: 'support',      label: 'Support',      href: path('/support') },
+      { id: 'company',      label: 'Company',      href: path('/company') },
+      { id: 'community',    label: 'Community',    href: path('/community') },
     ]
   : [
-      { id: 'products',     label: 'Products',     href: '/products' },
-      { id: 'professional', label: 'Professional', href: '/professional' },
-      { id: 'consumer',     label: 'Consumer',     href: '/consumer' },
-      { id: 'support',      label: 'Support',      href: '/support' },
-      { id: 'company',      label: 'Company',      href: '/company' },
+      { id: 'products',     label: 'Products',     href: path('/products') },
+      { id: 'professional', label: 'Professional', href: path('/professional') },
+      { id: 'consumer',     label: 'Consumer',     href: path('/consumer') },
+      { id: 'support',      label: 'Support',      href: path('/support') },
+      { id: 'company',      label: 'Company',      href: path('/company') },
     ];
 ---
 
 <header class="site-nav">
   <div class="container site-nav__inner">
-    <a href="/" class="site-nav__logo" aria-label="Helios Computer Corporation home">
+    <a href={path('/')} class="site-nav__logo" aria-label="Helios Computer Corporation home">
       <!-- The 2001 starburst wordmark. Drop in your real logo at
            /public/images/logos/helios-2001.png and swap this block
            for an <img>. For now it's a styled text mark. -->
@@ -50,7 +52,7 @@ const items = line === 'consumer'
       </ul>
     </nav>
 
-    <a href="/cart" class="site-nav__cart" aria-label="Cart">
+    <a href={path('/cart')} class="site-nav__cart" aria-label="Cart">
       <span>Cart (0)</span>
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
         stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">

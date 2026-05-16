@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import ProductCard from '../components/ProductCard.astro';
 import FeatureItem from '../components/FeatureItem.astro';
 import IrisEmblem from '../components/IrisEmblem.astro';
+import { path } from '../utils/url';
 
 /* All product copy is held here so it's easy to tune in one place. */
 
@@ -24,7 +25,7 @@ const products = [
       'Integrated Stereo Speakers',
       'Solstice OS',
     ],
-    cta: { label: 'Buy Nova', href: '/products/nova' },
+    cta: { label: 'Buy Nova', href: path('/products/nova') },
     image: null,
     imageAlt: 'Helios Nova all-in-one workstation',
   },
@@ -43,7 +44,7 @@ const products = [
       'Solstice OS',
       'Up to 4.5 Hours Battery Life',
     ],
-    cta: { label: 'Buy Genesis', href: '/products/genesis' },
+    cta: { label: 'Buy Genesis', href: path('/products/genesis') },
     image: null,
     imageAlt: 'Helios Genesis portable computer',
   },
@@ -179,7 +180,7 @@ const valueProps = [
             ))}
           </ul>
 
-          <a href="/iris" class="product-card__cta">
+          <a href={path('/iris')} class="product-card__cta">
             <span>Learn About IRIS</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

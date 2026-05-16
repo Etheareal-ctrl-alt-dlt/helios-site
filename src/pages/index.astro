@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { path } from '../utils/url';
 ---
 
 <BaseLayout title="Helios Computer Corporation" line="consumer">
@@ -15,11 +16,11 @@ import Footer from '../components/Footer.astro';
         The full homepage is being prepared. In the meantime, browse the lines:
       </p>
       <div class="links">
-        <a href="/consumer" class="line-link line-link--consumer">
+        <a href={path('/consumer')} class="line-link line-link--consumer">
           <span class="line-link__name">Consumer Line</span>
           <span class="line-link__tag">Power Made Simple.</span>
         </a>
-        <a href="/professional" class="line-link line-link--professional">
+        <a href={path('/professional')} class="line-link line-link--professional">
           <span class="line-link__name">Professional Line</span>
           <span class="line-link__tag">Power to the Professional.</span>
         </a>

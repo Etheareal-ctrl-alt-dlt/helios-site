@@ -1,4 +1,6 @@
 ---
+import { path } from '../utils/url';
+
 export interface Props {
   line?: 'consumer' | 'professional';
 }
@@ -14,7 +16,7 @@ const links = line === 'consumer'
 
 <footer class="site-footer">
   <div class="container site-footer__inner">
-    <a href="/" class="site-footer__logo" aria-label="Helios Computer Corporation home">
+    <a href={path('/')} class="site-footer__logo" aria-label="Helios Computer Corporation home">
       <span class="logo-mark">
         <span class="logo-mark__word">HELIOS</span>
         <span class="logo-mark__sub">COMPUTER CORPORATION</span>
@@ -25,7 +27,7 @@ const links = line === 'consumer'
       <ul>
         {links.map((label) => (
           <li>
-            <a href={`/${label.toLowerCase()}`}>{label}</a>
+            <a href={path(`/${label.toLowerCase()}`)}>{label}</a>
           </li>
         ))}
       </ul>
