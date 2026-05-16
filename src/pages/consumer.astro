@@ -409,16 +409,14 @@ const valueProps = [
     transform: translate(-50%, -50%);
     width: 68%;
     height: auto;
-    /* luma-to-alpha turns the PNG's dark backdrop into true alpha
-       transparency. No blend mode needed; the corners of the image
-       are genuinely transparent and the iridescent ring floats free
-       on the card. Drop-shadow chains after to add the purple glow. */
-    filter: url(#luma-to-alpha) drop-shadow(0 0 28px rgba(157, 123, 255, 0.45));
+    /* PNG is now genuinely transparent — no blend mode or alpha filter
+       needed. Drop-shadow gives the iridescent ring its purple glow. */
+    filter: drop-shadow(0 0 28px rgba(157, 123, 255, 0.45));
     animation: iris-glow 7s ease-in-out infinite;
   }
   @keyframes iris-glow {
-    0%, 100% { filter: url(#luma-to-alpha) drop-shadow(0 0 22px rgba(157, 123, 255, 0.40)); }
-    50%      { filter: url(#luma-to-alpha) drop-shadow(0 0 36px rgba(157, 123, 255, 0.65)); }
+    0%, 100% { filter: drop-shadow(0 0 22px rgba(157, 123, 255, 0.40)); }
+    50%      { filter: drop-shadow(0 0 36px rgba(157, 123, 255, 0.65)); }
   }
   @media (prefers-reduced-motion: reduce) {
     .iris-card__emblem { animation: none; }

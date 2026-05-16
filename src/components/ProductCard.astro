@@ -146,9 +146,9 @@ const {
     width: 90%;
     height: 90%;
     object-fit: contain;
-    /* Black backdrop of the product PNG dissolves into the card via
-       screen blending, so the product appears to float on the page. */
-    mix-blend-mode: screen;
+    /* PNG is now genuinely transparent — no blend mode needed.
+       The card's accent-color glow shows naturally through and
+       behind the floating product. */
   }
 
   /* Placeholder cards (no image yet): show the brand-color radial. */

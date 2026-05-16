@@ -94,10 +94,6 @@ const logoSrc = line === 'consumer'
   .site-nav__logo-img {
     height: 76px;
     width: auto;
-    /* Convert the PNG's dark pixels to actual alpha transparency.
-       More reliable than mix-blend-mode, especially in Safari where
-       blend modes can fight with the nav's backdrop-filter. */
-    filter: url(#luma-to-alpha);
   }
 
   /* ── Nav menu ───────────────────────────────────────────── */
