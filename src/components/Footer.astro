@@ -2,23 +2,23 @@
 import { path } from '../utils/url';
 
 export interface Props {
-  line?: 'consumer' | 'professional';
+  line?: 'homepage' | 'consumer' | 'professional';
 }
 
 const { line = 'consumer' } = Astro.props;
 
 const year = line === 'consumer' ? 2001 : 1993;
 
-const links = line === 'consumer'
-  ? ['Privacy', 'Terms', 'Warranty', 'Contact', 'Sitemap']
-  : ['Privacy', 'Terms', 'Warranty', 'Contact'];
+const links = line === 'professional'
+  ? ['Privacy', 'Terms', 'Warranty', 'Contact']
+  : ['Privacy', 'Terms', 'Warranty', 'Contact', 'Sitemap'];
 
 const logoSrc = line === 'consumer'
   ? path('/images/logos/helios-2001.png')
   : path('/images/logos/helios-1993.png');
 ---
 
-<footer class="site-footer">
+<footer class="site-footer" data-line={line}>
   <div class="container site-footer__inner">
     <a href={path('/')} class="site-footer__logo" aria-label="Helios Computer Corporation home">
       <img src={logoSrc} alt="Helios Computer Corporation" class="site-footer__logo-img" />
@@ -77,6 +77,12 @@ const logoSrc = line === 'consumer'
     transition: color var(--duration-fast) var(--ease-out);
   }
   .site-footer__menu a:hover { color: var(--pink); }
+
+  /* Amber hover for homepage and professional contexts */
+  .site-footer[data-line="homepage"] .site-footer__menu a:hover,
+  .site-footer[data-line="professional"] .site-footer__menu a:hover {
+    color: var(--helios-amber);
+  }
 
   .site-footer__copy {
     font-family: var(--font-mono);

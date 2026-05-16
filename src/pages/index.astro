@@ -106,7 +106,7 @@ import { path } from '../utils/url';
     </div>
   </section>
 
-  <Footer line="consumer" />
+  <Footer line="homepage" />
 </BaseLayout>
 
 <style>
@@ -297,7 +297,7 @@ import { path } from '../utils/url';
 
   .hp-hero__center-inner {
     pointer-events: auto;
-    max-width: 640px;
+    max-width: 720px;
     text-align: center;
     padding-inline: var(--space-6);
   }
@@ -376,9 +376,9 @@ import { path } from '../utils/url';
   /* ── Dual CTAs ──────────────────────────────────────────── */
   .hp-hero__ctas {
     display: flex;
-    gap: var(--space-3);
+    gap: var(--space-5);
     justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
 
   .hp-cta {
@@ -394,8 +394,9 @@ import { path } from '../utils/url';
     font-family: var(--font-mono);
     font-size: 0.82rem;
     font-weight: var(--weight-medium);
-    letter-spacing: 0.18em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
+    white-space: nowrap;
     transition: all var(--duration-fast) var(--ease-out);
     cursor: pointer;
   }
