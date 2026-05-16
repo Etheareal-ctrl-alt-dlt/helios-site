@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { path } from '../utils/url';
+---
+
+<BaseLayout title="Helios Computer Corporation" line="consumer">
+  <Nav line="consumer" />
+
+  <section class="placeholder">
+    <div class="container">
+      <p class="eyebrow">Site under construction</p>
+      <h1>HELIOS.</h1>
+      <p class="lede">
+        The full homepage is being prepared. In the meantime, browse the lines:
+      </p>
+      <div class="links">
+        <a href={path('/consumer')} class="line-link line-link--consumer">
+          <span class="line-link__name">Consumer Line</span>
+          <span class="line-link__tag">Power Made Simple.</span>
+        </a>
+        <a href={path('/professional')} class="line-link line-link--professional">
+          <span class="line-link__name">Professional Line</span>
+          <span class="line-link__tag">Power to the Professional.</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer line="consumer" />
+</BaseLayout>
+
+<style>
+  .placeholder {
+    padding-block: var(--space-16) var(--space-12);
+    text-align: center;
+  }
+
+  .placeholder .eyebrow {
+    margin-bottom: var(--space-4);
+  }
+
+  .placeholder h1 {
+    font-family: var(--font-display);
+    font-weight: var(--weight-black);
+    font-size: clamp(4rem, 12vw, 8rem);
+    letter-spacing: 0.02em;
+    line-height: 1;
+    margin-bottom: var(--space-5);
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .placeholder .lede {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-8);
+  }
+
+  .links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .line-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-6);
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    background: var(--bg-card);
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+  .line-link:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
+  }
+
+  .line-link__name {
+    font-family: var(--font-display);
+    font-weight: var(--weight-extrabold);
+    font-size: 1.4rem;
+  }
+  .line-link--consumer .line-link__name {
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .line-link--professional .line-link__name {
+    color: var(--helios-amber);
+  }
+
+  .line-link__tag {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 600px) {
+    .links { grid-template-columns: 1fr; }
+  }
+</style>
