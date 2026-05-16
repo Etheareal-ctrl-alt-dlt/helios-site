@@ -16,15 +16,14 @@ import { path } from '../utils/url';
     {/* CENTER — appears first in source so it stacks above on mobile */}
     <div class="hp-hero__center">
       <div class="hp-hero__center-inner">
-        <p class="hp-hero__brand" aria-label="Helios Computer Corporation">
+        <div class="hp-hero__brand" aria-label="Helios Computer Corporation">
           <span class="hp-hero__brand-name">HELIOS</span>
           <span class="hp-hero__brand-sub">Computer Corporation<sup>®</sup></span>
-        </p>
+          <span class="hp-hero__brand-rule" aria-hidden="true"></span>
+        </div>
 
         <h1 id="hp-hero-title" class="hp-hero__title">
-          <span>Power,</span>
-          <span>shaped for</span>
-          <span>the Operator.</span>
+          Power, shaped for<br />the Operator.
         </h1>
 
         <p class="hp-hero__lede">
@@ -66,6 +65,10 @@ import { path } from '../utils/url';
         />
         <div class="hp-hero__panel-overlay hp-hero__panel-overlay--pro" aria-hidden="true"></div>
         <div class="hp-hero__panel-content">
+          <p class="hp-hero__panel-eyebrow hp-hero__panel-eyebrow--pro">
+            <span class="hp-hero__panel-eyebrow-mark">█</span>
+            Aurora&nbsp;OS
+          </p>
           <h2 class="hp-hero__panel-title hp-hero__panel-title--pro">
             Power to the<br />Professional.
           </h2>
@@ -87,6 +90,9 @@ import { path } from '../utils/url';
         />
         <div class="hp-hero__panel-overlay hp-hero__panel-overlay--consumer" aria-hidden="true"></div>
         <div class="hp-hero__panel-content">
+          <p class="hp-hero__panel-eyebrow hp-hero__panel-eyebrow--consumer">
+            Solstice&nbsp;OS
+          </p>
           <h2 class="hp-hero__panel-title hp-hero__panel-title--consumer">
             Power<br />Made Simple.
           </h2>
@@ -105,12 +111,15 @@ import { path } from '../utils/url';
 
 <style>
   /* ═══════════════════════════════════════════════════════════════
-     HERO — split composition, pro left / consumer right,
-     center messaging overlaid with a radial dark vignette
+     HOMEPAGE HERO
+     Three typographic identities:
+       PROFESSIONAL → IBM Plex Mono, amber (Aurora OS terminal voice)
+       COMPANY      → IBM Plex Serif, white (editorial / corporate)
+       CONSUMER     → Nunito Black, gradient (warm rounded sans)
      ═══════════════════════════════════════════════════════════════ */
   .hp-hero {
     position: relative;
-    min-height: clamp(680px, 100vh, 920px);
+    min-height: clamp(720px, 100vh, 960px);
     overflow: hidden;
     background: #050510;
   }
@@ -125,9 +134,10 @@ import { path } from '../utils/url';
 
   .hp-hero__panel {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    padding: var(--space-8) var(--space-7) var(--space-7);
+    display: grid;
+    grid-template-columns: 1fr;
+    align-content: start;
+    padding-block: clamp(var(--space-7), 7vh, var(--space-10));
     overflow: hidden;
   }
 
@@ -144,8 +154,7 @@ import { path } from '../utils/url';
   .hp-hero__panel--pro .hp-hero__panel-bg      { object-position: center 65%; }
   .hp-hero__panel--consumer .hp-hero__panel-bg { object-position: center 60%; }
 
-  /* Per-side overlay — top dark for headline readability,
-     fades toward bottom so the products stay visible */
+  /* Per-side overlay — top dark for headline readability */
   .hp-hero__panel-overlay {
     position: absolute;
     inset: 0;
@@ -156,8 +165,8 @@ import { path } from '../utils/url';
     background: linear-gradient(
       180deg,
       rgba(5, 5, 12, 0.85) 0%,
-      rgba(5, 5, 12, 0.55) 22%,
-      rgba(5, 5, 12, 0.15) 55%,
+      rgba(5, 5, 12, 0.5) 22%,
+      rgba(5, 5, 12, 0.12) 55%,
       rgba(5, 5, 12, 0.0) 100%
     );
   }
@@ -165,40 +174,85 @@ import { path } from '../utils/url';
     background: linear-gradient(
       180deg,
       rgba(10, 10, 24, 0.78) 0%,
-      rgba(10, 10, 24, 0.45) 22%,
-      rgba(10, 10, 24, 0.12) 55%,
+      rgba(10, 10, 24, 0.42) 22%,
+      rgba(10, 10, 24, 0.1) 55%,
       rgba(10, 10, 24, 0.0) 100%
     );
   }
 
-  /* ── Per-panel headline content ─────────────────────────────── */
+  /* ── Side panel content — pushed INWARD toward center ────── */
   .hp-hero__panel-content {
     position: relative;
     z-index: 2;
-    max-width: 360px;
+    width: clamp(240px, 26vw, 340px);
   }
 
-  /* Consumer panel — content pinned to the right edge */
-  .hp-hero__panel--consumer .hp-hero__panel-content {
+  /* Pro content pinned to the inner (right) edge of pro panel,
+     consumer content pinned to inner (left) edge of consumer panel.
+     The clamp() margin pulls them away from the central vignette
+     spotlight so they get their own breathing room. */
+  .hp-hero__panel--pro .hp-hero__panel-content {
     margin-left: auto;
+    margin-right: clamp(var(--space-7), 6vw, var(--space-12));
+    text-align: left;
+  }
+  .hp-hero__panel--consumer .hp-hero__panel-content {
+    margin-right: auto;
+    margin-left: clamp(var(--space-7), 6vw, var(--space-12));
     text-align: right;
   }
 
-  .hp-hero__panel-title {
-    font-family: var(--font-display);
-    font-weight: var(--weight-black);
-    font-size: clamp(1.5rem, 2.4vw, 2.1rem);
-    line-height: 1.0;
-    letter-spacing: -0.01em;
+  /* ── Panel eyebrow tags (Aurora OS / Solstice OS) ────────── */
+  .hp-hero__panel-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.28em;
     text-transform: uppercase;
+    margin-bottom: var(--space-4);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+  }
+  .hp-hero__panel-eyebrow--pro {
+    color: var(--helios-amber);
+  }
+  .hp-hero__panel-eyebrow--consumer {
+    color: var(--pink);
+    /* In RTL alignment, the eyebrow still reads naturally — but
+       the flex direction follows text-align: right via auto. */
+  }
+  .hp-hero__panel-eyebrow-mark {
+    font-size: 0.6em;
+    line-height: 1;
+    transform: translateY(-1px);
+  }
+
+  /* ── Panel titles ────────────────────────────────────────── */
+  .hp-hero__panel-title {
+    line-height: 1.05;
     margin-bottom: var(--space-4);
   }
 
+  /* PRO title — terminal/monospace voice */
   .hp-hero__panel-title--pro {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: clamp(1.1rem, 1.8vw, 1.7rem);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
     color: var(--helios-amber);
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
   }
+
+  /* CONSUMER title — warm rounded gradient */
   .hp-hero__panel-title--consumer {
+    font-family: var(--font-display);
+    font-weight: var(--weight-black);
+    font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
     background: var(--gradient-hero);
     -webkit-background-clip: text;
     background-clip: text;
@@ -206,17 +260,18 @@ import { path } from '../utils/url';
     filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.65));
   }
 
+  /* Side panel ledes */
   .hp-hero__panel-lede {
     font-family: var(--font-mono);
-    font-size: 0.85rem;
-    line-height: 1.75;
+    font-size: 0.82rem;
+    line-height: 1.8;
     letter-spacing: 0.01em;
     color: var(--text-primary);
     text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75);
   }
 
   /* ═══════════════════════════════════════════════════════════════
-     CENTER — bridges the two halves, radial-vignette spotlight
+     CENTER — corporate / editorial voice
      ═══════════════════════════════════════════════════════════════ */
   .hp-hero__center {
     position: absolute;
@@ -224,12 +279,12 @@ import { path } from '../utils/url';
     z-index: 10;
     display: grid;
     place-items: center;
-    /* Radial dark spotlight pulls focus to center while letting the
-       panels show through at the edges */
+    /* Tighter radial vignette so the side headlines get breathing
+       room outside the center spotlight */
     background: radial-gradient(
-      ellipse 50% 70% at center,
-      rgba(5, 5, 14, 0.88) 0%,
-      rgba(5, 5, 14, 0.72) 38%,
+      ellipse 38% 60% at center,
+      rgba(5, 5, 14, 0.92) 0%,
+      rgba(5, 5, 14, 0.78) 35%,
       rgba(5, 5, 14, 0.35) 65%,
       transparent 85%
     );
@@ -238,33 +293,34 @@ import { path } from '../utils/url';
 
   .hp-hero__center-inner {
     pointer-events: auto;
-    max-width: 580px;
+    max-width: 620px;
     text-align: center;
     padding-inline: var(--space-6);
   }
 
+  /* ── HELIOS brand mark — treated as a corporate logotype ──── */
   .hp-hero__brand {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    justify-items: center;
     gap: var(--space-2);
-    margin-bottom: var(--space-7);
+    margin-bottom: var(--space-9);  /* generous gap before headline */
   }
 
   .hp-hero__brand-name {
-    font-family: var(--font-display);
-    font-weight: var(--weight-black);
-    font-size: clamp(2rem, 3.4vw, 2.8rem);
-    letter-spacing: 0.06em;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: clamp(1.7rem, 2.6vw, 2.2rem);
+    letter-spacing: 0.32em;  /* wide tracking = logotype feel */
+    text-indent: 0.32em;     /* compensate for trailing letter-spacing */
     color: var(--text-primary);
     line-height: 1;
   }
 
   .hp-hero__brand-sub {
     font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: var(--weight-medium);
-    letter-spacing: 0.32em;
+    letter-spacing: 0.34em;
     text-transform: uppercase;
     color: var(--text-secondary);
     line-height: 1;
@@ -275,28 +331,45 @@ import { path } from '../utils/url';
     opacity: 0.85;
   }
 
+  /* Thin gradient divider beneath the brand mark */
+  .hp-hero__brand-rule {
+    display: block;
+    width: 56px;
+    height: 1px;
+    margin-top: var(--space-5);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.35),
+      transparent
+    );
+  }
+
+  /* ── Main editorial headline ─────────────────────────────── */
   .hp-hero__title {
-    font-family: var(--font-display);
-    font-weight: var(--weight-black);
-    font-size: clamp(2.4rem, 5vw, 4rem);
-    line-height: 1.0;
-    letter-spacing: -0.02em;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: clamp(2.6rem, 5.4vw, 4.4rem);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
     color: var(--text-primary);
-    margin-bottom: var(--space-6);
-    display: flex;
-    flex-direction: column;
+    margin-bottom: var(--space-7);
     text-shadow: 0 4px 32px rgba(0, 0, 0, 0.5);
   }
 
+  /* ── Lede ───────────────────────────────────────────────── */
   .hp-hero__lede {
+    font-family: var(--font-body);
     font-size: 1rem;
-    line-height: 1.65;
+    line-height: 1.7;
     color: var(--text-secondary);
-    margin-bottom: var(--space-7);
+    margin-bottom: var(--space-8);
+    max-width: 480px;
+    margin-inline: auto;
     text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
   }
 
-  /* ── Dual CTAs ──────────────────────────────────────────────── */
+  /* ── Dual CTAs ──────────────────────────────────────────── */
   .hp-hero__ctas {
     display: flex;
     gap: var(--space-3);
@@ -379,7 +452,6 @@ import { path } from '../utils/url';
       min-height: auto;
     }
 
-    /* Center moves into normal flow on mobile */
     .hp-hero__center {
       position: relative;
       inset: auto;
@@ -393,7 +465,6 @@ import { path } from '../utils/url';
         var(--bg-deep);
     }
 
-    /* Panels stack vertically */
     .hp-hero__panels {
       position: relative;
       inset: auto;
@@ -405,9 +476,12 @@ import { path } from '../utils/url';
       padding: var(--space-7) var(--space-5) var(--space-6);
     }
 
-    /* Reset consumer panel right-alignment on mobile */
+    .hp-hero__panel-content {
+      width: 100%;
+    }
+    .hp-hero__panel--pro .hp-hero__panel-content,
     .hp-hero__panel--consumer .hp-hero__panel-content {
-      margin-left: 0;
+      margin-inline: 0;
       text-align: left;
     }
 

@@ -19,6 +19,7 @@
   --font-display: 'Nunito', system-ui, sans-serif;
   --font-body:    'Nunito', system-ui, sans-serif;
   --font-mono:    'IBM Plex Mono', ui-monospace, monospace;
+  --font-serif:   'IBM Plex Serif', Georgia, serif;
 
   --weight-regular: 400;
   --weight-medium:  500;
