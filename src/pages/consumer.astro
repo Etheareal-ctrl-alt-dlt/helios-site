@@ -409,17 +409,16 @@ const valueProps = [
     transform: translate(-50%, -50%);
     width: 68%;
     height: auto;
-    /* Same lighten+contrast trick as the logos. Pure black backdrop
-       disappears against the card; near-black compression artifacts
-       (which were creating the visible rectangle) get crushed by
-       contrast(1.08) and then erased by the lighten blend. */
-    mix-blend-mode: lighten;
-    filter: contrast(1.08) drop-shadow(0 0 28px rgba(157, 123, 255, 0.45));
+    /* luma-to-alpha turns the PNG's dark backdrop into true alpha
+       transparency. No blend mode needed; the corners of the image
+       are genuinely transparent and the iridescent ring floats free
+       on the card. Drop-shadow chains after to add the purple glow. */
+    filter: url(#luma-to-alpha) drop-shadow(0 0 28px rgba(157, 123, 255, 0.45));
     animation: iris-glow 7s ease-in-out infinite;
   }
   @keyframes iris-glow {
-    0%, 100% { filter: contrast(1.08) drop-shadow(0 0 22px rgba(157, 123, 255, 0.40)); }
-    50%      { filter: contrast(1.08) drop-shadow(0 0 36px rgba(157, 123, 255, 0.65)); }
+    0%, 100% { filter: url(#luma-to-alpha) drop-shadow(0 0 22px rgba(157, 123, 255, 0.40)); }
+    50%      { filter: url(#luma-to-alpha) drop-shadow(0 0 36px rgba(157, 123, 255, 0.65)); }
   }
   @media (prefers-reduced-motion: reduce) {
     .iris-card__emblem { animation: none; }
