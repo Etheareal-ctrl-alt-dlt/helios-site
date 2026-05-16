@@ -6,8 +6,6 @@ import ProductCard from '../components/ProductCard.astro';
 import FeatureItem from '../components/FeatureItem.astro';
 import { path } from '../utils/url';
 
-/* All product copy is held here so it's easy to tune in one place. */
-
 const products = [
   {
     name: 'NOVA',
@@ -95,13 +93,20 @@ const valueProps = [
   <Nav current="consumer" line="consumer" />
 
   <!-- ════════════════════════════════════════════════════════
-       HERO
+       HERO — full-bleed Nova lifestyle shot with text overlay
        ════════════════════════════════════════════════════════ -->
-  <section class="hero">
+  <section class="hero" aria-labelledby="hero-title">
+    <img
+      src={path('/images/products/nova-hero.png')}
+      alt="The Helios Nova in a warm home setting"
+      class="hero__bg"
+    />
+    <div class="hero__overlay" aria-hidden="true"></div>
+
     <div class="container hero__inner">
       <div class="hero__copy">
         <p class="eyebrow hero__eyebrow">Helios Consumer Line</p>
-        <h1 class="hero__title">
+        <h1 id="hero-title" class="hero__title">
           <span>Power</span>
           <span class="gradient-text">Made Simple.</span>
         </h1>
@@ -126,14 +131,6 @@ const valueProps = [
           </svg>
         </a>
       </div>
-
-      <div class="hero__media">
-        <img
-          src={path('/images/products/nova-hero.png')}
-          alt="The Helios Nova in a warm home setting"
-          class="hero__image"
-        />
-      </div>
     </div>
   </section>
 
@@ -147,17 +144,15 @@ const valueProps = [
           <ProductCard {...p} />
         ))}
 
-        <!-- IRIS gets a custom card because she's a companion, not a SKU.
-             Same card shell as the products, but with the iridescent
-             emblem in place of a product photo and a "Learn About"
-             CTA instead of "Buy". -->
-        <article class="product-card iris-card" data-accent="blue">
-          <header class="product-card__header">
-            <h2 class="product-card__name">IRIS</h2>
-            <p class="product-card__subtitle">Intelligent Assistant</p>
+        <!-- IRIS — same card shell, custom media (the emblem), and
+             "Learn About" CTA instead of "Buy". -->
+        <article class="iris-card">
+          <header class="iris-card__header">
+            <h2 class="iris-card__name">IRIS</h2>
+            <p class="iris-card__subtitle">Intelligent Assistant</p>
           </header>
 
-          <div class="product-card__media iris-card__media">
+          <div class="iris-card__media">
             <img
               src={path('/images/logos/iris-emblem.png')}
               alt="IRIS emblem — the iridescent ring of the Helios consumer AI companion"
@@ -165,12 +160,12 @@ const valueProps = [
             />
           </div>
 
-          <p class="product-card__desc">
+          <p class="iris-card__desc">
             IRIS is your personal companion, built into every Helios system.
             One touch. One voice. Always there.
           </p>
 
-          <ul class="product-card__specs">
+          <ul class="iris-card__specs">
             {irisFeatures.map((f) => (
               <li>
                 <svg class="spec-star" width="11" height="11" viewBox="0 0 12 12" aria-hidden="true">
@@ -181,7 +176,7 @@ const valueProps = [
             ))}
           </ul>
 
-          <a href={path('/iris')} class="product-card__cta">
+          <a href={path('/iris')} class="iris-card__cta">
             <span>Learn About IRIS</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -194,7 +189,7 @@ const valueProps = [
   </section>
 
   <!-- ════════════════════════════════════════════════════════
-       VALUE PROPS
+       VALUE PROPS — full-bleed band across the bottom of the page
        ════════════════════════════════════════════════════════ -->
   <section class="value-props">
     <div class="container">
@@ -211,22 +206,77 @@ const valueProps = [
 
 <style>
   /* ══════════════════════════════════════════════════════════
-     HERO
+     HERO — full-bleed photo with gradient overlay for legibility
      ══════════════════════════════════════════════════════════ */
   .hero {
-    padding-block: var(--space-12) var(--space-10);
+    position: relative;
+    width: 100%;
+    min-height: clamp(520px, 65vh, 760px);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    /* Pull the hero out of the body's atmospheric vignette so the
+       photo is the dominant visual at the top. */
+    margin-top: calc(-1 * var(--space-4));
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Bias slightly toward center-right so the Nova stays in frame
+       at narrow viewports. */
+    object-position: 60% 50%;
+    z-index: 0;
+    /* The PNG ships with a black backdrop already — it blends with
+       the page edges naturally, no vignette needed here. */
+    animation: hero-bg-in 1200ms var(--ease-out) both;
+  }
+
+  /* The overlay does two jobs:
+     1. Dark wash on the LEFT, fading to clear on the RIGHT — keeps
+        text readable while letting the Nova / lamp stay visible.
+     2. Soft dark fade at the BOTTOM — smooth handoff to the next
+        section without a hard edge. */
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(10, 10, 24, 0.95) 0%,
+        rgba(10, 10, 24, 0.82) 18%,
+        rgba(10, 10, 24, 0.50) 40%,
+        rgba(10, 10, 24, 0.18) 65%,
+        rgba(10, 10, 24, 0) 90%
+      ),
+      linear-gradient(
+        180deg,
+        transparent 0%,
+        transparent 55%,
+        rgba(10, 10, 24, 0.55) 88%,
+        var(--bg-deep) 100%
+      );
+    pointer-events: none;
   }
 
   .hero__inner {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-    gap: var(--space-10);
-    align-items: center;
+    position: relative;
+    z-index: 2;
+    padding-block: var(--space-10);
+    width: 100%;
+  }
+
+  .hero__copy {
+    max-width: 560px;
   }
 
   .hero__eyebrow {
     margin-bottom: var(--space-4);
-    animation: fade-up 700ms var(--ease-out) both;
+    animation: fade-up 700ms var(--ease-out) 200ms both;
   }
 
   .hero__title {
@@ -238,7 +288,10 @@ const valueProps = [
     display: flex;
     flex-direction: column;
     margin-bottom: var(--space-5);
-    animation: fade-up 800ms var(--ease-out) 100ms both;
+    animation: fade-up 800ms var(--ease-out) 300ms both;
+    /* Drop shadow keeps the title crisp over the photo wherever the
+       overlay is thinner. */
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
   }
   .hero__title span:first-child {
     color: var(--pink);
@@ -249,15 +302,16 @@ const valueProps = [
     height: 2px;
     background: var(--gradient-rule);
     margin-bottom: var(--space-5);
-    animation: width-in 900ms var(--ease-out) 200ms both;
+    animation: width-in 900ms var(--ease-out) 400ms both;
   }
 
   .hero__lede {
     font-size: 1rem;
     line-height: 1.7;
-    color: var(--text-secondary);
+    color: var(--text-primary);
     margin-bottom: var(--space-6);
-    animation: fade-up 900ms var(--ease-out) 300ms both;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+    animation: fade-up 900ms var(--ease-out) 500ms both;
   }
 
   .hero__more {
@@ -269,33 +323,16 @@ const valueProps = [
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--pink);
-    animation: fade-up 1000ms var(--ease-out) 400ms both;
+    animation: fade-up 1000ms var(--ease-out) 600ms both;
     transition: gap var(--duration-fast) var(--ease-out);
   }
   .hero__more:hover { gap: var(--space-3); }
-
-  /* Hero image — Nova lifestyle shot. Black PNG background blends
-     into the page; subtle vignette feathers the edges. */
-  .hero__media {
-    position: relative;
-    animation: fade-up 1100ms var(--ease-out) 400ms both;
-  }
-
-  .hero__image {
-    width: 100%;
-    height: auto;
-    border-radius: 18px;
-    /* Feather the edges so the photo's black background dissolves
-       into the page rather than cutting hard. */
-    -webkit-mask-image: radial-gradient(ellipse 95% 90% at 50% 50%, black 70%, transparent 100%);
-            mask-image: radial-gradient(ellipse 95% 90% at 50% 50%, black 70%, transparent 100%);
-  }
 
   /* ══════════════════════════════════════════════════════════
      PRODUCT GRID
      ══════════════════════════════════════════════════════════ */
   .products {
-    padding-block: var(--space-8);
+    padding-block: var(--space-10) var(--space-8);
   }
 
   .products__grid {
@@ -304,8 +341,15 @@ const valueProps = [
     gap: var(--space-5);
   }
 
-  /* IRIS card — shares the ProductCard shell. */
+  /* ══════════════════════════════════════════════════════════
+     IRIS CARD — bulletproof aspect-ratio via padding-top trick.
+     The image is absolutely positioned inside an overflow-hidden
+     box, so it physically cannot blow out the card layout.
+     ══════════════════════════════════════════════════════════ */
   .iris-card {
+    --accent: var(--blue);
+    --accent-soft: rgba(123, 197, 255, 0.18);
+
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
@@ -316,15 +360,18 @@ const valueProps = [
     transition:
       transform var(--duration) var(--ease-out),
       box-shadow var(--duration) var(--ease-out);
-    --accent: var(--blue);
-    --accent-soft: rgba(123, 197, 255, 0.18);
   }
   .iris-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--glow-card-hover);
   }
-  .iris-card .product-card__header { display: flex; flex-direction: column; gap: var(--space-1); }
-  .iris-card .product-card__name {
+
+  .iris-card__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  .iris-card__name {
     font-family: var(--font-display);
     font-weight: var(--weight-black);
     font-size: 2.4rem;
@@ -332,7 +379,7 @@ const valueProps = [
     line-height: 1;
     color: var(--accent);
   }
-  .iris-card .product-card__subtitle {
+  .iris-card__subtitle {
     font-family: var(--font-mono);
     font-size: 0.72rem;
     font-weight: var(--weight-medium);
@@ -341,52 +388,55 @@ const valueProps = [
     color: var(--text-secondary);
   }
 
+  /* The bulletproof container — padding-top establishes 4:3 ratio,
+     overflow:hidden ensures the image cannot escape. */
   .iris-card__media {
-    aspect-ratio: 4 / 3;
-    display: grid;
-    place-items: center;
+    position: relative;
+    width: 100%;
+    padding-top: 75%;
     margin-block: var(--space-2);
-    padding: var(--space-4);
     border-radius: 12px;
+    overflow: hidden;
     background:
       radial-gradient(ellipse 70% 60% at 50% 50%, var(--accent-soft), transparent 70%);
   }
 
-  /* The IRIS emblem PNG has a black background. Screen blending
-     dissolves the black into the card, leaving only the iridescent
-     ring visible — the way the emblem was meant to be seen. */
   .iris-card__emblem {
-    max-width: 75%;
-    max-height: 100%;
-    object-fit: contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 68%;
+    height: auto;
+    /* Same screen-blend trick — black backdrop dissolves into the
+       card, leaving only the iridescent ring. */
     mix-blend-mode: screen;
-    filter: drop-shadow(0 0 24px rgba(157, 123, 255, 0.45));
-    animation: iris-breathe 6s ease-in-out infinite;
+    filter: drop-shadow(0 0 28px rgba(157, 123, 255, 0.45));
+    /* Animate the glow, NOT the geometry — geometry stays locked. */
+    animation: iris-glow 7s ease-in-out infinite;
   }
-
-  @keyframes iris-breathe {
-    0%, 100% { transform: scale(1); opacity: 0.95; }
-    50%      { transform: scale(1.04); opacity: 1; }
+  @keyframes iris-glow {
+    0%, 100% { filter: drop-shadow(0 0 22px rgba(157, 123, 255, 0.40)); }
+    50%      { filter: drop-shadow(0 0 36px rgba(157, 123, 255, 0.65)); }
   }
-
   @media (prefers-reduced-motion: reduce) {
     .iris-card__emblem { animation: none; }
   }
 
-  .iris-card .product-card__desc {
+  .iris-card__desc {
     font-size: 0.95rem;
     line-height: 1.55;
     color: var(--text-secondary);
   }
 
-  .iris-card .product-card__specs {
+  .iris-card__specs {
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
     margin-block: var(--space-3) var(--space-2);
   }
-  .iris-card .product-card__specs li {
+  .iris-card__specs li {
     display: flex;
     align-items: center;
     gap: var(--space-3);
@@ -394,9 +444,12 @@ const valueProps = [
     font-size: 0.82rem;
     color: var(--text-secondary);
   }
-  .iris-card .spec-star { color: var(--accent); flex-shrink: 0; }
+  .iris-card .spec-star {
+    color: var(--accent);
+    flex-shrink: 0;
+  }
 
-  .iris-card .product-card__cta {
+  .iris-card__cta {
     margin-top: auto;
     display: inline-flex;
     align-items: center;
@@ -417,27 +470,29 @@ const valueProps = [
       color var(--duration-fast) var(--ease-out),
       transform var(--duration-fast) var(--ease-out);
   }
-  .iris-card .product-card__cta:hover {
+  .iris-card__cta:hover {
     background: var(--accent);
     color: var(--bg-deep);
   }
-  .iris-card .product-card__cta:active { transform: scale(0.98); }
+  .iris-card__cta:active { transform: scale(0.98); }
 
   /* ══════════════════════════════════════════════════════════
-     VALUE PROPS
+     VALUE PROPS — full-bleed band across the bottom of the page.
+     Section background goes edge-to-edge; content centered inside
+     the standard container max-width.
      ══════════════════════════════════════════════════════════ */
   .value-props {
-    padding-block: var(--space-10);
+    margin-top: var(--space-10);
+    padding-block: var(--space-8);
+    background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-card-2) 100%);
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
   }
 
   .value-props__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--space-4);
-    padding: var(--space-5);
-    background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-card-2) 100%);
-    border-radius: 16px;
-    border: 1px solid var(--border-soft);
   }
 
   /* ══════════════════════════════════════════════════════════
@@ -451,10 +506,14 @@ const valueProps = [
     from { width: 0; }
     to   { width: 80px; }
   }
+  @keyframes hero-bg-in {
+    from { opacity: 0; transform: scale(1.04); }
+    to   { opacity: 1; transform: scale(1); }
+  }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero__eyebrow, .hero__title, .hero__lede,
-    .hero__more, .hero__media, .hero__rule {
+    .hero__bg, .hero__eyebrow, .hero__title, .hero__lede,
+    .hero__more, .hero__rule {
       animation: none;
     }
   }
@@ -468,8 +527,19 @@ const valueProps = [
   }
 
   @media (max-width: 720px) {
-    .hero__inner { grid-template-columns: 1fr; gap: var(--space-6); }
-    .hero { padding-block: var(--space-8) var(--space-6); }
+    .hero { min-height: clamp(440px, 60vh, 600px); }
+    .hero__copy { max-width: 100%; }
+    /* On mobile, darken further so text remains readable across the
+       whole frame, since there's no room to bias left vs. right. */
+    .hero__overlay {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(10, 10, 24, 0.78) 0%,
+          rgba(10, 10, 24, 0.55) 50%,
+          rgba(10, 10, 24, 0.82) 100%
+        );
+    }
     .products__grid { grid-template-columns: 1fr; }
     .value-props__grid { grid-template-columns: 1fr; }
   }

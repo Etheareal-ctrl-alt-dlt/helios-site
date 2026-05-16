@@ -5,9 +5,7 @@ export interface Props {
   description: string;
   specs: string[];
   cta: { label: string; href: string };
-  /* The accent color this card uses for name + button + spec bullets. */
   accent?: 'pink' | 'purple' | 'blue';
-  /* Path to the product hero image, or null to show the SVG placeholder. */
   image?: string | null;
   imageAlt?: string;
 }
@@ -117,57 +115,56 @@ const {
   }
 
   /* ── Media ──────────────────────────────────────────────── */
-  /* Two visual modes: with a real product photo (pure black backdrop
-     matching the image edges), or placeholder (the radial glow). */
+  /* Bulletproof aspect ratio using the padding-top trick. The image
+     is absolutely positioned inside this box and physically cannot
+     escape it, regardless of its natural dimensions. */
   .product-card__media {
-    aspect-ratio: 4 / 3;
-    display: grid;
-    place-items: center;
+    position: relative;
+    width: 100%;
+    padding-top: 75%; /* 4:3 ratio */
     margin-block: var(--space-2);
-    padding: var(--space-4);
     border-radius: 12px;
     overflow: hidden;
-    position: relative;
   }
+
+  /* Image cards: subtle accent glow rising from below the product.
+     The black PNG background is removed by screen blending. */
   .product-card[data-has-image="true"] .product-card__media {
-    background: #000;
-    padding: 0;
+    background:
+      radial-gradient(
+        ellipse 70% 60% at 50% 100%,
+        var(--accent-soft) 0%,
+        transparent 60%
+      );
   }
-  .product-card[data-has-image="true"] .product-card__media::after {
-    /* Subtle accent glow rim — visible only at the edges where the
-       product photo doesn't cover, suggesting the brand color. */
-    content: "";
+
+  .product-card__media img {
     position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: radial-gradient(
-      ellipse 80% 60% at 50% 90%,
-      var(--accent-soft) 0%,
-      transparent 60%
-    );
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    /* Black backdrop of the product PNG dissolves into the card via
+       screen blending, so the product appears to float on the page. */
     mix-blend-mode: screen;
   }
+
+  /* Placeholder cards (no image yet): show the brand-color radial. */
   .product-card[data-has-image="false"] .product-card__media {
     background:
       radial-gradient(ellipse 70% 60% at 50% 50%, var(--accent-soft), transparent 70%);
   }
 
-  .product-card__media img {
-    max-height: 100%;
-    max-width: 100%;
-    object-fit: contain;
-    position: relative;
-    z-index: 1;
-  }
-
   .product-card__placeholder {
+    position: absolute;
+    inset: var(--space-4);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: var(--space-2);
-    width: 100%;
-    aspect-ratio: 4 / 3;
     border: 1.5px dashed var(--border-soft);
     border-radius: 8px;
     color: var(--text-muted);
