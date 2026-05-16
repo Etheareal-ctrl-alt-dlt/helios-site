@@ -12,15 +12,16 @@ const year = line === 'consumer' ? 2001 : 1993;
 const links = line === 'consumer'
   ? ['Privacy', 'Terms', 'Warranty', 'Contact', 'Sitemap']
   : ['Privacy', 'Terms', 'Warranty', 'Contact'];
+
+const logoSrc = line === 'consumer'
+  ? path('/images/logos/helios-2001.png')
+  : path('/images/logos/helios-1993.png');
 ---
 
 <footer class="site-footer">
   <div class="container site-footer__inner">
     <a href={path('/')} class="site-footer__logo" aria-label="Helios Computer Corporation home">
-      <span class="logo-mark">
-        <span class="logo-mark__word">HELIOS</span>
-        <span class="logo-mark__sub">COMPUTER CORPORATION</span>
-      </span>
+      <img src={logoSrc} alt="Helios Computer Corporation" class="site-footer__logo-img" />
     </a>
 
     <nav class="site-footer__menu" aria-label="Secondary">
@@ -54,30 +55,10 @@ const links = line === 'consumer'
     align-items: center;
   }
 
-  .logo-mark {
-    display: inline-flex;
-    flex-direction: column;
-    line-height: 1;
-  }
-
-  .logo-mark__word {
-    font-family: var(--font-display);
-    font-weight: var(--weight-black);
-    font-size: 1.4rem;
-    letter-spacing: 0.02em;
-    background: linear-gradient(180deg, #FFD4A8 0%, #FF8B5C 60%, #C44A1F 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  .logo-mark__sub {
-    font-family: var(--font-mono);
-    font-size: 0.42rem;
-    font-weight: var(--weight-medium);
-    letter-spacing: 0.32em;
-    color: var(--text-muted);
-    margin-top: 2px;
+  .site-footer__logo-img {
+    height: 48px;
+    width: auto;
+    mix-blend-mode: screen;
   }
 
   .site-footer__menu ul {
@@ -113,6 +94,7 @@ const links = line === 'consumer'
       grid-template-columns: 1fr;
       text-align: center;
       gap: var(--space-5);
+      justify-items: center;
     }
     .site-footer__menu ul { justify-content: center; }
     .site-footer__copy { text-align: center; }

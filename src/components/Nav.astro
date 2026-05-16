@@ -23,18 +23,19 @@ const items = line === 'consumer'
       { id: 'support',      label: 'Support',      href: path('/support') },
       { id: 'company',      label: 'Company',      href: path('/company') },
     ];
+
+const logoSrc = line === 'consumer'
+  ? path('/images/logos/helios-2001.png')
+  : path('/images/logos/helios-1993.png');
 ---
 
 <header class="site-nav">
   <div class="container site-nav__inner">
     <a href={path('/')} class="site-nav__logo" aria-label="Helios Computer Corporation home">
-      <!-- The 2001 starburst wordmark. Drop in your real logo at
-           /public/images/logos/helios-2001.png and swap this block
-           for an <img>. For now it's a styled text mark. -->
-      <span class="logo-mark">
-        <span class="logo-mark__word">HELIOS</span>
-        <span class="logo-mark__sub">COMPUTER CORPORATION</span>
-      </span>
+      <!-- The image has a pure black background — mix-blend-mode: screen
+           drops that black into the nav blur cleanly, so the bright
+           amber and chrome elements appear to float on the page. -->
+      <img src={logoSrc} alt="Helios Computer Corporation" class="site-nav__logo-img" />
     </a>
 
     <nav class="site-nav__menu" aria-label="Primary">
@@ -79,41 +80,23 @@ const items = line === 'consumer'
     align-items: center;
     justify-content: space-between;
     gap: var(--space-6);
-    padding-block: var(--space-4);
+    padding-block: var(--space-3);
   }
 
-  /* ── Logo (styled text placeholder) ─────────────────────── */
+  /* ── Logo ───────────────────────────────────────────────── */
   .site-nav__logo {
     flex-shrink: 0;
-  }
-
-  .logo-mark {
     display: inline-flex;
-    flex-direction: column;
-    line-height: 1;
     transition: opacity var(--duration-fast) var(--ease-out);
   }
-  .logo-mark:hover { opacity: 0.85; }
+  .site-nav__logo:hover { opacity: 0.85; }
 
-  .logo-mark__word {
-    font-family: var(--font-display);
-    font-weight: var(--weight-black);
-    font-size: 1.6rem;
-    letter-spacing: 0.02em;
-    background: linear-gradient(180deg, #FFD4A8 0%, #FF8B5C 60%, #C44A1F 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 0 1px 0 rgba(255, 200, 150, 0.12);
-  }
-
-  .logo-mark__sub {
-    font-family: var(--font-mono);
-    font-size: 0.46rem;
-    font-weight: var(--weight-medium);
-    letter-spacing: 0.32em;
-    color: var(--text-secondary);
-    margin-top: 2px;
+  .site-nav__logo-img {
+    height: 56px;
+    width: auto;
+    /* Black backdrop in the PNG dissolves into the nav blur via screen.
+       The bright wordmark and starburst remain crisp. */
+    mix-blend-mode: screen;
   }
 
   /* ── Nav menu ───────────────────────────────────────────── */
@@ -171,7 +154,6 @@ const items = line === 'consumer'
   /* ── Mobile ─────────────────────────────────────────────── */
   @media (max-width: 900px) {
     .site-nav__menu { display: none; }
-    .site-nav__inner { padding-block: var(--space-3); }
-    .logo-mark__word { font-size: 1.3rem; }
+    .site-nav__logo-img { height: 44px; }
   }
 </style>

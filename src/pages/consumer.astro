@@ -4,7 +4,6 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import ProductCard from '../components/ProductCard.astro';
 import FeatureItem from '../components/FeatureItem.astro';
-import IrisEmblem from '../components/IrisEmblem.astro';
 import { path } from '../utils/url';
 
 /* All product copy is held here so it's easy to tune in one place. */
@@ -26,7 +25,7 @@ const products = [
       'Solstice OS',
     ],
     cta: { label: 'Buy Nova', href: path('/products/nova') },
-    image: null,
+    image: path('/images/products/nova.png'),
     imageAlt: 'Helios Nova all-in-one workstation',
   },
   {
@@ -45,7 +44,7 @@ const products = [
       'Up to 4.5 Hours Battery Life',
     ],
     cta: { label: 'Buy Genesis', href: path('/products/genesis') },
-    image: null,
+    image: path('/images/products/genesis.png'),
     imageAlt: 'Helios Genesis portable computer',
   },
 ];
@@ -129,14 +128,11 @@ const valueProps = [
       </div>
 
       <div class="hero__media">
-        <!-- Placeholder: a soft glow disc that suggests the Nova hero shot.
-             Replace with <img src="/images/products/nova-hero.png" /> once
-             you drop the asset in /public/images/products/. -->
-        <div class="hero__placeholder" aria-hidden="true">
-          <div class="hero__placeholder-glow"></div>
-          <span>NOVA</span>
-          <small>hero render</small>
-        </div>
+        <img
+          src={path('/images/products/nova-hero.png')}
+          alt="The Helios Nova in a warm home setting"
+          class="hero__image"
+        />
       </div>
     </div>
   </section>
@@ -151,17 +147,22 @@ const valueProps = [
           <ProductCard {...p} />
         ))}
 
-        <!-- IRIS gets a custom card because it's not a SKU — it's a
-             feature. Same card shell, custom media (the emblem),
-             different CTA wording. -->
+        <!-- IRIS gets a custom card because she's a companion, not a SKU.
+             Same card shell as the products, but with the iridescent
+             emblem in place of a product photo and a "Learn About"
+             CTA instead of "Buy". -->
         <article class="product-card iris-card" data-accent="blue">
           <header class="product-card__header">
             <h2 class="product-card__name">IRIS</h2>
             <p class="product-card__subtitle">Intelligent Assistant</p>
           </header>
 
-          <div class="product-card__media product-card__media--iris">
-            <IrisEmblem size={210} />
+          <div class="product-card__media iris-card__media">
+            <img
+              src={path('/images/logos/iris-emblem.png')}
+              alt="IRIS emblem — the iridescent ring of the Helios consumer AI companion"
+              class="iris-card__emblem"
+            />
           </div>
 
           <p class="product-card__desc">
@@ -273,49 +274,21 @@ const valueProps = [
   }
   .hero__more:hover { gap: var(--space-3); }
 
-  /* Hero media — placeholder until image asset arrives */
+  /* Hero image — Nova lifestyle shot. Black PNG background blends
+     into the page; subtle vignette feathers the edges. */
   .hero__media {
     position: relative;
     animation: fade-up 1100ms var(--ease-out) 400ms both;
   }
 
-  .hero__placeholder {
-    position: relative;
-    aspect-ratio: 4 / 3;
-    display: grid;
-    place-items: center;
-    border-radius: 16px;
-    border: 1.5px dashed var(--border-soft);
-    color: var(--text-muted);
-    overflow: hidden;
-  }
-  .hero__placeholder-glow {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 60% 50% at 50% 50%,
-        rgba(255, 111, 168, 0.25), transparent 60%),
-      radial-gradient(ellipse 40% 30% at 60% 40%,
-        rgba(157, 123, 255, 0.20), transparent 60%);
-  }
-  .hero__placeholder span {
-    position: relative;
-    font-family: var(--font-display);
-    font-weight: var(--weight-black);
-    font-size: 4rem;
-    background: var(--gradient-hero);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    opacity: 0.6;
-  }
-  .hero__placeholder small {
-    position: relative;
-    margin-top: var(--space-2);
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
+  .hero__image {
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+    /* Feather the edges so the photo's black background dissolves
+       into the page rather than cutting hard. */
+    -webkit-mask-image: radial-gradient(ellipse 95% 90% at 50% 50%, black 70%, transparent 100%);
+            mask-image: radial-gradient(ellipse 95% 90% at 50% 50%, black 70%, transparent 100%);
   }
 
   /* ══════════════════════════════════════════════════════════
@@ -331,8 +304,7 @@ const valueProps = [
     gap: var(--space-5);
   }
 
-  /* IRIS card uses the same shell but its media slot holds the
-     emblem instead of a product render. Inline styles to match. */
+  /* IRIS card — shares the ProductCard shell. */
   .iris-card {
     display: flex;
     flex-direction: column;
@@ -369,7 +341,7 @@ const valueProps = [
     color: var(--text-secondary);
   }
 
-  .product-card__media--iris {
+  .iris-card__media {
     aspect-ratio: 4 / 3;
     display: grid;
     place-items: center;
@@ -378,6 +350,27 @@ const valueProps = [
     border-radius: 12px;
     background:
       radial-gradient(ellipse 70% 60% at 50% 50%, var(--accent-soft), transparent 70%);
+  }
+
+  /* The IRIS emblem PNG has a black background. Screen blending
+     dissolves the black into the card, leaving only the iridescent
+     ring visible — the way the emblem was meant to be seen. */
+  .iris-card__emblem {
+    max-width: 75%;
+    max-height: 100%;
+    object-fit: contain;
+    mix-blend-mode: screen;
+    filter: drop-shadow(0 0 24px rgba(157, 123, 255, 0.45));
+    animation: iris-breathe 6s ease-in-out infinite;
+  }
+
+  @keyframes iris-breathe {
+    0%, 100% { transform: scale(1); opacity: 0.95; }
+    50%      { transform: scale(1.04); opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .iris-card__emblem { animation: none; }
   }
 
   .iris-card .product-card__desc {

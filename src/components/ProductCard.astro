@@ -24,7 +24,7 @@ const {
 } = Astro.props;
 ---
 
-<article class="product-card" data-accent={accent}>
+<article class="product-card" data-accent={accent} data-has-image={image ? 'true' : 'false'}>
   <header class="product-card__header">
     <h2 class="product-card__name">{name}</h2>
     <p class="product-card__subtitle">{subtitle}</p>
@@ -117,6 +117,8 @@ const {
   }
 
   /* ── Media ──────────────────────────────────────────────── */
+  /* Two visual modes: with a real product photo (pure black backdrop
+     matching the image edges), or placeholder (the radial glow). */
   .product-card__media {
     aspect-ratio: 4 / 3;
     display: grid;
@@ -124,13 +126,38 @@ const {
     margin-block: var(--space-2);
     padding: var(--space-4);
     border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+  }
+  .product-card[data-has-image="true"] .product-card__media {
+    background: #000;
+    padding: 0;
+  }
+  .product-card[data-has-image="true"] .product-card__media::after {
+    /* Subtle accent glow rim — visible only at the edges where the
+       product photo doesn't cover, suggesting the brand color. */
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 90%,
+      var(--accent-soft) 0%,
+      transparent 60%
+    );
+    mix-blend-mode: screen;
+  }
+  .product-card[data-has-image="false"] .product-card__media {
     background:
       radial-gradient(ellipse 70% 60% at 50% 50%, var(--accent-soft), transparent 70%);
   }
+
   .product-card__media img {
     max-height: 100%;
+    max-width: 100%;
     object-fit: contain;
-    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.4));
+    position: relative;
+    z-index: 1;
   }
 
   .product-card__placeholder {
