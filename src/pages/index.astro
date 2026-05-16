@@ -154,6 +154,38 @@ import { path } from '../utils/url';
   .hp-hero__panel--pro .hp-hero__panel-bg      { object-position: center 65%; }
   .hp-hero__panel--consumer .hp-hero__panel-bg { object-position: center 60%; }
 
+  /* Fade each image at its inner edge so the two halves blend
+     into a shared dark center zone instead of meeting at a hard
+     seam. The radial vignette darkens this blend zone further. */
+  .hp-hero__panel--pro .hp-hero__panel-bg {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      black 0%,
+      black 55%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      black 0%,
+      black 55%,
+      transparent 100%
+    );
+  }
+  .hp-hero__panel--consumer .hp-hero__panel-bg {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 45%,
+      black 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 45%,
+      black 100%
+    );
+  }
+
   /* Per-side overlay — top dark for headline readability */
   .hp-hero__panel-overlay {
     position: absolute;
@@ -373,12 +405,15 @@ import { path } from '../utils/url';
     text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
   }
 
-  /* ── Dual CTAs ──────────────────────────────────────────── */
+  /* ── Dual CTAs ──────────────────────────────────────────────
+     Grid layout guarantees Pro stays in left half, Consumer in
+     right half — neither button crosses the visual centerline. */
   .hp-hero__ctas {
-    display: flex;
-    gap: var(--space-5);
-    justify-content: center;
-    flex-wrap: nowrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--space-4);
+    align-items: center;
+    width: 100%;
   }
 
   .hp-cta {
@@ -406,6 +441,7 @@ import { path } from '../utils/url';
   .hp-cta:hover svg { transform: translateX(3px); }
 
   .hp-cta--pro {
+    justify-self: end;       /* anchor to inner edge of left column */
     color: var(--helios-amber);
   }
   .hp-cta--pro:hover {
@@ -414,6 +450,7 @@ import { path } from '../utils/url';
   }
 
   .hp-cta--consumer {
+    justify-self: start;     /* anchor to inner edge of right column */
     color: var(--pink);
   }
   .hp-cta--consumer:hover {
@@ -491,11 +528,15 @@ import { path } from '../utils/url';
     }
 
     .hp-hero__ctas {
-      flex-direction: column;
-      align-items: stretch;
+      grid-template-columns: 1fr;
+      row-gap: var(--space-3);
     }
     .hp-cta {
       justify-content: center;
+    }
+    .hp-cta--pro,
+    .hp-cta--consumer {
+      justify-self: stretch;
     }
   }
 </style>
