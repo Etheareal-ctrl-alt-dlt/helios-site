@@ -1,0 +1,482 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import ProductCard from '../components/ProductCard.astro';
+import FeatureItem from '../components/FeatureItem.astro';
+import IrisEmblem from '../components/IrisEmblem.astro';
+
+/* All product copy is held here so it's easy to tune in one place. */
+
+const products = [
+  {
+    name: 'NOVA',
+    subtitle: 'All-In-One System',
+    accent: 'pink' as const,
+    description: 'The heart of your home. Beautifully integrated. Effortlessly simple. Nova brings people, entertainment, and creativity together.',
+    specs: [
+      '15.4" TFT LCD (4:3)',
+      '1280 x 1024 Resolution',
+      'Intel® Celeron™ Processor',
+      '256MB DDR SDRAM',
+      '20GB ATA/100 Hard Drive',
+      'DVD-ROM Drive',
+      'Integrated Stereo Speakers',
+      'Solstice OS',
+    ],
+    cta: { label: 'Buy Nova', href: '/products/nova' },
+    image: null,
+    imageAlt: 'Helios Nova all-in-one workstation',
+  },
+  {
+    name: 'GENESIS',
+    subtitle: 'Portable Computer',
+    accent: 'purple' as const,
+    description: 'Your world. On the move. Lightweight, capable, and ready for whatever comes next.',
+    specs: [
+      'Pentium III 500MHz',
+      '128MB SDRAM',
+      '20GB ATA/100 Hard Drive',
+      '14.1" TFT Display (1024 x 768)',
+      '10/100 Ethernet | 56K Modem',
+      'PC Card Slots',
+      'Solstice OS',
+      'Up to 4.5 Hours Battery Life',
+    ],
+    cta: { label: 'Buy Genesis', href: '/products/genesis' },
+    image: null,
+    imageAlt: 'Helios Genesis portable computer',
+  },
+];
+
+const irisFeatures = [
+  'Voice & Touch Activated',
+  'Smart Home Integration',
+  'Organizer & Reminders',
+  'Media & Entertainment',
+  'Internet & Communication',
+  'Learning & Recommendations',
+  'Always Learning. Always Helpful.',
+];
+
+const valueProps = [
+  {
+    title: 'Beautiful by Design',
+    description: 'Elegant systems that look as good as they perform.',
+    icon: 'heart' as const,
+    accent: 'pink' as const,
+  },
+  {
+    title: 'Easy to Live With',
+    description: 'Intuitive Solstice OS makes everything feel natural.',
+    icon: 'leaf' as const,
+    accent: 'mint' as const,
+  },
+  {
+    title: 'Stay Connected',
+    description: 'Built-in networking keeps you close to what matters most.',
+    icon: 'wifi' as const,
+    accent: 'purple' as const,
+  },
+  {
+    title: 'Safe and Secure',
+    description: 'Helios systems keep your privacy and data protected.',
+    icon: 'shield' as const,
+    accent: 'blue' as const,
+  },
+];
+---
+
+<BaseLayout
+  title="Consumer Line — Helios Computer Corporation"
+  description="Power Made Simple. Computers that fit beautifully into your life. Meet Nova, Genesis, and the IRIS intelligent assistant."
+  line="consumer"
+>
+  <Nav current="consumer" line="consumer" />
+
+  <!-- ════════════════════════════════════════════════════════
+       HERO
+       ════════════════════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <p class="eyebrow hero__eyebrow">Helios Consumer Line</p>
+        <h1 class="hero__title">
+          <span>Power</span>
+          <span class="gradient-text">Made Simple.</span>
+        </h1>
+
+        <div class="hero__rule" aria-hidden="true"></div>
+
+        <p class="hero__lede">
+          Welcome to the Helios Consumer Line.<br/>
+          Computers that fit beautifully into<br/>
+          your life, not the other way around.<br/>
+          Intuitive. Connected. Personal.<br/>
+          From the family room to the studio,<br/>
+          Helios makes technology natural.
+        </p>
+
+        <a href="#products" class="hero__more">
+          <span>Simple. Personal. Helios.</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="13 17 18 12 13 7"/>
+            <polyline points="6 17 11 12 6 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="hero__media">
+        <!-- Placeholder: a soft glow disc that suggests the Nova hero shot.
+             Replace with <img src="/images/products/nova-hero.png" /> once
+             you drop the asset in /public/images/products/. -->
+        <div class="hero__placeholder" aria-hidden="true">
+          <div class="hero__placeholder-glow"></div>
+          <span>NOVA</span>
+          <small>hero render</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       PRODUCT GRID
+       ════════════════════════════════════════════════════════ -->
+  <section id="products" class="products">
+    <div class="container">
+      <div class="products__grid">
+        {products.map((p) => (
+          <ProductCard {...p} />
+        ))}
+
+        <!-- IRIS gets a custom card because it's not a SKU — it's a
+             feature. Same card shell, custom media (the emblem),
+             different CTA wording. -->
+        <article class="product-card iris-card" data-accent="blue">
+          <header class="product-card__header">
+            <h2 class="product-card__name">IRIS</h2>
+            <p class="product-card__subtitle">Intelligent Assistant</p>
+          </header>
+
+          <div class="product-card__media product-card__media--iris">
+            <IrisEmblem size={210} />
+          </div>
+
+          <p class="product-card__desc">
+            IRIS is your personal companion, built into every Helios system.
+            One touch. One voice. Always there.
+          </p>
+
+          <ul class="product-card__specs">
+            {irisFeatures.map((f) => (
+              <li>
+                <svg class="spec-star" width="11" height="11" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M6 0 L7.1 4.9 L12 6 L7.1 7.1 L6 12 L4.9 7.1 L0 6 L4.9 4.9 Z" fill="currentColor"/>
+                </svg>
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
+
+          <a href="/iris" class="product-card__cta">
+            <span>Learn About IRIS</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       VALUE PROPS
+       ════════════════════════════════════════════════════════ -->
+  <section class="value-props">
+    <div class="container">
+      <div class="value-props__grid">
+        {valueProps.map((vp) => (
+          <FeatureItem {...vp} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer line="consumer" />
+</BaseLayout>
+
+<style>
+  /* ══════════════════════════════════════════════════════════
+     HERO
+     ══════════════════════════════════════════════════════════ */
+  .hero {
+    padding-block: var(--space-12) var(--space-10);
+  }
+
+  .hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: var(--space-10);
+    align-items: center;
+  }
+
+  .hero__eyebrow {
+    margin-bottom: var(--space-4);
+    animation: fade-up 700ms var(--ease-out) both;
+  }
+
+  .hero__title {
+    font-family: var(--font-display);
+    font-weight: var(--weight-black);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--space-5);
+    animation: fade-up 800ms var(--ease-out) 100ms both;
+  }
+  .hero__title span:first-child {
+    color: var(--pink);
+  }
+
+  .hero__rule {
+    width: 80px;
+    height: 2px;
+    background: var(--gradient-rule);
+    margin-bottom: var(--space-5);
+    animation: width-in 900ms var(--ease-out) 200ms both;
+  }
+
+  .hero__lede {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-6);
+    animation: fade-up 900ms var(--ease-out) 300ms both;
+  }
+
+  .hero__more {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--pink);
+    animation: fade-up 1000ms var(--ease-out) 400ms both;
+    transition: gap var(--duration-fast) var(--ease-out);
+  }
+  .hero__more:hover { gap: var(--space-3); }
+
+  /* Hero media — placeholder until image asset arrives */
+  .hero__media {
+    position: relative;
+    animation: fade-up 1100ms var(--ease-out) 400ms both;
+  }
+
+  .hero__placeholder {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    display: grid;
+    place-items: center;
+    border-radius: 16px;
+    border: 1.5px dashed var(--border-soft);
+    color: var(--text-muted);
+    overflow: hidden;
+  }
+  .hero__placeholder-glow {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 50%,
+        rgba(255, 111, 168, 0.25), transparent 60%),
+      radial-gradient(ellipse 40% 30% at 60% 40%,
+        rgba(157, 123, 255, 0.20), transparent 60%);
+  }
+  .hero__placeholder span {
+    position: relative;
+    font-family: var(--font-display);
+    font-weight: var(--weight-black);
+    font-size: 4rem;
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    opacity: 0.6;
+  }
+  .hero__placeholder small {
+    position: relative;
+    margin-top: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     PRODUCT GRID
+     ══════════════════════════════════════════════════════════ */
+  .products {
+    padding-block: var(--space-8);
+  }
+
+  .products__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  /* IRIS card uses the same shell but its media slot holds the
+     emblem instead of a product render. Inline styles to match. */
+  .iris-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-6);
+    background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-card-2) 100%);
+    border-radius: 18px;
+    box-shadow: var(--glow-card);
+    transition:
+      transform var(--duration) var(--ease-out),
+      box-shadow var(--duration) var(--ease-out);
+    --accent: var(--blue);
+    --accent-soft: rgba(123, 197, 255, 0.18);
+  }
+  .iris-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--glow-card-hover);
+  }
+  .iris-card .product-card__header { display: flex; flex-direction: column; gap: var(--space-1); }
+  .iris-card .product-card__name {
+    font-family: var(--font-display);
+    font-weight: var(--weight-black);
+    font-size: 2.4rem;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: var(--accent);
+  }
+  .iris-card .product-card__subtitle {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .product-card__media--iris {
+    aspect-ratio: 4 / 3;
+    display: grid;
+    place-items: center;
+    margin-block: var(--space-2);
+    padding: var(--space-4);
+    border-radius: 12px;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 50%, var(--accent-soft), transparent 70%);
+  }
+
+  .iris-card .product-card__desc {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+  }
+
+  .iris-card .product-card__specs {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-block: var(--space-3) var(--space-2);
+  }
+  .iris-card .product-card__specs li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+  }
+  .iris-card .spec-star { color: var(--accent); flex-shrink: 0; }
+
+  .iris-card .product-card__cta {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-5);
+    border: 1.5px solid var(--accent);
+    border-radius: 10px;
+    background: transparent;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    transition:
+      background-color var(--duration-fast) var(--ease-out),
+      color var(--duration-fast) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out);
+  }
+  .iris-card .product-card__cta:hover {
+    background: var(--accent);
+    color: var(--bg-deep);
+  }
+  .iris-card .product-card__cta:active { transform: scale(0.98); }
+
+  /* ══════════════════════════════════════════════════════════
+     VALUE PROPS
+     ══════════════════════════════════════════════════════════ */
+  .value-props {
+    padding-block: var(--space-10);
+  }
+
+  .value-props__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+    padding: var(--space-5);
+    background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-card-2) 100%);
+    border-radius: 16px;
+    border: 1px solid var(--border-soft);
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     ANIMATIONS
+     ══════════════════════════════════════════════════════════ */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes width-in {
+    from { width: 0; }
+    to   { width: 80px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__eyebrow, .hero__title, .hero__lede,
+    .hero__more, .hero__media, .hero__rule {
+      animation: none;
+    }
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     RESPONSIVE
+     ══════════════════════════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .products__grid { grid-template-columns: repeat(2, 1fr); }
+    .value-props__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 720px) {
+    .hero__inner { grid-template-columns: 1fr; gap: var(--space-6); }
+    .hero { padding-block: var(--space-8) var(--space-6); }
+    .products__grid { grid-template-columns: 1fr; }
+    .value-props__grid { grid-template-columns: 1fr; }
+  }
+</style>

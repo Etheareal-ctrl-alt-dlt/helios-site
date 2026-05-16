@@ -1,0 +1,118 @@
+---
+export interface Props {
+  line?: 'consumer' | 'professional';
+}
+
+const { line = 'consumer' } = Astro.props;
+
+const year = line === 'consumer' ? 2001 : 1993;
+
+const links = line === 'consumer'
+  ? ['Privacy', 'Terms', 'Warranty', 'Contact', 'Sitemap']
+  : ['Privacy', 'Terms', 'Warranty', 'Contact'];
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <a href="/" class="site-footer__logo" aria-label="Helios Computer Corporation home">
+      <span class="logo-mark">
+        <span class="logo-mark__word">HELIOS</span>
+        <span class="logo-mark__sub">COMPUTER CORPORATION</span>
+      </span>
+    </a>
+
+    <nav class="site-footer__menu" aria-label="Secondary">
+      <ul>
+        {links.map((label) => (
+          <li>
+            <a href={`/${label.toLowerCase()}`}>{label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <p class="site-footer__copy">
+      &copy; {year} Helios Computer Corporation<br/>
+      All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: var(--space-16);
+    padding-block: var(--space-10);
+    border-top: 1px solid var(--border-soft);
+  }
+
+  .site-footer__inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  .logo-mark {
+    display: inline-flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+
+  .logo-mark__word {
+    font-family: var(--font-display);
+    font-weight: var(--weight-black);
+    font-size: 1.4rem;
+    letter-spacing: 0.02em;
+    background: linear-gradient(180deg, #FFD4A8 0%, #FF8B5C 60%, #C44A1F 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .logo-mark__sub {
+    font-family: var(--font-mono);
+    font-size: 0.42rem;
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.32em;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .site-footer__menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+  }
+
+  .site-footer__menu a {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+  .site-footer__menu a:hover { color: var(--pink); }
+
+  .site-footer__copy {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 900px) {
+    .site-footer__inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: var(--space-5);
+    }
+    .site-footer__menu ul { justify-content: center; }
+    .site-footer__copy { text-align: center; }
+  }
+</style>

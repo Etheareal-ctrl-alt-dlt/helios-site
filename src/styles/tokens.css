@@ -1,0 +1,125 @@
+/* ============================================================
+   HELIOS DESIGN TOKENS
+   ============================================================
+   The brand has two distinct identities. Tokens are split into:
+   - SHARED       (corporate constants)
+   - CONSUMER     (2001 line — warm, gradient, pastel)
+   - PROFESSIONAL (1993 line — amber on black, monospace)
+
+   Each page sets `data-line="consumer"` or `data-line="professional"`
+   on its <body> to activate the right palette.
+   ============================================================ */
+
+:root {
+  /* ── Shared ─────────────────────────────────────────────── */
+  --helios-amber: #FFB000;          /* 1993 logo amber */
+  --helios-amber-soft: #FFC847;
+
+  /* ── Typography ─────────────────────────────────────────── */
+  --font-display: 'Nunito', system-ui, sans-serif;
+  --font-body:    'Nunito', system-ui, sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, monospace;
+
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold: 600;
+  --weight-bold:    700;
+  --weight-extrabold: 800;
+  --weight-black:   900;
+
+  /* ── Spacing scale ──────────────────────────────────────── */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-8: 3rem;
+  --space-10: 4rem;
+  --space-12: 6rem;
+  --space-16: 8rem;
+
+  /* ── Container ──────────────────────────────────────────── */
+  --container-max: 1280px;
+  --container-pad: clamp(1rem, 4vw, 3rem);
+
+  /* ── Motion ─────────────────────────────────────────────── */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 180ms;
+  --duration: 320ms;
+  --duration-slow: 560ms;
+}
+
+/* ============================================================
+   CONSUMER LINE — Nova, Genesis, IRIS
+   ============================================================ */
+[data-line="consumer"] {
+  /* Background — deep midnight with a purple-blue undertone.
+     Not pure black; the warmth comes from the slight indigo bias. */
+  --bg-deep:    #0A0A18;
+  --bg-mid:     #131326;
+  --bg-card:    #16162B;
+  --bg-card-2:  #1C1C36;
+
+  /* Brand accents — the Y2K gradient palette */
+  --pink:    #FF6FA8;       /* "Power" hot pink */
+  --pink-soft: #FFB8D4;
+  --purple:  #9D7BFF;       /* mid-gradient */
+  --blue:    #7BC5FF;       /* "Simple" cool blue */
+  --mint:    #8FE4C8;
+  --rose:    #FFB6C1;
+
+  /* Text */
+  --text-primary:   #F5EEEF;   /* warm off-white */
+  --text-secondary: #C9BFC8;
+  --text-muted:     #877F8A;
+
+  /* Borders & rules */
+  --border-soft:    rgba(255, 111, 168, 0.18);
+  --border-strong:  rgba(255, 111, 168, 0.42);
+
+  /* The signature gradient — used on the hero word "Made Simple"
+     and on accent rules. */
+  --gradient-hero: linear-gradient(
+    90deg,
+    var(--pink) 0%,
+    var(--purple) 50%,
+    var(--blue) 100%
+  );
+
+  --gradient-rule: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--pink) 20%,
+    var(--purple) 60%,
+    transparent 100%
+  );
+
+  /* Card glow — subtle pink halo when hovered */
+  --glow-card: 0 0 0 1px var(--border-soft),
+               0 20px 60px -20px rgba(255, 111, 168, 0.25);
+
+  --glow-card-hover: 0 0 0 1px var(--border-strong),
+                     0 20px 80px -10px rgba(255, 111, 168, 0.45);
+}
+
+/* ============================================================
+   PROFESSIONAL LINE — Atlas, Titan
+   (stub for now; the Pro page comes later)
+   ============================================================ */
+[data-line="professional"] {
+  --bg-deep:        #050505;
+  --bg-mid:         #0C0C0C;
+  --bg-card:        #111111;
+
+  --amber:          var(--helios-amber);
+  --amber-soft:     var(--helios-amber-soft);
+
+  --text-primary:   #E8C879;
+  --text-secondary: #8C7340;
+  --text-muted:     #5A4C2A;
+
+  --border-soft:    rgba(255, 176, 0, 0.22);
+  --border-strong:  rgba(255, 176, 0, 0.55);
+}
