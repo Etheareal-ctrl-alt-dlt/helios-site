@@ -19,11 +19,9 @@ const items = [
 
 // Logo: the 1993 amber wordmark is the original — used for homepage and
 // professional contexts. The 2001 chrome starburst is the consumer mark.
-// NOTE: helios-1993.svg is a placeholder; swap to .png when the real
-// asset is delivered.
 const logoSrc = line === 'consumer'
   ? path('/images/logos/helios-2001.png')
-  : path('/images/logos/helios-1993.svg');
+  : path('/images/logos/helios-1993.png');
 ---
 
 <header class="site-nav" data-line={line}>

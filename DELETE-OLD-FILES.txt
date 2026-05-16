@@ -1,0 +1,4 @@
+After unzipping, run this to clean up the SVG placeholder:
+  rm -f public/images/logos/helios-1993.svg
+
+(The bundle replaces it with the real PNG.)
