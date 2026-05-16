@@ -2,34 +2,31 @@
 import { path } from '../utils/url';
 
 export interface Props {
-  current?: 'products' | 'consumer' | 'professional' | 'support' | 'company' | 'community';
-  line?: 'consumer' | 'professional';
+  current?: 'home' | 'professional' | 'consumer' | 'os' | 'support' | 'company';
+  line?: 'homepage' | 'consumer' | 'professional';
 }
 
 const { current, line = 'consumer' } = Astro.props;
 
-const items = line === 'consumer'
-  ? [
-      { id: 'products',     label: 'Products',     href: path('/products') },
-      { id: 'consumer',     label: 'Consumer',     href: path('/consumer') },
-      { id: 'support',      label: 'Support',      href: path('/support') },
-      { id: 'company',      label: 'Company',      href: path('/company') },
-      { id: 'community',    label: 'Community',    href: path('/community') },
-    ]
-  : [
-      { id: 'products',     label: 'Products',     href: path('/products') },
-      { id: 'professional', label: 'Professional', href: path('/professional') },
-      { id: 'consumer',     label: 'Consumer',     href: path('/consumer') },
-      { id: 'support',      label: 'Support',      href: path('/support') },
-      { id: 'company',      label: 'Company',      href: path('/company') },
-    ];
+const items = [
+  { id: 'home',         label: 'Home',         href: path('/') },
+  { id: 'professional', label: 'Professional', href: path('/professional') },
+  { id: 'consumer',     label: 'Consumer',     href: path('/consumer') },
+  { id: 'os',           label: 'OS',           href: path('/os') },
+  { id: 'support',      label: 'Support',      href: path('/support') },
+  { id: 'company',      label: 'Company',      href: path('/company') },
+];
 
+// Logo: the 1993 amber wordmark is the original — used for homepage and
+// professional contexts. The 2001 chrome starburst is the consumer mark.
+// NOTE: helios-1993.svg is a placeholder; swap to .png when the real
+// asset is delivered.
 const logoSrc = line === 'consumer'
   ? path('/images/logos/helios-2001.png')
-  : path('/images/logos/helios-1993.png');
+  : path('/images/logos/helios-1993.svg');
 ---
 
-<header class="site-nav">
+<header class="site-nav" data-line={line}>
   <div class="container site-nav__inner">
     <a href={path('/')} class="site-nav__logo" aria-label="Helios Computer Corporation home">
       <!-- The image has a pure black background — mix-blend-mode: screen
@@ -132,6 +129,16 @@ const logoSrc = line === 'consumer'
     height: 1.5px;
     background: var(--pink);
     border-radius: 1px;
+  }
+
+  /* Amber accent on homepage and professional nav contexts */
+  .site-nav[data-line="homepage"] .site-nav__link.is-current,
+  .site-nav[data-line="professional"] .site-nav__link.is-current {
+    color: var(--helios-amber);
+  }
+  .site-nav[data-line="homepage"] .site-nav__link.is-current::after,
+  .site-nav[data-line="professional"] .site-nav__link.is-current::after {
+    background: var(--helios-amber);
   }
 
   /* ── Cart ───────────────────────────────────────────────── */

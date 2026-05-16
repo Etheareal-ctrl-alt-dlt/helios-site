@@ -10,7 +10,7 @@ import { path } from '../utils/url';
   description="From professional command systems to personal computing made simple. Helios builds machines that meet their Operators where they are."
   line="consumer"
 >
-  <Nav line="consumer" />
+  <Nav line="homepage" current="home" />
 
   <section class="hp-hero" aria-labelledby="hp-hero-title">
     {/* CENTER — appears first in source so it stacks above on mobile */}
@@ -278,11 +278,15 @@ import { path } from '../utils/url';
     inset: 0;
     z-index: 10;
     display: grid;
-    place-items: center;
+    justify-items: center;
+    align-items: start;
+    /* Push content down past the sticky nav, but keep it in the upper
+       half of the hero so HELIOS reads as a "letterhead" mark first */
+    padding-top: clamp(170px, 18vh, 240px);
     /* Tighter radial vignette so the side headlines get breathing
        room outside the center spotlight */
     background: radial-gradient(
-      ellipse 38% 60% at center,
+      ellipse 38% 65% at center 45%,
       rgba(5, 5, 14, 0.92) 0%,
       rgba(5, 5, 14, 0.78) 35%,
       rgba(5, 5, 14, 0.35) 65%,
@@ -293,32 +297,32 @@ import { path } from '../utils/url';
 
   .hp-hero__center-inner {
     pointer-events: auto;
-    max-width: 620px;
+    max-width: 640px;
     text-align: center;
     padding-inline: var(--space-6);
   }
 
-  /* ── HELIOS brand mark — treated as a corporate logotype ──── */
+  /* ── HELIOS brand mark — corporate letterhead ─────────────── */
   .hp-hero__brand {
     display: grid;
     justify-items: center;
     gap: var(--space-2);
-    margin-bottom: var(--space-9);  /* generous gap before headline */
+    margin-bottom: var(--space-10);  /* generous gap before headline */
   }
 
   .hp-hero__brand-name {
-    font-family: var(--font-serif);
-    font-weight: 600;
-    font-size: clamp(1.7rem, 2.6vw, 2.2rem);
-    letter-spacing: 0.32em;  /* wide tracking = logotype feel */
-    text-indent: 0.32em;     /* compensate for trailing letter-spacing */
+    font-family: var(--font-corporate);
+    font-weight: 800;
+    font-size: clamp(2.4rem, 4vw, 3.4rem);  /* bigger */
+    letter-spacing: 0.32em;
+    text-indent: 0.32em;
     color: var(--text-primary);
     line-height: 1;
   }
 
   .hp-hero__brand-sub {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: 0.8rem;  /* slightly bigger */
     font-weight: var(--weight-medium);
     letter-spacing: 0.34em;
     text-transform: uppercase;
@@ -331,29 +335,29 @@ import { path } from '../utils/url';
     opacity: 0.85;
   }
 
-  /* Thin gradient divider beneath the brand mark */
+  /* Thin amber-tinted divider beneath the brand mark */
   .hp-hero__brand-rule {
     display: block;
-    width: 56px;
+    width: 60px;
     height: 1px;
-    margin-top: var(--space-5);
+    margin-top: var(--space-6);
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(255, 255, 255, 0.35),
+      rgba(255, 176, 0, 0.45),
       transparent
     );
   }
 
-  /* ── Main editorial headline ─────────────────────────────── */
+  /* ── Main headline ───────────────────────────────────────── */
   .hp-hero__title {
-    font-family: var(--font-serif);
-    font-weight: 600;
-    font-size: clamp(2.6rem, 5.4vw, 4.4rem);
-    line-height: 1.08;
-    letter-spacing: -0.015em;
+    font-family: var(--font-corporate);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
     color: var(--text-primary);
-    margin-bottom: var(--space-7);
+    margin-bottom: var(--space-10);  /* MUCH more space before lede */
     text-shadow: 0 4px 32px rgba(0, 0, 0, 0.5);
   }
 

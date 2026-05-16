@@ -16,10 +16,11 @@
   --helios-amber-soft: #FFC847;
 
   /* ── Typography ─────────────────────────────────────────── */
-  --font-display: 'Nunito', system-ui, sans-serif;
-  --font-body:    'Nunito', system-ui, sans-serif;
-  --font-mono:    'IBM Plex Mono', ui-monospace, monospace;
-  --font-serif:   'IBM Plex Serif', Georgia, serif;
+  --font-display:   'Nunito', system-ui, sans-serif;
+  --font-body:      'Nunito', system-ui, sans-serif;
+  --font-mono:      'IBM Plex Mono', ui-monospace, monospace;
+  --font-serif:     'IBM Plex Serif', Georgia, serif;
+  --font-corporate: 'Inter', system-ui, sans-serif;
 
   --weight-regular: 400;
   --weight-medium:  500;
@@ -35,8 +36,11 @@
   --space-4: 1rem;
   --space-5: 1.5rem;
   --space-6: 2rem;
+  --space-7: 2.5rem;
   --space-8: 3rem;
+  --space-9: 3.5rem;
   --space-10: 4rem;
+  --space-11: 5rem;
   --space-12: 6rem;
   --space-16: 8rem;
 

@@ -1,0 +1,41 @@
+<svg viewBox="0 0 360 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Helios Computer Corporation, 1993">
+  <!-- Orbital swoosh — small arc above the wordmark -->
+  <path
+    d="M 60 38 Q 180 8 300 38"
+    fill="none"
+    stroke="#FFB000"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    opacity="0.85"
+  />
+  <!-- Star accent at end of swoosh -->
+  <path
+    d="M 304 36 L 308 42 L 316 38 L 309 44 L 314 51 L 306 47 L 302 53 L 304 45 L 296 43 L 304 42 Z"
+    fill="#FFB000"
+    opacity="0.9"
+  />
+
+  <!-- HELIOS wordmark — mono, amber, slightly pixelated feel -->
+  <text
+    x="180"
+    y="84"
+    font-family="'IBM Plex Mono', ui-monospace, monospace"
+    font-weight="700"
+    font-size="48"
+    text-anchor="middle"
+    fill="#FFB000"
+    letter-spacing="3"
+  >HELIOS</text>
+
+  <!-- Subtitle -->
+  <text
+    x="180"
+    y="112"
+    font-family="'IBM Plex Mono', ui-monospace, monospace"
+    font-weight="500"
+    font-size="11"
+    text-anchor="middle"
+    fill="#B58800"
+    letter-spacing="6"
+  >COMPUTER CORPORATION</text>
+</svg>
