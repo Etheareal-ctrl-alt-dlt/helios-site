@@ -5,26 +5,98 @@ import Footer from '../components/Footer.astro';
 import { path } from '../utils/url';
 ---
 
-<BaseLayout title="Helios Computer Corporation" line="consumer">
+<BaseLayout
+  title="Helios Computer Corporation"
+  description="From professional command systems to personal computing made simple. Helios builds machines that meet their Operators where they are."
+  line="consumer"
+>
   <Nav line="consumer" />
 
-  <section class="placeholder">
-    <div class="container">
-      <p class="eyebrow">Site under construction</p>
-      <h1>HELIOS.</h1>
-      <p class="lede">
-        The full homepage is being prepared. In the meantime, browse the lines:
-      </p>
-      <div class="links">
-        <a href={path('/consumer')} class="line-link line-link--consumer">
-          <span class="line-link__name">Consumer Line</span>
-          <span class="line-link__tag">Power Made Simple.</span>
-        </a>
-        <a href={path('/professional')} class="line-link line-link--professional">
-          <span class="line-link__name">Professional Line</span>
-          <span class="line-link__tag">Power to the Professional.</span>
-        </a>
+  <section class="hp-hero" aria-labelledby="hp-hero-title">
+    {/* CENTER — appears first in source so it stacks above on mobile */}
+    <div class="hp-hero__center">
+      <div class="hp-hero__center-inner">
+        <p class="hp-hero__brand" aria-label="Helios Computer Corporation">
+          <span class="hp-hero__brand-name">HELIOS</span>
+          <span class="hp-hero__brand-sub">Computer Corporation<sup>®</sup></span>
+        </p>
+
+        <h1 id="hp-hero-title" class="hp-hero__title">
+          <span>Power,</span>
+          <span>shaped for</span>
+          <span>the Operator.</span>
+        </h1>
+
+        <p class="hp-hero__lede">
+          From professional command systems to personal computing made
+          simple, Helios builds machines that meet their Operators where
+          they are.
+        </p>
+
+        <div class="hp-hero__ctas">
+          <a href={path('/professional')} class="hp-cta hp-cta--pro">
+            <span>Explore Professional</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.25"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </a>
+          <a href={path('/consumer')} class="hp-cta hp-cta--consumer">
+            <span>Explore Consumer</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.25"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </a>
+        </div>
       </div>
+    </div>
+
+    {/* TWO-PANEL BACKGROUND */}
+    <div class="hp-hero__panels">
+      <article class="hp-hero__panel hp-hero__panel--pro">
+        <img
+          class="hp-hero__panel-bg"
+          src={path('/images/products/professional-home.png')}
+          alt="Helios Atlas and Titan workstations"
+          loading="eager"
+          decoding="async"
+        />
+        <div class="hp-hero__panel-overlay hp-hero__panel-overlay--pro" aria-hidden="true"></div>
+        <div class="hp-hero__panel-content">
+          <h2 class="hp-hero__panel-title hp-hero__panel-title--pro">
+            Power to the<br />Professional.
+          </h2>
+          <p class="hp-hero__panel-lede">
+            Built for serious work.<br />
+            Engineered for control.<br />
+            Ready for anything.
+          </p>
+        </div>
+      </article>
+
+      <article class="hp-hero__panel hp-hero__panel--consumer">
+        <img
+          class="hp-hero__panel-bg"
+          src={path('/images/products/consumer-home.png')}
+          alt="Helios Nova and Genesis"
+          loading="eager"
+          decoding="async"
+        />
+        <div class="hp-hero__panel-overlay hp-hero__panel-overlay--consumer" aria-hidden="true"></div>
+        <div class="hp-hero__panel-content">
+          <h2 class="hp-hero__panel-title hp-hero__panel-title--consumer">
+            Power<br />Made Simple.
+          </h2>
+          <p class="hp-hero__panel-lede">
+            Designed for real life.<br />
+            Intuitive. Connected.<br />
+            Made for you.
+          </p>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -32,81 +104,319 @@ import { path } from '../utils/url';
 </BaseLayout>
 
 <style>
-  .placeholder {
-    padding-block: var(--space-16) var(--space-12);
-    text-align: center;
+  /* ═══════════════════════════════════════════════════════════════
+     HERO — split composition, pro left / consumer right,
+     center messaging overlaid with a radial dark vignette
+     ═══════════════════════════════════════════════════════════════ */
+  .hp-hero {
+    position: relative;
+    min-height: clamp(680px, 100vh, 920px);
+    overflow: hidden;
+    background: #050510;
   }
 
-  .placeholder .eyebrow {
+  /* ── Two-panel layer (sits behind center overlay) ──────────── */
+  .hp-hero__panels {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hp-hero__panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-8) var(--space-7) var(--space-7);
+    overflow: hidden;
+  }
+
+  .hp-hero__panel-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  /* Bias toward the bottom of each image so products stay visible */
+  .hp-hero__panel--pro .hp-hero__panel-bg      { object-position: center 65%; }
+  .hp-hero__panel--consumer .hp-hero__panel-bg { object-position: center 60%; }
+
+  /* Per-side overlay — top dark for headline readability,
+     fades toward bottom so the products stay visible */
+  .hp-hero__panel-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .hp-hero__panel-overlay--pro {
+    background: linear-gradient(
+      180deg,
+      rgba(5, 5, 12, 0.85) 0%,
+      rgba(5, 5, 12, 0.55) 22%,
+      rgba(5, 5, 12, 0.15) 55%,
+      rgba(5, 5, 12, 0.0) 100%
+    );
+  }
+  .hp-hero__panel-overlay--consumer {
+    background: linear-gradient(
+      180deg,
+      rgba(10, 10, 24, 0.78) 0%,
+      rgba(10, 10, 24, 0.45) 22%,
+      rgba(10, 10, 24, 0.12) 55%,
+      rgba(10, 10, 24, 0.0) 100%
+    );
+  }
+
+  /* ── Per-panel headline content ─────────────────────────────── */
+  .hp-hero__panel-content {
+    position: relative;
+    z-index: 2;
+    max-width: 360px;
+  }
+
+  /* Consumer panel — content pinned to the right edge */
+  .hp-hero__panel--consumer .hp-hero__panel-content {
+    margin-left: auto;
+    text-align: right;
+  }
+
+  .hp-hero__panel-title {
+    font-family: var(--font-display);
+    font-weight: var(--weight-black);
+    font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
     margin-bottom: var(--space-4);
   }
 
-  .placeholder h1 {
-    font-family: var(--font-display);
-    font-weight: var(--weight-black);
-    font-size: clamp(4rem, 12vw, 8rem);
-    letter-spacing: 0.02em;
-    line-height: 1;
-    margin-bottom: var(--space-5);
+  .hp-hero__panel-title--pro {
+    color: var(--helios-amber);
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+  }
+  .hp-hero__panel-title--consumer {
     background: var(--gradient-hero);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.65));
   }
 
-  .placeholder .lede {
-    font-size: 1.05rem;
-    color: var(--text-secondary);
-    margin-bottom: var(--space-8);
+  .hp-hero__panel-lede {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.75;
+    letter-spacing: 0.01em;
+    color: var(--text-primary);
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75);
   }
 
-  .links {
+  /* ═══════════════════════════════════════════════════════════════
+     CENTER — bridges the two halves, radial-vignette spotlight
+     ═══════════════════════════════════════════════════════════════ */
+  .hp-hero__center {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-4);
-    max-width: 720px;
-    margin: 0 auto;
+    place-items: center;
+    /* Radial dark spotlight pulls focus to center while letting the
+       panels show through at the edges */
+    background: radial-gradient(
+      ellipse 50% 70% at center,
+      rgba(5, 5, 14, 0.88) 0%,
+      rgba(5, 5, 14, 0.72) 38%,
+      rgba(5, 5, 14, 0.35) 65%,
+      transparent 85%
+    );
+    pointer-events: none;
   }
 
-  .line-link {
+  .hp-hero__center-inner {
+    pointer-events: auto;
+    max-width: 580px;
+    text-align: center;
+    padding-inline: var(--space-6);
+  }
+
+  .hp-hero__brand {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: var(--space-2);
-    padding: var(--space-6);
-    border: 1px solid var(--border-soft);
-    border-radius: 14px;
-    background: var(--bg-card);
-    transition: all var(--duration-fast) var(--ease-out);
-  }
-  .line-link:hover {
-    border-color: var(--border-strong);
-    transform: translateY(-2px);
+    margin-bottom: var(--space-7);
   }
 
-  .line-link__name {
+  .hp-hero__brand-name {
     font-family: var(--font-display);
-    font-weight: var(--weight-extrabold);
-    font-size: 1.4rem;
-  }
-  .line-link--consumer .line-link__name {
-    background: var(--gradient-hero);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  .line-link--professional .line-link__name {
-    color: var(--helios-amber);
+    font-weight: var(--weight-black);
+    font-size: clamp(2rem, 3.4vw, 2.8rem);
+    letter-spacing: 0.06em;
+    color: var(--text-primary);
+    line-height: 1;
   }
 
-  .line-link__tag {
+  .hp-hero__brand-sub {
     font-family: var(--font-mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.18em;
+    font-size: 0.72rem;
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.32em;
     text-transform: uppercase;
     color: var(--text-secondary);
+    line-height: 1;
+  }
+  .hp-hero__brand-sub sup {
+    font-size: 0.7em;
+    margin-left: 1px;
+    opacity: 0.85;
   }
 
-  @media (max-width: 600px) {
-    .links { grid-template-columns: 1fr; }
+  .hp-hero__title {
+    font-family: var(--font-display);
+    font-weight: var(--weight-black);
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    text-shadow: 0 4px 32px rgba(0, 0, 0, 0.5);
+  }
+
+  .hp-hero__lede {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-7);
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
+  }
+
+  /* ── Dual CTAs ──────────────────────────────────────────────── */
+  .hp-hero__ctas {
+    display: flex;
+    gap: var(--space-3);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hp-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-5);
+    border: 1.5px solid currentColor;
+    border-radius: 10px;
+    background: rgba(5, 5, 14, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: all var(--duration-fast) var(--ease-out);
+    cursor: pointer;
+  }
+  .hp-cta:hover { transform: translateY(-1px); }
+  .hp-cta:active { transform: translateY(0); }
+  .hp-cta svg { transition: transform var(--duration-fast) var(--ease-out); }
+  .hp-cta:hover svg { transform: translateX(3px); }
+
+  .hp-cta--pro {
+    color: var(--helios-amber);
+  }
+  .hp-cta--pro:hover {
+    background: var(--helios-amber);
+    color: #050505;
+  }
+
+  .hp-cta--consumer {
+    color: var(--pink);
+  }
+  .hp-cta--consumer:hover {
+    background: var(--pink);
+    color: var(--bg-deep);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     ENTRANCE ANIMATIONS
+     ═══════════════════════════════════════════════════════════════ */
+  .hp-hero__panel       { animation: fade-in 1100ms var(--ease-out) 100ms both; }
+  .hp-hero__brand       { animation: fade-up 800ms var(--ease-out) 350ms both; }
+  .hp-hero__title       { animation: fade-up 900ms var(--ease-out) 500ms both; }
+  .hp-hero__lede        { animation: fade-up 1000ms var(--ease-out) 700ms both; }
+  .hp-hero__ctas        { animation: fade-up 1100ms var(--ease-out) 900ms both; }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hp-hero__panel,
+    .hp-hero__brand,
+    .hp-hero__title,
+    .hp-hero__lede,
+    .hp-hero__ctas {
+      animation: none;
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     RESPONSIVE — stack on narrow viewports
+     ═══════════════════════════════════════════════════════════════ */
+  @media (max-width: 900px) {
+    .hp-hero {
+      min-height: auto;
+    }
+
+    /* Center moves into normal flow on mobile */
+    .hp-hero__center {
+      position: relative;
+      inset: auto;
+      padding-block: var(--space-12) var(--space-10);
+      background:
+        radial-gradient(
+          ellipse 90% 60% at center,
+          rgba(255, 111, 168, 0.12) 0%,
+          transparent 70%
+        ),
+        var(--bg-deep);
+    }
+
+    /* Panels stack vertically */
+    .hp-hero__panels {
+      position: relative;
+      inset: auto;
+      grid-template-columns: 1fr;
+    }
+
+    .hp-hero__panel {
+      min-height: 460px;
+      padding: var(--space-7) var(--space-5) var(--space-6);
+    }
+
+    /* Reset consumer panel right-alignment on mobile */
+    .hp-hero__panel--consumer .hp-hero__panel-content {
+      margin-left: 0;
+      text-align: left;
+    }
+
+    .hp-hero__ctas {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .hp-cta {
+      justify-content: center;
+    }
   }
 </style>
