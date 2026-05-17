@@ -245,7 +245,7 @@ const valueProps = [
 
   .pro-hero__inner {
     display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr);
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.4fr);
     gap: clamp(var(--space-6), 4vw, var(--space-10));
     align-items: center;
   }
@@ -278,12 +278,16 @@ const valueProps = [
   .pro-hero__title {
     font-family: var(--font-terminal);
     font-weight: 400;
-    font-size: clamp(3.6rem, 8.5vw, 6.8rem);
+    font-size: clamp(3rem, 7vw, 5.8rem);
     line-height: 0.95;
     letter-spacing: 0.02em;
     text-transform: uppercase;
     color: var(--helios-amber);
     margin-bottom: var(--space-7);
+    /* Prevent the headline from overflowing into the visual column */
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: none;
     /* Stronger phosphor glow — VT323 is a thinner glyph so it needs
        more bloom to feel like it's sitting on a CRT */
     text-shadow:
@@ -328,10 +332,13 @@ const valueProps = [
     overflow: visible;
   }
   .pro-hero__visual-img {
-    width: 115%;          /* Overflow slightly past container right edge */
+    width: 135%;          /* Significantly larger than container */
     height: auto;
     display: block;
-    margin-left: -7.5%;   /* Center the overflow */
+    /* Push the image to the RIGHT edge of the viewport (not symmetric).
+       This pulls the products away from the headline. */
+    margin-left: auto;
+    margin-right: -25%;
     /* Brightness + contrast lift to pull more amber out of the dark
        composite, plus a more pronounced amber bloom underneath */
     filter:
