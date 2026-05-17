@@ -284,10 +284,11 @@ const valueProps = [
     text-transform: uppercase;
     color: var(--helios-amber);
     margin-bottom: var(--space-7);
-    /* Prevent the headline from overflowing into the visual column */
-    overflow-wrap: break-word;
-    word-break: normal;
-    hyphens: none;
+    /* Keep words intact even if they exceed the column width — the
+       hero has overflow: hidden so a long word will bleed into the
+       dark gap between text and image, which reads as intentional
+       rather than broken. */
+    white-space: nowrap;
     /* Stronger phosphor glow — VT323 is a thinner glyph so it needs
        more bloom to feel like it's sitting on a CRT */
     text-shadow:
