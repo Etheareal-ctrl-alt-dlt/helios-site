@@ -1,0 +1,545 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { path } from '../utils/url';
+
+// Spec data — Pi 5 hardware framed for professional use,
+// consistent with how Consumer specs are presented.
+// Atlas/Titan display + design facts pulled from Product Bible v4.
+const products = [
+  {
+    name: 'ATLAS',
+    subtitle: 'Portable Command System',
+    description:
+      'Rugged. Focused. Built to deploy. Atlas brings workstation power anywhere the mission takes you.',
+    specs: [
+      'Broadcom BCM2712 System-on-Chip (SoC)',
+      '8GB RAM',
+      '128 / 256 / 512GB MicroSD Storage',
+      '9.7" 4:3 Amber Monochrome Display',
+      'Full Mechanical Keyboard',
+      'Keyboard-Driven Operation',
+      'Aurora OS',
+    ],
+    cta: { label: 'Buy Atlas', href: path('/products/atlas') },
+    image: path('/images/products/atlas.png'),
+    imageAlt: 'Helios Atlas portable workstation',
+  },
+  {
+    name: 'TITAN',
+    subtitle: 'Desktop Command System',
+    description:
+      'The core of your command center. Titan delivers uncompromised performance and expandability.',
+    specs: [
+      'Broadcom BCM2712 System-on-Chip (SoC)',
+      '16GB RAM',
+      '128 / 256 / 512GB MicroSD Storage',
+      'HDMI, USB, Ethernet, Power',
+      'Compact Matte Black Chassis',
+      'Sold Without Peripherals',
+      'Aurora OS',
+    ],
+    cta: { label: 'Buy Titan', href: path('/products/titan') },
+    image: path('/images/products/titan.png'),
+    imageAlt: 'Helios Titan desktop workstation',
+  },
+  {
+    name: 'TITAN DISPLAY',
+    subtitle: '17" 4:3 Professional Monitor',
+    description:
+      'Crisp, precise, and built for long missions. The perfect display for the Titan command system.',
+    specs: [
+      '17" Matte Black Display',
+      '4:3 Aspect Ratio',
+      'Amber Terminal Output',
+      'Thin Bezel Construction',
+      'Anti-Glare Coated',
+      'HDMI Input',
+    ],
+    cta: { label: 'Buy Titan Display', href: path('/products/titan-display') },
+    image: path('/images/products/titan-display.png'),
+    imageAlt: 'Helios Titan Display professional monitor',
+  },
+];
+
+const valueProps = [
+  {
+    title: 'Built to Endure',
+    description: 'Rugged design and quality components for demanding environments.',
+    icon: 'shield',
+  },
+  {
+    title: 'Secure by Design',
+    description: 'Hardware and software engineered with security at the core.',
+    icon: 'lock',
+  },
+  {
+    title: 'Expandable',
+    description: 'Flexible I/O and modular architecture to grow with your needs.',
+    icon: 'expand',
+  },
+  {
+    title: 'Professional Support',
+    description: 'Expert support for mission-critical systems and critical moments.',
+    icon: 'gear',
+  },
+];
+---
+
+<BaseLayout
+  title="Professional Line — Helios Computer Corporation"
+  description="Power to the Professional. The Helios Professional Line delivers uncompromising performance, reliability, and control. Meet Atlas, Titan, and Titan Display."
+  line="professional"
+>
+  <Nav current="professional" line="professional" />
+
+  <!-- ════════════════════════════════════════════════════════
+       HERO — eyebrow + pixelated headline + intro + hero image
+       ════════════════════════════════════════════════════════ -->
+  <section class="pro-hero" aria-labelledby="pro-hero-title">
+    <div class="pro-hero__inner container">
+      <div class="pro-hero__copy">
+        <p class="pro-hero__eyebrow">
+          <span class="pro-hero__eyebrow-mark">█</span>
+          Helios Professional Line
+        </p>
+        <h1 id="pro-hero-title" class="pro-hero__title">
+          Power to<br />the<br />Professional.
+        </h1>
+        <p class="pro-hero__lede">
+          Engineered for those who build, design, operate, and lead.
+          The Helios Professional Line delivers uncompromising
+          performance, reliability, and control in every environment.
+          Purpose-built systems for serious work, where precision
+          meets power.
+        </p>
+        <a href="#products" class="pro-hero__more">
+          Built for work. Ready for anywhere.
+          <span class="pro-hero__more-arrow" aria-hidden="true">»</span>
+        </a>
+      </div>
+
+      <div class="pro-hero__visual">
+        <img
+          src={path('/images/products/professional-hero.png')}
+          alt="Helios Atlas and Titan workstations with Titan Display"
+          class="pro-hero__visual-img"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       PRODUCT CARDS — Atlas, Titan, Titan Display
+       ════════════════════════════════════════════════════════ -->
+  <section id="products" class="products" aria-label="Professional products">
+    <div class="container">
+      <div class="products__grid">
+        {products.map((p) => (
+          <article class="pcard">
+            <header class="pcard__head">
+              <h2 class="pcard__name">{p.name}</h2>
+              <p class="pcard__subtitle">{p.subtitle}</p>
+            </header>
+
+            <div class="pcard__image-wrap">
+              <img
+                src={p.image}
+                alt={p.imageAlt}
+                class="pcard__image"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+
+            <p class="pcard__description">{p.description}</p>
+
+            <ul class="pcard__specs" role="list">
+              {p.specs.map((spec) => (
+                <li class="pcard__spec">
+                  <span class="pcard__spec-mark" aria-hidden="true">&gt;</span>
+                  {spec}
+                </li>
+              ))}
+            </ul>
+
+            <a href={p.cta.href} class="pcard__cta">
+              <span>{p.cta.label}</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       VALUE PROPS BAND
+       ════════════════════════════════════════════════════════ -->
+  <section class="propband" aria-label="Why Helios Professional">
+    <div class="container">
+      <div class="propband__grid">
+        {valueProps.map((v) => (
+          <div class="propband__item">
+            <div class="propband__icon" aria-hidden="true">
+              {v.icon === 'shield' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3z"/>
+                </svg>
+              )}
+              {v.icon === 'lock' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="11" width="16" height="10" rx="1.5"/>
+                  <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+                </svg>
+              )}
+              {v.icon === 'expand' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="7 17 17 7"/>
+                  <polyline points="9 7 17 7 17 15"/>
+                </svg>
+              )}
+              {v.icon === 'gear' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>
+                </svg>
+              )}
+            </div>
+            <h3 class="propband__title">{v.title}</h3>
+            <p class="propband__description">{v.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer line="professional" />
+</BaseLayout>
+
+<style>
+  /* ═══════════════════════════════════════════════════════════════
+     PROFESSIONAL PAGE
+     Aesthetic: austere amber-on-black, IBM Plex Mono throughout,
+     sharp 90° corners, terminal-grade typography. No curves, no
+     gradients on UI chrome, no decoration that isn't functional.
+     ═══════════════════════════════════════════════════════════════ */
+
+  /* ── HERO ────────────────────────────────────────────────── */
+  .pro-hero {
+    position: relative;
+    padding-block: clamp(var(--space-8), 8vh, var(--space-12)) var(--space-10);
+    overflow: hidden;
+  }
+
+  .pro-hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: clamp(var(--space-6), 4vw, var(--space-10));
+    align-items: center;
+  }
+
+  .pro-hero__copy {
+    max-width: 540px;
+  }
+
+  .pro-hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--helios-amber);
+    margin-bottom: var(--space-7);
+  }
+  .pro-hero__eyebrow-mark {
+    font-size: 0.6em;
+    line-height: 1;
+    transform: translateY(-1px);
+  }
+
+  /* The big pixelated headline — IBM Plex Mono bold uppercase.
+     Wide letter-spacing + extra-bold weight gives a near-blocky,
+     terminal-typeset feel without needing a custom display font. */
+  .pro-hero__title {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 6.2vw, 4.8rem);
+    line-height: 1.0;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--helios-amber);
+    margin-bottom: var(--space-7);
+    /* Subtle amber glow — emulates the photographed phosphor look */
+    text-shadow:
+      0 0 24px rgba(255, 176, 0, 0.18),
+      0 0 1px rgba(255, 176, 0, 0.6);
+  }
+
+  .pro-hero__lede {
+    font-family: var(--font-mono);
+    font-size: 0.94rem;
+    line-height: 1.75;
+    color: var(--text-primary);
+    margin-bottom: var(--space-7);
+    max-width: 460px;
+  }
+
+  .pro-hero__more {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--helios-amber);
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+  .pro-hero__more:hover { opacity: 0.7; }
+  .pro-hero__more-arrow {
+    font-size: 1.2em;
+    line-height: 1;
+    transform: translateY(2px);
+  }
+
+  /* Hero visual — Atlas+Titan composition */
+  .pro-hero__visual {
+    position: relative;
+  }
+  .pro-hero__visual-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* Subtle amber rim glow so the products feel like they're sitting
+       in a darkroom rather than floating on a page */
+    filter: drop-shadow(0 12px 48px rgba(255, 176, 0, 0.06));
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     PRODUCT CARDS
+     ═══════════════════════════════════════════════════════════════ */
+  .products {
+    padding-block: var(--space-10);
+  }
+
+  .products__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .pcard {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    padding: var(--space-7) var(--space-6) var(--space-6);
+    transition:
+      border-color var(--duration-fast) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out);
+  }
+  .pcard:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
+  }
+
+  .pcard__head {
+    margin-bottom: var(--space-6);
+  }
+
+  .pcard__name {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: clamp(1.4rem, 1.8vw, 1.7rem);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--helios-amber);
+    line-height: 1;
+    margin-bottom: var(--space-3);
+    text-shadow: 0 0 16px rgba(255, 176, 0, 0.18);
+  }
+
+  .pcard__subtitle {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .pcard__image-wrap {
+    display: grid;
+    place-items: center;
+    margin-bottom: var(--space-6);
+    /* Reserve consistent vertical space so the three cards align
+       even though Atlas/Titan/Titan Display have different aspect ratios */
+    aspect-ratio: 4 / 3;
+    width: 100%;
+  }
+
+  .pcard__image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .pcard__description {
+    font-family: var(--font-mono);
+    font-size: 0.86rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-5);
+  }
+
+  .pcard__specs {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .pcard__spec {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--text-primary);
+    display: grid;
+    grid-template-columns: 14px 1fr;
+    gap: var(--space-2);
+    align-items: baseline;
+  }
+
+  .pcard__spec-mark {
+    color: var(--helios-amber);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  /* Push CTA to the bottom of the card so all three buttons align */
+  .pcard__cta {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-5);
+    border: 1.5px solid var(--helios-amber);
+    border-radius: 0;            /* sharp corners, no rounding */
+    background: transparent;
+    color: var(--helios-amber);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: all var(--duration-fast) var(--ease-out);
+    cursor: pointer;
+  }
+  .pcard__cta:hover {
+    background: var(--helios-amber);
+    color: #050505;
+  }
+  .pcard__cta svg {
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+  .pcard__cta:hover svg {
+    transform: translateX(3px);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     VALUE PROPS BAND
+     ═══════════════════════════════════════════════════════════════ */
+  .propband {
+    padding-block: var(--space-10) var(--space-12);
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+    background: var(--bg-mid);
+  }
+
+  .propband__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-7);
+  }
+
+  .propband__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .propband__icon {
+    width: 36px;
+    height: 36px;
+    color: var(--helios-amber);
+    margin-bottom: var(--space-2);
+  }
+  .propband__icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .propband__title {
+    font-family: var(--font-mono);
+    font-size: 0.86rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--helios-amber);
+    line-height: 1.2;
+  }
+
+  .propband__description {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     RESPONSIVE
+     ═══════════════════════════════════════════════════════════════ */
+  @media (max-width: 980px) {
+    .pro-hero__inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-7);
+    }
+    .pro-hero__copy { max-width: none; }
+
+    .products__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .propband__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-6);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .propband__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

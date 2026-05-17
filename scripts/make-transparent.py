@@ -67,8 +67,17 @@ if __name__ == "__main__":
         (base / "logos" / "iris-emblem.png",  20.0, 30.0),  # softer for ring glow
         (base / "products" / "nova.png",      24.0, 28.0),
         (base / "products" / "genesis.png",   24.0, 28.0),
-        # nova-hero.png is intentionally NOT processed — it's a lifestyle
-        # photo where the dark areas are part of the scene, not background.
+        (base / "products" / "atlas.png",            18.0, 32.0),  # softer for amber screen glow
+        (base / "products" / "titan.png",            24.0, 28.0),
+        (base / "products" / "titan-display.png",    18.0, 32.0),  # softer for amber logo glow
+        (base / "products" / "professional-hero.png", 18.0, 32.0),  # softer for amber terminal glow
+        # The following are intentionally NOT processed — they are
+        # lifestyle / composite scenes where dark areas are part of
+        # the scene, not background:
+        #   - nova-hero.png
+        #   - consumer-home.png
+        #   - professional-home.png
+        #   - professional-hero.png
     ]
 
     print("Converting PNGs to true transparency:")
