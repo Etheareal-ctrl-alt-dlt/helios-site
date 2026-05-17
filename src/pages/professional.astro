@@ -245,7 +245,7 @@ const valueProps = [
 
   .pro-hero__inner {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr);
     gap: clamp(var(--space-6), 4vw, var(--space-10));
     align-items: center;
   }
@@ -272,22 +272,24 @@ const valueProps = [
     transform: translateY(-1px);
   }
 
-  /* The big pixelated headline — IBM Plex Mono bold uppercase.
-     Wide letter-spacing + extra-bold weight gives a near-blocky,
-     terminal-typeset feel without needing a custom display font. */
+  /* The big pixelated headline — VT323 bitmap font straight out of
+     an IBM terminal. Larger size compensates for VT323's lower x-height
+     compared to IBM Plex Mono. */
   .pro-hero__title {
-    font-family: var(--font-mono);
-    font-weight: 700;
-    font-size: clamp(2.4rem, 6.2vw, 4.8rem);
-    line-height: 1.0;
-    letter-spacing: 0.04em;
+    font-family: var(--font-terminal);
+    font-weight: 400;
+    font-size: clamp(3.6rem, 8.5vw, 6.8rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
     text-transform: uppercase;
     color: var(--helios-amber);
     margin-bottom: var(--space-7);
-    /* Subtle amber glow — emulates the photographed phosphor look */
+    /* Stronger phosphor glow — VT323 is a thinner glyph so it needs
+       more bloom to feel like it's sitting on a CRT */
     text-shadow:
-      0 0 24px rgba(255, 176, 0, 0.18),
-      0 0 1px rgba(255, 176, 0, 0.6);
+      0 0 32px rgba(255, 176, 0, 0.32),
+      0 0 12px rgba(255, 176, 0, 0.24),
+      0 0 2px rgba(255, 200, 80, 0.7);
   }
 
   .pro-hero__lede {
@@ -321,14 +323,22 @@ const valueProps = [
   /* Hero visual — Atlas+Titan composition */
   .pro-hero__visual {
     position: relative;
+    /* Let the image scale beyond its container without clipping
+       the right-side glow */
+    overflow: visible;
   }
   .pro-hero__visual-img {
-    width: 100%;
+    width: 115%;          /* Overflow slightly past container right edge */
     height: auto;
     display: block;
-    /* Subtle amber rim glow so the products feel like they're sitting
-       in a darkroom rather than floating on a page */
-    filter: drop-shadow(0 12px 48px rgba(255, 176, 0, 0.06));
+    margin-left: -7.5%;   /* Center the overflow */
+    /* Brightness + contrast lift to pull more amber out of the dark
+       composite, plus a more pronounced amber bloom underneath */
+    filter:
+      brightness(1.20)
+      contrast(1.06)
+      drop-shadow(0 16px 48px rgba(255, 176, 0, 0.14))
+      drop-shadow(0 0 32px rgba(255, 176, 0, 0.08));
   }
 
   /* ═══════════════════════════════════════════════════════════════

@@ -21,6 +21,7 @@
   --font-mono:      'IBM Plex Mono', ui-monospace, monospace;
   --font-serif:     'IBM Plex Serif', Georgia, serif;
   --font-corporate: 'Inter', system-ui, sans-serif;
+  --font-terminal:  'VT323', 'IBM Plex Mono', ui-monospace, monospace;
 
   --weight-regular: 400;
   --weight-medium:  500;
