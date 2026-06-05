@@ -475,14 +475,17 @@ atlas &gt; <span class="os-ai__cursor">_</span></pre>
 
   /* Screenshots — clean rounded crop, no window chrome.
      A soft identity-colored edge glow ties each shot to its OS.
-     Both shots share a fixed aspect ratio + object-fit: cover so the
-     two cards stay perfectly symmetrical regardless of source size. */
+     Both shots share a fixed aspect ratio so the two cards stay
+     symmetrical; object-fit: contain guarantees nothing is ever
+     cropped regardless of each source image's native ratio. Any
+     letterbox area reads as black "screen" rather than empty box. */
   .os-shot {
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: var(--space-5);
     line-height: 0;
     aspect-ratio: 16 / 10;
+    background: #000;
   }
   .os-shot--aurora {
     box-shadow:
@@ -500,7 +503,7 @@ atlas &gt; <span class="os-ai__cursor">_</span></pre>
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
   }
 
