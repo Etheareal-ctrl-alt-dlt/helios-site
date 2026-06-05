@@ -288,7 +288,13 @@ atlas &gt; <span class="os-ai__cursor">_</span></pre>
             </a>
           </div>
           <div class="os-ai__visual os-ai__visual--iris" aria-hidden="true">
-            <span class="os-iris-orb"></span>
+            <img
+              class="os-iris-img"
+              src={path('/images/logos/iris-emblem.png')}
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
           </div>
         </article>
 
@@ -415,10 +421,12 @@ atlas &gt; <span class="os-ai__cursor">_</span></pre>
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: clamp(var(--space-6), 5vw, var(--space-12));
-    align-items: start;
+    align-items: stretch;
   }
 
   .os-card {
+    display: flex;
+    flex-direction: column;
     border: 1px solid var(--border, rgba(255,255,255,0.08));
     border-radius: 20px;
     padding: clamp(var(--space-5), 3vw, var(--space-7));
@@ -466,12 +474,15 @@ atlas &gt; <span class="os-ai__cursor">_</span></pre>
   }
 
   /* Screenshots — clean rounded crop, no window chrome.
-     A soft identity-colored edge glow ties each shot to its OS. */
+     A soft identity-colored edge glow ties each shot to its OS.
+     Both shots share a fixed aspect ratio + object-fit: cover so the
+     two cards stay perfectly symmetrical regardless of source size. */
   .os-shot {
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: var(--space-5);
     line-height: 0;
+    aspect-ratio: 16 / 10;
   }
   .os-shot--aurora {
     box-shadow:
@@ -488,7 +499,9 @@ atlas &gt; <span class="os-ai__cursor">_</span></pre>
   .os-shot__img {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   .os-card__copy {
@@ -507,6 +520,7 @@ atlas &gt; <span class="os-ai__cursor">_</span></pre>
     justify-content: center;
     gap: var(--space-2);
     width: 100%;
+    margin-top: auto;
     padding: var(--space-3) var(--space-5);
     border: 1.5px solid currentColor;
     border-radius: 8px;
@@ -746,25 +760,24 @@ atlas &gt; <span class="os-ai__cursor">_</span></pre>
   }
   @keyframes os-blink { 50% { opacity: 0; } }
 
-  /* IRIS orb visual */
+  /* IRIS emblem visual — same asset as the Consumer page */
   .os-ai__visual--iris {
     display: grid;
     place-items: center;
     min-height: 180px;
   }
-  .os-iris-orb {
-    width: clamp(120px, 16vw, 168px);
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background:
-      conic-gradient(from 210deg,
-        var(--purple), var(--pink), #7BC5FF, var(--purple));
-    -webkit-mask: radial-gradient(circle, transparent 38%, #000 41%, #000 70%, transparent 73%);
-    mask: radial-gradient(circle, transparent 38%, #000 41%, #000 70%, transparent 73%);
-    filter: drop-shadow(0 0 30px rgba(157,123,255,0.4));
-    animation: os-orb-spin 14s linear infinite;
+  .os-iris-img {
+    width: clamp(130px, 17vw, 180px);
+    height: auto;
+    /* Drop-shadow glow pulse, matching the Consumer page treatment
+       (glow, not scale or spin) */
+    filter: drop-shadow(0 0 22px rgba(157, 123, 255, 0.32));
+    animation: os-iris-glow 4s ease-in-out infinite;
   }
-  @keyframes os-orb-spin { to { transform: rotate(360deg); } }
+  @keyframes os-iris-glow {
+    0%, 100% { filter: drop-shadow(0 0 20px rgba(157, 123, 255, 0.28)); }
+    50%      { filter: drop-shadow(0 0 36px rgba(157, 123, 255, 0.52)); }
+  }
 
   /* ── Shared bubble panel ───────────────────────────────────── */
   .os-panel {
@@ -842,7 +855,7 @@ atlas &gt; <span class="os-ai__cursor">_</span></pre>
 
   @media (prefers-reduced-motion: reduce) {
     .os-node__core,
-    .os-iris-orb,
+    .os-iris-img,
     .os-ai__cursor { animation: none; }
   }
 </style>
