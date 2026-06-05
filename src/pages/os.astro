@@ -1,0 +1,861 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { path } from '../utils/url';
+
+// ── Comparison spine: same foundation, different missions ──────
+const comparison = [
+  { aurora: 'Command driven',         icon: 'terminal', solstice: 'Graphical interface' },
+  { aurora: 'Built for Atlas & Titan', icon: 'monitor',  solstice: 'Built for Genesis & Nova' },
+  { aurora: 'HERMES assisted',        icon: 'star',     solstice: 'IRIS integrated' },
+  { aurora: 'Precision first',        icon: 'target',    solstice: 'Warmth first' },
+  { aurora: 'Operator mastery',       icon: 'heart',     solstice: 'Operator support' },
+];
+
+const valueProps = [
+  {
+    title: 'One Company, Two Philosophies',
+    description: 'Different interfaces. Same standards. One Helios.',
+    icon: 'shield',
+  },
+  {
+    title: 'Engineered Together',
+    description: 'Aurora, Solstice, HERMES, and IRIS are built as one integrated family.',
+    icon: 'chip',
+  },
+  {
+    title: 'Built to Evolve',
+    description: 'Continuous improvements that make your system smarter over time.',
+    icon: 'refresh',
+  },
+  {
+    title: 'Yours. Always.',
+    description: 'You own your system. You control your data. End of story.',
+    icon: 'lock',
+  },
+];
+---
+
+<BaseLayout
+  title="Operating Systems — Helios Computer Corporation"
+  description="Two systems. One philosophy. Aurora OS gives professionals direct control; Solstice OS brings that same Helios engineering home, with HERMES and IRIS built in."
+  line="consumer"
+>
+  <Nav current="os" line="homepage" />
+
+  <!-- ════════════════════════════════════════════════════════
+       HERO — gradient headline bridging both identities
+       ════════════════════════════════════════════════════════ -->
+  <section class="os-hero" aria-labelledby="os-hero-title">
+    <div class="container os-hero__inner">
+      <p class="os-hero__eyebrow">Helios Operating Systems</p>
+      <h1 id="os-hero-title" class="os-hero__title">
+        Two Systems. <span class="os-hero__title-alt">One Philosophy.</span>
+      </h1>
+      <p class="os-hero__lede">
+        Aurora gives professionals direct control.<br />
+        Solstice brings that same Helios engineering home.
+      </p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       DUAL OS CARDS — Aurora (amber) / Solstice (purple)
+       bridged by the HELIOS node
+       ════════════════════════════════════════════════════════ -->
+  <section class="os-duo" aria-label="Aurora OS and Solstice OS">
+    <div class="container">
+      <div class="os-duo__grid">
+
+        <!-- AURORA -->
+        <article class="os-card os-card--aurora">
+          <header class="os-card__head">
+            <h2 class="os-card__name os-card__name--aurora">AURORA OS</h2>
+            <p class="os-card__tagline">Direct Control. Zero Noise.</p>
+          </header>
+
+          <div class="os-frame os-frame--aurora">
+            <div class="os-frame__bar">
+              <span class="os-frame__dots" aria-hidden="true">
+                <i></i><i></i><i></i>
+              </span>
+              <span class="os-frame__label">aurora — terminal</span>
+            </div>
+            <img
+              class="os-frame__img"
+              src={path('/images/os/aurora-screen.png')}
+              alt="Aurora OS terminal showing the boot sequence"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <p class="os-card__copy">
+            Command driven. Uncompromising. Built for Atlas and Titan,
+            Aurora OS removes the layer between intent and execution.
+            No clutter. No hand holding. Just performance.
+          </p>
+
+          <a href="#" class="os-card__cta os-card__cta--aurora">
+            <span>Learn About Aurora OS</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.25"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </a>
+        </article>
+
+        <!-- SOLSTICE -->
+        <article class="os-card os-card--solstice">
+          <header class="os-card__head">
+            <h2 class="os-card__name os-card__name--solstice">SOLSTICE OS</h2>
+            <p class="os-card__tagline">Power Made Simple.</p>
+          </header>
+
+          <div class="os-frame os-frame--solstice">
+            <div class="os-frame__bar">
+              <span class="os-frame__dots" aria-hidden="true">
+                <i></i><i></i><i></i>
+              </span>
+              <span class="os-frame__label">solstice — home</span>
+            </div>
+            <img
+              class="os-frame__img"
+              src={path('/images/os/solstice-screen.png')}
+              alt="Solstice OS home view with IRIS panel"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <p class="os-card__copy">
+            Beautifully intuitive. Effortlessly connected. Built for Genesis
+            and Nova, Solstice OS brings Helios engineering to life with a
+            human touch — and IRIS by your side.
+          </p>
+
+          <a href="#" class="os-card__cta os-card__cta--solstice">
+            <span>Learn About Solstice OS</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.25"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </a>
+        </article>
+
+        <!-- HELIOS NODE — the conceptual heart bridging both -->
+        <div class="os-node" aria-hidden="true">
+          <span class="os-node__line os-node__line--left"></span>
+          <span class="os-node__line os-node__line--right"></span>
+          <div class="os-node__core">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <line x1="12" y1="2" x2="12" y2="22"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <line x1="4.9" y1="4.9" x2="19.1" y2="19.1"/>
+              <line x1="19.1" y1="4.9" x2="4.9" y2="19.1"/>
+            </svg>
+          </div>
+          <span class="os-node__label">HELIOS</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       COMPARISON — same foundation, different missions
+       ════════════════════════════════════════════════════════ -->
+  <section class="os-compare" aria-label="Aurora and Solstice compared">
+    <div class="container">
+      <p class="os-compare__heading">
+        Built on the same foundation. Designed for different missions.
+      </p>
+
+      <div class="os-compare__table">
+        <div class="os-compare__col-head os-compare__col-head--aurora">AURORA OS</div>
+        <div class="os-compare__col-head" aria-hidden="true"></div>
+        <div class="os-compare__col-head os-compare__col-head--solstice">SOLSTICE OS</div>
+
+        {comparison.map((row) => (
+          <>
+            <div class="os-compare__cell os-compare__cell--aurora">{row.aurora}</div>
+            <div class="os-compare__cell os-compare__cell--icon">
+              <span class="os-compare__icon" aria-hidden="true">
+                {row.icon === 'terminal' && (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"/>
+                    <polyline points="7 9 10 12 7 15"/>
+                    <line x1="13" y1="15" x2="17" y2="15"/>
+                  </svg>
+                )}
+                {row.icon === 'monitor' && (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="13" rx="1.5"/>
+                    <line x1="9" y1="21" x2="15" y2="21"/>
+                    <line x1="12" y1="17" x2="12" y2="21"/>
+                  </svg>
+                )}
+                {row.icon === 'star' && (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.5" stroke-linecap="round">
+                    <line x1="12" y1="3" x2="12" y2="21"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="5.6" y1="5.6" x2="18.4" y2="18.4"/>
+                    <line x1="18.4" y1="5.6" x2="5.6" y2="18.4"/>
+                  </svg>
+                )}
+                {row.icon === 'target' && (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="8"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                )}
+                {row.icon === 'heart' && (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/>
+                  </svg>
+                )}
+              </span>
+            </div>
+            <div class="os-compare__cell os-compare__cell--solstice">{row.solstice}</div>
+          </>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       INTELLIGENCE BAND — HERMES + IRIS
+       ════════════════════════════════════════════════════════ -->
+  <section class="os-intel" aria-label="Helios intelligence">
+    <div class="container">
+      <div class="os-intel__head">
+        <h2 class="os-intel__title">Intelligence Built In.</h2>
+        <p class="os-intel__sub">
+          Every Helios system is supported by specialized intelligence,
+          designed to enhance without interfering.
+        </p>
+      </div>
+
+      <div class="os-intel__grid">
+
+        <!-- HERMES -->
+        <article class="os-ai os-ai--hermes">
+          <div class="os-ai__visual os-ai__visual--hermes" aria-hidden="true">
+            <pre class="os-ai__term">atlas &gt; hermes
+HERMES online.
+
+Operator: status report
+HERMES: All systems nominal.
+
+Operator: next diagnostic
+HERMES: Run: diag.full.
+
+atlas &gt; <span class="os-ai__cursor">_</span></pre>
+          </div>
+          <div class="os-ai__body">
+            <h3 class="os-ai__name os-ai__name--hermes">HERMES</h3>
+            <p class="os-ai__role">Command Assistant</p>
+            <p class="os-ai__copy">
+              HERMES lives inside Aurora OS. He helps you understand,
+              optimize, and execute with precision. You stay in control.
+            </p>
+            <a href="#" class="os-card__cta os-card__cta--aurora">
+              <span>Learn More About HERMES</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.25"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- IRIS -->
+        <article class="os-ai os-ai--iris">
+          <div class="os-ai__body">
+            <h3 class="os-ai__name os-ai__name--iris">IRIS</h3>
+            <p class="os-ai__role">Intelligent Companion</p>
+            <p class="os-ai__copy">
+              IRIS is woven into Solstice OS. She helps you write, find, plan,
+              create, and remember — naturally. Always here. Always yours.
+            </p>
+            <a href="#" class="os-card__cta os-card__cta--solstice">
+              <span>Learn More About IRIS</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.25"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </a>
+          </div>
+          <div class="os-ai__visual os-ai__visual--iris" aria-hidden="true">
+            <span class="os-iris-orb"></span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       VALUE PROPS
+       ════════════════════════════════════════════════════════ -->
+  <section class="propband" aria-label="Why Helios">
+    <div class="container">
+      <div class="propband__grid">
+        {valueProps.map((v) => (
+          <div class="propband__item">
+            <div class="propband__icon" aria-hidden="true">
+              {v.icon === 'shield' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3z"/>
+                </svg>
+              )}
+              {v.icon === 'chip' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="6" y="6" width="12" height="12" rx="1.5"/>
+                  <rect x="9.5" y="9.5" width="5" height="5" rx="0.5"/>
+                  <line x1="9" y1="2" x2="9" y2="5"/><line x1="15" y1="2" x2="15" y2="5"/>
+                  <line x1="9" y1="19" x2="9" y2="22"/><line x1="15" y1="19" x2="15" y2="22"/>
+                  <line x1="2" y1="9" x2="5" y2="9"/><line x1="2" y1="15" x2="5" y2="15"/>
+                  <line x1="19" y1="9" x2="22" y2="9"/><line x1="19" y1="15" x2="22" y2="15"/>
+                </svg>
+              )}
+              {v.icon === 'refresh' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="21 5 21 10 16 10"/>
+                  <polyline points="3 19 3 14 8 14"/>
+                  <path d="M19 10a7 7 0 0 0-13-2M5 14a7 7 0 0 0 13 2"/>
+                </svg>
+              )}
+              {v.icon === 'lock' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="11" width="16" height="10" rx="1.5"/>
+                  <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+                </svg>
+              )}
+            </div>
+            <h3 class="propband__title">{v.title}</h3>
+            <p class="propband__description">{v.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer line="homepage" />
+</BaseLayout>
+
+<style>
+  /* ═══════════════════════════════════════════════════════════════
+     OS PAGE — neutral chrome, dual amber/purple identities
+     ═══════════════════════════════════════════════════════════════ */
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* ── HERO ──────────────────────────────────────────────────── */
+  .os-hero {
+    padding-block: clamp(var(--space-10), 9vh, var(--space-16)) var(--space-8);
+    text-align: center;
+  }
+  .os-hero__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: var(--space-5);
+  }
+  .os-hero__title {
+    font-family: var(--font-corporate);
+    font-weight: 800;
+    font-size: clamp(2.4rem, 6vw, 4.4rem);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    /* Amber → pink → purple gradient literally bridges the two
+       identities in a single word-mark */
+    background: linear-gradient(100deg,
+      var(--helios-amber) 0%,
+      var(--helios-amber) 28%,
+      #FF8FB0 50%,
+      var(--pink) 64%,
+      var(--purple) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: var(--space-6);
+  }
+  .os-hero__title-alt { white-space: nowrap; }
+  .os-hero__lede {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 620px;
+    margin-inline: auto;
+  }
+
+  /* ── DUAL OS CARDS ─────────────────────────────────────────── */
+  .os-duo {
+    padding-block: var(--space-8) var(--space-10);
+  }
+  .os-duo__grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(var(--space-6), 5vw, var(--space-12));
+    align-items: start;
+  }
+
+  .os-card {
+    border: 1px solid var(--border, rgba(255,255,255,0.08));
+    border-radius: 16px;
+    padding: clamp(var(--space-5), 3vw, var(--space-7));
+    background:
+      radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,0.025), transparent 70%),
+      rgba(255, 255, 255, 0.012);
+  }
+  .os-card--aurora {
+    border-color: rgba(255, 176, 0, 0.22);
+    box-shadow: 0 0 60px rgba(255, 176, 0, 0.05) inset;
+  }
+  .os-card--solstice {
+    border-color: rgba(157, 123, 255, 0.28);
+    box-shadow: 0 0 60px rgba(157, 123, 255, 0.06) inset;
+  }
+
+  .os-card__head { margin-bottom: var(--space-5); }
+  .os-card__name {
+    font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+    line-height: 1;
+    margin-bottom: var(--space-2);
+  }
+  .os-card__name--aurora {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--helios-amber);
+    text-shadow: 0 0 24px rgba(255, 176, 0, 0.25);
+  }
+  .os-card__name--solstice {
+    font-family: var(--font-display);
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    background: linear-gradient(95deg, var(--pink), var(--purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .os-card__tagline {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-tertiary, rgba(255,255,255,0.5));
+  }
+
+  /* Window frame around screenshots */
+  .os-frame {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: #07070b;
+    margin-bottom: var(--space-5);
+  }
+  .os-frame--aurora { border-color: rgba(255, 176, 0, 0.25); }
+  .os-frame--solstice { border-color: rgba(157, 123, 255, 0.3); }
+  .os-frame__bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    height: 30px;
+    padding-inline: var(--space-3);
+    background: rgba(255,255,255,0.03);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .os-frame__dots { display: inline-flex; gap: 6px; }
+  .os-frame__dots i {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+  }
+  .os-frame--aurora .os-frame__dots i:first-child { background: rgba(255,176,0,0.6); }
+  .os-frame--solstice .os-frame__dots i:first-child { background: rgba(157,123,255,0.7); }
+  .os-frame__label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary, rgba(255,255,255,0.45));
+  }
+  .os-frame__img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .os-card__copy {
+    font-family: var(--font-mono);
+    font-size: 0.86rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-6);
+  }
+  .os-card--solstice .os-card__copy { font-family: var(--font-body); }
+
+  /* CTAs — shared shape, per-identity color */
+  .os-card__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    width: 100%;
+    padding: var(--space-3) var(--space-5);
+    border: 1.5px solid currentColor;
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: all var(--duration-fast, 150ms) var(--ease-out, ease);
+  }
+  .os-card__cta svg { transition: transform var(--duration-fast, 150ms) var(--ease-out, ease); }
+  .os-card__cta:hover svg { transform: translateX(3px); }
+  .os-card__cta--aurora { color: var(--helios-amber); }
+  .os-card__cta--aurora:hover { background: var(--helios-amber); color: #050505; }
+  .os-card__cta--solstice { color: var(--purple); }
+  .os-card__cta--solstice:hover { background: var(--purple); color: #0a0a18; }
+
+  /* ── HELIOS NODE ───────────────────────────────────────────── */
+  .os-node {
+    position: absolute;
+    top: 165px;            /* roughly aligned with screenshot centers */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .os-node__line {
+    position: absolute;
+    top: 32px;
+    width: clamp(var(--space-6), 5vw, var(--space-12));
+    height: 1px;
+  }
+  .os-node__line--left {
+    right: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,176,0,0.5));
+  }
+  .os-node__line--right {
+    left: 100%;
+    background: linear-gradient(90deg, rgba(157,123,255,0.55), transparent);
+  }
+  .os-node__core {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #0a0a12;
+    border: 1px solid rgba(255,255,255,0.18);
+    color: rgba(255,255,255,0.85);
+    box-shadow:
+      0 0 0 6px rgba(10,10,18,0.9),
+      0 0 30px rgba(255,176,0,0.12),
+      0 0 30px rgba(157,123,255,0.12);
+    animation: os-node-pulse 3.6s ease-in-out infinite;
+  }
+  .os-node__label {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.28em;
+    color: var(--text-tertiary, rgba(255,255,255,0.55));
+  }
+  @keyframes os-node-pulse {
+    0%, 100% { box-shadow: 0 0 0 6px rgba(10,10,18,0.9), 0 0 24px rgba(255,176,0,0.10), 0 0 24px rgba(157,123,255,0.10); }
+    50%      { box-shadow: 0 0 0 6px rgba(10,10,18,0.9), 0 0 38px rgba(255,176,0,0.20), 0 0 38px rgba(157,123,255,0.20); }
+  }
+
+  /* ── COMPARISON TABLE ──────────────────────────────────────── */
+  .os-compare {
+    padding-block: var(--space-10);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .os-compare__heading {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+    letter-spacing: 0.04em;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-8);
+  }
+  .os-compare__table {
+    display: grid;
+    grid-template-columns: 1fr 64px 1fr;
+    align-items: center;
+    max-width: 880px;
+    margin-inline: auto;
+  }
+  .os-compare__col-head {
+    padding-bottom: var(--space-4);
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  .os-compare__col-head--aurora {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--helios-amber);
+  }
+  .os-compare__col-head--solstice {
+    font-family: var(--font-display);
+    font-weight: 800;
+    background: linear-gradient(95deg, var(--pink), var(--purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .os-compare__cell {
+    font-family: var(--font-mono);
+    font-size: 0.92rem;
+    padding-block: var(--space-4);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    color: var(--text-primary);
+  }
+  .os-compare__cell--aurora { text-align: right; padding-right: var(--space-5); }
+  .os-compare__cell--solstice { text-align: left; padding-left: var(--space-5); }
+  /* Icon spine — a literal shared backbone down the middle */
+  .os-compare__cell--icon {
+    display: grid;
+    place-items: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-block: var(--space-4);
+    position: relative;
+  }
+  .os-compare__cell--icon::before {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: linear-gradient(180deg,
+      rgba(255,176,0,0.0), rgba(255,255,255,0.12), rgba(157,123,255,0.0));
+    transform: translateX(-50%);
+  }
+  .os-compare__icon {
+    display: grid;
+    place-items: center;
+    width: 34px; height: 34px;
+    color: rgba(255,255,255,0.55);
+    position: relative;
+    z-index: 1;
+    background: var(--bg-deep, #0a0a14);
+  }
+  .os-compare__icon svg { width: 20px; height: 20px; }
+
+  /* ── INTELLIGENCE BAND ─────────────────────────────────────── */
+  .os-intel { padding-block: var(--space-12); }
+  .os-intel__head { text-align: center; margin-bottom: var(--space-8); }
+  .os-intel__title {
+    font-family: var(--font-corporate);
+    font-weight: 800;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+  }
+  .os-intel__sub {
+    font-family: var(--font-body);
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    max-width: 560px;
+    margin-inline: auto;
+  }
+  .os-intel__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(var(--space-5), 3vw, var(--space-8));
+  }
+  .os-ai {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+    align-items: center;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: clamp(var(--space-5), 2.5vw, var(--space-6));
+  }
+  .os-ai--hermes { border-color: rgba(255,176,0,0.2); }
+  .os-ai--iris   { border-color: rgba(157,123,255,0.26); }
+
+  .os-ai__name {
+    font-size: clamp(1.5rem, 2.4vw, 2rem);
+    line-height: 1;
+    margin-bottom: var(--space-1);
+  }
+  .os-ai__name--hermes {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--helios-amber);
+    text-shadow: 0 0 20px rgba(255,176,0,0.22);
+  }
+  .os-ai__name--iris {
+    font-family: var(--font-display);
+    font-weight: 900;
+    background: linear-gradient(95deg, var(--pink), var(--purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .os-ai__role {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-tertiary, rgba(255,255,255,0.5));
+    margin-bottom: var(--space-4);
+  }
+  .os-ai__copy {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-5);
+  }
+  .os-ai--iris .os-ai__copy { font-family: var(--font-body); }
+
+  /* HERMES terminal visual */
+  .os-ai__visual--hermes {
+    border: 1px solid rgba(255,176,0,0.18);
+    border-radius: 10px;
+    background: #07070a;
+    padding: var(--space-4);
+    overflow: hidden;
+  }
+  .os-ai__term {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1.7;
+    color: var(--helios-amber);
+    white-space: pre-wrap;
+    margin: 0;
+  }
+  .os-ai__cursor {
+    display: inline-block;
+    animation: os-blink 1.1s step-end infinite;
+  }
+  @keyframes os-blink { 50% { opacity: 0; } }
+
+  /* IRIS orb visual */
+  .os-ai__visual--iris {
+    display: grid;
+    place-items: center;
+    min-height: 180px;
+  }
+  .os-iris-orb {
+    width: clamp(120px, 16vw, 168px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+      conic-gradient(from 210deg,
+        var(--purple), var(--pink), #7BC5FF, var(--purple));
+    -webkit-mask: radial-gradient(circle, transparent 38%, #000 41%, #000 70%, transparent 73%);
+    mask: radial-gradient(circle, transparent 38%, #000 41%, #000 70%, transparent 73%);
+    filter: drop-shadow(0 0 30px rgba(157,123,255,0.4));
+    animation: os-orb-spin 14s linear infinite;
+  }
+  @keyframes os-orb-spin { to { transform: rotate(360deg); } }
+
+  /* ── VALUE PROPS ───────────────────────────────────────────── */
+  .propband {
+    padding-block: var(--space-10);
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .propband__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(var(--space-5), 3vw, var(--space-8));
+  }
+  .propband__icon {
+    width: 30px; height: 30px;
+    color: var(--pink);
+    margin-bottom: var(--space-4);
+  }
+  .propband__icon svg { width: 100%; height: 100%; }
+  .propband__title {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+    line-height: 1.4;
+  }
+  .propband__description {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     RESPONSIVE
+     ═══════════════════════════════════════════════════════════════ */
+  @media (max-width: 980px) {
+    /* Cards stack — node becomes a centered divider between them */
+    .os-duo__grid { grid-template-columns: 1fr; }
+    .os-node {
+      position: relative;
+      top: auto; left: auto;
+      transform: none;
+      margin-block: var(--space-7);
+      flex-direction: column;
+    }
+    .os-node__line { display: none; }
+
+    .os-intel__grid { grid-template-columns: 1fr; }
+    /* On IRIS card, force body before orb on mobile for reading order */
+    .os-ai--iris { grid-template-columns: 1fr; }
+    .os-ai--hermes { grid-template-columns: 1fr; }
+    .os-ai__visual--hermes { order: 2; }
+
+    .propband__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 560px) {
+    .os-compare__table { grid-template-columns: 1fr 44px 1fr; }
+    .os-compare__cell { font-size: 0.8rem; }
+    .os-compare__cell--aurora { padding-right: var(--space-3); }
+    .os-compare__cell--solstice { padding-left: var(--space-3); }
+    .propband__grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .os-node__core,
+    .os-iris-orb,
+    .os-ai__cursor { animation: none; }
+  }
+</style>
