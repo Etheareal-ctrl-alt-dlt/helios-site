@@ -75,15 +75,9 @@ const valueProps = [
             <p class="os-card__tagline">Direct Control. Zero Noise.</p>
           </header>
 
-          <div class="os-frame os-frame--aurora">
-            <div class="os-frame__bar">
-              <span class="os-frame__dots" aria-hidden="true">
-                <i></i><i></i><i></i>
-              </span>
-              <span class="os-frame__label">aurora — terminal</span>
-            </div>
+          <div class="os-shot os-shot--aurora">
             <img
-              class="os-frame__img"
+              class="os-shot__img"
               src={path('/images/os/aurora-screen.png')}
               alt="Aurora OS terminal showing the boot sequence"
               loading="lazy"
@@ -114,15 +108,9 @@ const valueProps = [
             <p class="os-card__tagline">Power Made Simple.</p>
           </header>
 
-          <div class="os-frame os-frame--solstice">
-            <div class="os-frame__bar">
-              <span class="os-frame__dots" aria-hidden="true">
-                <i></i><i></i><i></i>
-              </span>
-              <span class="os-frame__label">solstice — home</span>
-            </div>
+          <div class="os-shot os-shot--solstice">
             <img
-              class="os-frame__img"
+              class="os-shot__img"
               src={path('/images/os/solstice-screen.png')}
               alt="Solstice OS home view with IRIS panel"
               loading="lazy"
@@ -171,11 +159,12 @@ const valueProps = [
        ════════════════════════════════════════════════════════ -->
   <section class="os-compare" aria-label="Aurora and Solstice compared">
     <div class="container">
-      <p class="os-compare__heading">
-        Built on the same foundation. Designed for different missions.
-      </p>
+      <div class="os-panel">
+        <p class="os-compare__heading">
+          Built on the same foundation. Designed for different missions.
+        </p>
 
-      <div class="os-compare__table">
+        <div class="os-compare__table">
         <div class="os-compare__col-head os-compare__col-head--aurora">AURORA OS</div>
         <div class="os-compare__col-head" aria-hidden="true"></div>
         <div class="os-compare__col-head os-compare__col-head--solstice">SOLSTICE OS</div>
@@ -228,6 +217,7 @@ const valueProps = [
             <div class="os-compare__cell os-compare__cell--solstice">{row.solstice}</div>
           </>
         ))}
+        </div>
       </div>
     </div>
   </section>
@@ -311,7 +301,8 @@ atlas &gt; <span class="os-ai__cursor">_</span></pre>
        ════════════════════════════════════════════════════════ -->
   <section class="propband" aria-label="Why Helios">
     <div class="container">
-      <div class="propband__grid">
+      <div class="os-panel">
+        <div class="propband__grid">
         {valueProps.map((v) => (
           <div class="propband__item">
             <div class="propband__icon" aria-hidden="true">
@@ -352,6 +343,7 @@ atlas &gt; <span class="os-ai__cursor">_</span></pre>
             <p class="propband__description">{v.description}</p>
           </div>
         ))}
+        </div>
       </div>
     </div>
   </section>
@@ -428,7 +420,7 @@ atlas &gt; <span class="os-ai__cursor">_</span></pre>
 
   .os-card {
     border: 1px solid var(--border, rgba(255,255,255,0.08));
-    border-radius: 16px;
+    border-radius: 20px;
     padding: clamp(var(--space-5), 3vw, var(--space-7));
     background:
       radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,0.025), transparent 70%),
@@ -473,39 +465,27 @@ atlas &gt; <span class="os-ai__cursor">_</span></pre>
     color: var(--text-tertiary, rgba(255,255,255,0.5));
   }
 
-  /* Window frame around screenshots */
-  .os-frame {
+  /* Screenshots — clean rounded crop, no window chrome.
+     A soft identity-colored edge glow ties each shot to its OS. */
+  .os-shot {
     border-radius: 10px;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.1);
-    background: #07070b;
     margin-bottom: var(--space-5);
+    line-height: 0;
   }
-  .os-frame--aurora { border-color: rgba(255, 176, 0, 0.25); }
-  .os-frame--solstice { border-color: rgba(157, 123, 255, 0.3); }
-  .os-frame__bar {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    height: 30px;
-    padding-inline: var(--space-3);
-    background: rgba(255,255,255,0.03);
-    border-bottom: 1px solid rgba(255,255,255,0.07);
+  .os-shot--aurora {
+    box-shadow:
+      0 0 0 1px rgba(255, 176, 0, 0.18),
+      0 18px 50px rgba(0, 0, 0, 0.5),
+      0 0 40px rgba(255, 176, 0, 0.06);
   }
-  .os-frame__dots { display: inline-flex; gap: 6px; }
-  .os-frame__dots i {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: rgba(255,255,255,0.18);
+  .os-shot--solstice {
+    box-shadow:
+      0 0 0 1px rgba(157, 123, 255, 0.22),
+      0 18px 50px rgba(0, 0, 0, 0.5),
+      0 0 40px rgba(157, 123, 255, 0.08);
   }
-  .os-frame--aurora .os-frame__dots i:first-child { background: rgba(255,176,0,0.6); }
-  .os-frame--solstice .os-frame__dots i:first-child { background: rgba(157,123,255,0.7); }
-  .os-frame__label {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-    color: var(--text-tertiary, rgba(255,255,255,0.45));
-  }
-  .os-frame__img {
+  .os-shot__img {
     display: block;
     width: 100%;
     height: auto;
@@ -598,9 +578,7 @@ atlas &gt; <span class="os-ai__cursor">_</span></pre>
 
   /* ── COMPARISON TABLE ──────────────────────────────────────── */
   .os-compare {
-    padding-block: var(--space-10);
-    border-top: 1px solid rgba(255,255,255,0.06);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding-block: var(--space-8);
   }
   .os-compare__heading {
     text-align: center;
@@ -704,7 +682,7 @@ atlas &gt; <span class="os-ai__cursor">_</span></pre>
     gap: var(--space-5);
     align-items: center;
     border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 16px;
+    border-radius: 20px;
     padding: clamp(var(--space-5), 2.5vw, var(--space-6));
   }
   .os-ai--hermes { border-color: rgba(255,176,0,0.2); }
@@ -788,10 +766,19 @@ atlas &gt; <span class="os-ai__cursor">_</span></pre>
   }
   @keyframes os-orb-spin { to { transform: rotate(360deg); } }
 
+  /* ── Shared bubble panel ───────────────────────────────────── */
+  .os-panel {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 22px;
+    padding: clamp(var(--space-6), 4vw, var(--space-10));
+    background:
+      radial-gradient(140% 100% at 50% 0%, rgba(255,255,255,0.022), transparent 70%),
+      rgba(255, 255, 255, 0.012);
+  }
+
   /* ── VALUE PROPS ───────────────────────────────────────────── */
   .propband {
-    padding-block: var(--space-10);
-    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-block: var(--space-8) var(--space-12);
   }
   .propband__grid {
     display: grid;
