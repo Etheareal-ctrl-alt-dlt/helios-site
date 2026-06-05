@@ -1,0 +1,972 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import OSNav from '../components/OSNav.astro';
+import Footer from '../components/Footer.astro';
+import { path } from '../utils/url';
+
+const IRIS_EMBLEM = path('/images/logos/iris-emblem.png');
+
+// ── "What is IRIS?" — four pillars (Bible-aligned) ────────────
+const pillars = [
+  {
+    icon: 'ring',
+    title: 'Built Into Solstice OS',
+    body: 'Not a separate app. IRIS is woven into every surface.',
+  },
+  {
+    icon: 'eye',
+    title: 'Understands Context',
+    body: 'She sees where you are and what you\u2019re working on.',
+  },
+  {
+    icon: 'heart',
+    title: 'Here For You',
+    body: 'Answers, ideas, shortcuts, and encouragement when you need it.',
+  },
+  {
+    icon: 'shield',
+    title: 'Yours. Always.',
+    body: 'Your privacy is respected. Your decisions are final. IRIS follows your lead.',
+  },
+];
+
+// ── The five surfaces (canonical, from the Product Bible) ─────
+const surfaces = [
+  {
+    n: '1',
+    key: 'home',
+    title: 'Home Companion',
+    body: 'On the Home View, IRIS waits quietly beside your day. Suggestions appear based on time, context, and what you might need next.',
+  },
+  {
+    n: '2',
+    key: 'lens',
+    title: 'App Lens',
+    body: 'Tap the IRIS orb in any app. She understands what you\u2019re looking at and can help you right where you are.',
+  },
+  {
+    n: '3',
+    key: 'margin',
+    title: 'IRIS Margin',
+    body: 'Select any text and IRIS appears at the edge of your work. Proofread, make it friendlier, summarize, continue writing, or free write.',
+  },
+  {
+    n: '4',
+    key: 'reading',
+    title: 'Reading Lens',
+    body: 'Highlight a passage in Cosmos and ask IRIS to summarize or explain it. No distractions. Just insight, then back to reading.',
+  },
+  {
+    n: '5',
+    key: 'seeing',
+    title: 'Seeing Lens',
+    body: 'In Photos, IRIS can look at images with you. Ask for captions, descriptions, moods, or what details stand out.',
+  },
+];
+
+// ── Built into your day ───────────────────────────────────────
+const dayItems = [
+  { icon: 'calendar', q: 'What\u2019s on my schedule tomorrow?', sub: 'IRIS can check your calendar and prepare a plan.' },
+  { icon: 'music',    q: 'Play something warm and slow.',        sub: 'IRIS understands what you like and the mood you want.' },
+  { icon: 'create',   q: 'Do I have any photos of the ocean?',   sub: 'IRIS can search your library and find what matters.' },
+];
+
+// ── Writing operations (IRIS Margin) ──────────────────────────
+const writingOps = [
+  { label: 'Proofread',  desc: 'Clean up grammar and clarity.' },
+  { label: 'Friendlier', desc: 'Adjust tone to be warmer.' },
+  { label: 'Summarize',  desc: 'Make long text short and clear.' },
+  { label: 'Free Write', desc: 'Start a new thought together.' },
+  { label: 'Continue',   desc: 'Keep your writing moving.' },
+];
+
+// ── Privacy / principles ──────────────────────────────────────
+const principles = [
+  { icon: 'memory',   title: 'Working Memory',  body: 'IRIS remembers recent context across your surfaces for a short time \u2014 then lets it go.' },
+  { icon: 'tap',      title: 'Final Tap Is Yours', body: 'IRIS can prepare actions like sending mail, but the final tap is always yours.' },
+  { icon: 'boundary', title: 'Clear Boundaries', body: 'IRIS respects what she can\u2019t know and won\u2019t pretend otherwise.' },
+  { icon: 'offline',  title: 'Offline Respect',  body: 'Solstice OS keeps working even when IRIS can\u2019t connect. She\u2019ll be ready when you are.' },
+];
+---
+
+<BaseLayout
+  title="IRIS — Helios Computer Corporation"
+  description="Meet IRIS, the Interactive Response Intelligence System built into Solstice OS. Always there. Never in the way. A warm companion woven through every surface of your Genesis."
+  line="consumer"
+>
+  <Nav current="os" line="consumer" />
+  <OSNav current="iris" />
+
+  <!-- ════════════════════════════════════════════════════════
+       HERO — orb + headline + live Solstice home vignette
+       ════════════════════════════════════════════════════════ -->
+  <section class="iris-hero" aria-labelledby="iris-hero-title">
+    <div class="container iris-hero__inner">
+
+      <div class="iris-hero__lead">
+        <div class="iris-hero__orb iris-emblem-glow">
+          <img src={IRIS_EMBLEM} alt="" width="180" height="180" />
+        </div>
+        <p class="iris-hero__wordmark">IRIS</p>
+        <p class="iris-hero__expand">Interactive Response Intelligence System</p>
+
+        <h1 id="iris-hero-title" class="iris-hero__title">
+          <span class="iris-hero__meet">Meet</span> <span class="iris-hero__name">IRIS</span>
+        </h1>
+        <p class="iris-hero__tagline">Always there. Never in the way.</p>
+        <p class="iris-hero__desc">
+          IRIS is the Interactive Response Intelligence System built into Solstice OS.
+          She helps you write, search, read, organize, create, and move through your
+          Genesis naturally \u2014 not as a separate app, but as part of the system itself.
+        </p>
+        <div class="iris-hero__cta">
+          <a href="#surfaces" class="btn btn--solid">Explore IRIS
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#" class="btn btn--ghost">See Solstice OS</a>
+        </div>
+      </div>
+
+      <!-- Live Solstice home recreation -->
+      <div class="iris-hero__screen" aria-hidden="true">
+        <div class="sol iris-edge">
+          <div class="sol__top">
+            <span class="sol__brand">HELIOS</span>
+            <span class="sol__greet">Good afternoon</span>
+            <span class="sol__glyphs"><i></i><i></i><i></i></span>
+          </div>
+          <div class="sol__body">
+            <div class="sol__rail">
+              <span class="sol__rail-dot is-on"></span>
+              <span class="sol__rail-dot"></span>
+              <span class="sol__rail-dot"></span>
+              <span class="sol__rail-dot"></span>
+              <span class="sol__rail-dot"></span>
+            </div>
+            <div class="sol__scene">
+              <div class="sol__welcome">
+                <span class="sol__welcome-sm">Welcome back,</span>
+                <span class="sol__welcome-lg">Operator.</span>
+              </div>
+              <span class="sol__sun"></span>
+              <span class="sol__water"></span>
+            </div>
+            <div class="sol__iris">
+              <span class="sol__iris-orb iris-emblem-glow"><img src={IRIS_EMBLEM} alt="" width="44" height="44" /></span>
+              <span class="sol__iris-name">IRIS</span>
+              <span class="sol__iris-ready">Ready when you are.</span>
+              <span class="sol__chip"></span>
+              <span class="sol__chip"></span>
+              <span class="sol__chip"></span>
+              <span class="sol__ask">Ask IRIS anything\u2026</span>
+            </div>
+          </div>
+          <div class="sol__bottom">
+            <span>83\u00b0 Mainly Clear</span>
+            <span>1:23 PM</span>
+            <span>Nothing playing</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       WHAT IS IRIS? — intro + four pillars
+       ════════════════════════════════════════════════════════ -->
+  <section class="iris-what" aria-label="What is IRIS">
+    <div class="container">
+      <div class="iris-panel iris-what__panel">
+        <div class="iris-what__intro">
+          <p class="iris-what__eyebrow">\u2756 What Is IRIS?</p>
+          <p class="iris-what__lede">
+            IRIS is Helios\u2019 personal intelligent companion in Solstice OS. She understands
+            what you\u2019re doing, what you\u2019re looking at, and what you\u2019re trying to do next.
+            IRIS can answer questions, help you write, find things, control apps, and connect
+            ideas across your day \u2014 all while keeping you in control.
+          </p>
+          <p class="iris-what__lede">
+            She\u2019s here when you need her, and she steps back when you don\u2019t.
+          </p>
+        </div>
+        <div class="iris-what__grid">
+          {pillars.map((p) => (
+            <div class="iris-pillar">
+              <span class="iris-pillar__icon" aria-hidden="true">
+                {p.icon === 'ring' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4"/></svg>)}
+                {p.icon === 'eye' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg>)}
+                {p.icon === 'heart' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>)}
+                {p.icon === 'shield' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3z"/><path d="m9.2 12 1.9 1.9 3.7-3.8"/></svg>)}
+              </span>
+              <h3 class="iris-pillar__title">{p.title}</h3>
+              <p class="iris-pillar__body">{p.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       ONE COMPANION. EVERY SURFACE. — five animated vignettes
+       ════════════════════════════════════════════════════════ -->
+  <section id="surfaces" class="iris-surfaces" aria-label="The five IRIS surfaces">
+    <div class="container">
+      <div class="iris-surfaces__head">
+        <h2 class="iris-surfaces__title">One Companion. Every Surface.</h2>
+        <p class="iris-surfaces__sub">IRIS works with you everywhere in Solstice OS. Hover or tap a surface to see her in action.</p>
+      </div>
+
+      <div class="iris-surfaces__grid">
+        {surfaces.map((s) => (
+          <div class="surface" data-surface={s.key} tabindex="0" role="button" aria-label={`${s.title} demonstration`}>
+            <div class="surface__stage">
+
+              {s.key === 'home' && (
+                <div class="vg vg--home">
+                  <span class="vg-home__orb iris-emblem-glow"><img src={IRIS_EMBLEM} alt="" width="56" height="56" /></span>
+                  <span class="vg-home__name">IRIS</span>
+                  <span class="vg-home__ready">Ready when you are.</span>
+                  <span class="vg-home__chip vg-chip" style="--i:0">Today \u00b7 schedule</span>
+                  <span class="vg-home__chip vg-chip" style="--i:1">Music \u00b7 warm & slow</span>
+                  <span class="vg-home__chip vg-chip" style="--i:2">Create \u00b7 ocean photos</span>
+                  <span class="vg-home__ask"><i class="vg-caret"></i></span>
+                  <span class="vg-home__status">\u25cf Connected</span>
+                </div>
+              )}
+
+              {s.key === 'lens' && (
+                <div class="vg vg--lens">
+                  <div class="vg-lens__app">
+                    <span class="vg-lens__art"></span>
+                    <span class="vg-lens__track">All Systems Go</span>
+                    <span class="vg-lens__artist">Box Car Racer</span>
+                    <span class="vg-lens__orb iris-emblem-glow"><img src={IRIS_EMBLEM} alt="" width="22" height="22" /></span>
+                  </div>
+                  <div class="vg-lens__panel iris-edge">
+                    <span class="vg-lens__ctx">\u25cf Looking at Music</span>
+                    <span class="vg-lens__bubble">Nice choice, Operator \u2014 want to keep this one rolling?</span>
+                    <span class="vg-lens__askbar">Ask IRIS about music\u2026</span>
+                  </div>
+                </div>
+              )}
+
+              {s.key === 'margin' && (
+                <div class="vg vg--margin">
+                  <span class="vg-margin__title">Artificial Intelligence</span>
+                  <span class="vg-margin__line"></span>
+                  <span class="vg-margin__line vg-margin__line--hl"></span>
+                  <span class="vg-margin__line"></span>
+                  <span class="vg-margin__line vg-margin__line--short"></span>
+                  <div class="vg-margin__panel">
+                    <span class="vg-margin__ops">
+                      <i class="is-active">Proofread</i><i>Friendlier</i><i>Summarize</i><i>Free Write</i>
+                    </span>
+                    <span class="vg-margin__replace">Replace</span>
+                  </div>
+                </div>
+              )}
+
+              {s.key === 'reading' && (
+                <div class="vg vg--reading">
+                  <span class="vg-reading__url">en.wikipedia.org</span>
+                  <div class="vg-reading__card">
+                    <span class="vg-reading__head">IRIS Reader</span>
+                    <span class="vg-reading__toggle"><i>Summarize</i><i class="is-active">Explain</i></span>
+                    <span class="vg-reading__line"></span>
+                    <span class="vg-reading__line"></span>
+                    <span class="vg-reading__line vg-reading__line--short"></span>
+                  </div>
+                </div>
+              )}
+
+              {s.key === 'seeing' && (
+                <div class="vg vg--seeing">
+                  <span class="vg-seeing__photo"></span>
+                  <span class="vg-seeing__orb iris-emblem-glow"><img src={IRIS_EMBLEM} alt="" width="22" height="22" /></span>
+                  <div class="vg-seeing__panel iris-edge">
+                    <span class="vg-seeing__ctx">\u25cf Looking at Photo</span>
+                    <span class="vg-seeing__bubble">Beautiful shot \u2014 the light on the water feels calm and open.</span>
+                  </div>
+                </div>
+              )}
+
+            </div>
+            <div class="surface__caption">
+              <h3 class="surface__title"><span class="surface__n">{s.n}</span> {s.title}</h3>
+              <p class="surface__body">{s.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       INFO PANELS — day / writing / principles / personalize
+       ════════════════════════════════════════════════════════ -->
+  <section class="iris-info" aria-label="Ways IRIS helps">
+    <div class="container">
+      <div class="iris-info__grid">
+
+        <!-- Built into your day -->
+        <div class="iris-panel iris-info__panel">
+          <h3 class="iris-info__title">Built Into Your Day</h3>
+          <div class="iris-day">
+            {dayItems.map((d) => (
+              <div class="iris-day__item">
+                <span class="iris-day__icon" aria-hidden="true">
+                  {d.icon === 'calendar' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2.5" x2="8" y2="6"/><line x1="16" y1="2.5" x2="16" y2="6"/></svg>)}
+                  {d.icon === 'music' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>)}
+                  {d.icon === 'create' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><path d="M12 8.5 13 11l2.5 1-2.5 1-1 2.5-1-2.5L8.5 12 11 11z"/></svg>)}
+                </span>
+                <div>
+                  <p class="iris-day__q">{d.q}</p>
+                  <p class="iris-day__sub">{d.sub}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p class="iris-info__foot">These are just a few ways IRIS can help. Ask anything.</p>
+        </div>
+
+        <!-- Writing with IRIS -->
+        <div class="iris-panel iris-info__panel">
+          <h3 class="iris-info__title">Writing With IRIS</h3>
+          <p class="iris-info__lede">IRIS helps you say what you mean. Clearly. Confidently. In your voice.</p>
+          <div class="iris-ops">
+            {writingOps.map((o) => (
+              <div class="iris-ops__row">
+                <span class="iris-ops__pill">{o.label}</span>
+                <span class="iris-ops__desc">{o.desc}</span>
+              </div>
+            ))}
+          </div>
+          <p class="iris-info__foot">IRIS Margin keeps you in flow.</p>
+        </div>
+
+        <!-- Yours. Always. -->
+        <div class="iris-panel iris-info__panel">
+          <h3 class="iris-info__title">Yours. Always.</h3>
+          <div class="iris-principles">
+            {principles.map((pr) => (
+              <div class="iris-principles__item">
+                <span class="iris-principles__icon" aria-hidden="true">
+                  {pr.icon === 'memory' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>)}
+                  {pr.icon === 'tap' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V6a2 2 0 0 1 4 0v5"/><path d="M13 11V8.5a1.8 1.8 0 0 1 3.6 0V13"/><path d="M16.6 12a1.8 1.8 0 0 1 3.4.8c0 4-2.4 7.2-6 7.2-2.2 0-3.7-.9-4.8-2.4L6 13.5a1.8 1.8 0 0 1 3-2l1 1.5"/></svg>)}
+                  {pr.icon === 'boundary' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12.5"/><circle cx="12" cy="16" r="0.6" fill="currentColor"/></svg>)}
+                  {pr.icon === 'offline' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a9 9 0 0 1 14 0"/><path d="M8.5 16.5a4.5 4.5 0 0 1 7 0"/><circle cx="12" cy="20" r="0.6" fill="currentColor"/></svg>)}
+                </span>
+                <div>
+                  <p class="iris-principles__title">{pr.title}</p>
+                  <p class="iris-principles__body">{pr.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Personalize IRIS -->
+        <div class="iris-panel iris-info__panel">
+          <h3 class="iris-info__title">Personalize IRIS</h3>
+          <p class="iris-info__lede">Make IRIS feel just right.</p>
+          <div class="iris-pref">
+            <span class="iris-pref__label">Voice</span>
+            <div class="iris-seg"><i>Terse</i><i>Balanced</i><i class="is-active">Warm</i></div>
+          </div>
+          <div class="iris-pref">
+            <span class="iris-pref__label">Suggested Questions</span>
+            <div class="iris-seg"><i class="is-active">Show</i><i>Hide</i></div>
+          </div>
+          <div class="iris-pref">
+            <span class="iris-pref__label">Greeting Time</span>
+            <div class="iris-seg"><i>Morning</i><i class="is-active">Afternoon</i><i>Evening</i></div>
+          </div>
+          <a href="#" class="iris-pref__open">Open IRIS Settings
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       CLOSING BAND
+       ════════════════════════════════════════════════════════ -->
+  <section class="iris-close" aria-label="IRIS and Solstice OS">
+    <div class="container">
+      <div class="iris-panel iris-close__panel">
+        <span class="iris-close__orb iris-emblem-glow"><img src={IRIS_EMBLEM} alt="" width="68" height="68" /></span>
+        <div class="iris-close__copy">
+          <p class="iris-close__head">IRIS is the soft glow inside Solstice OS.</p>
+          <p class="iris-close__sub">Built into every Genesis. Ready for every Operator.</p>
+        </div>
+        <div class="iris-close__cta">
+          <a href="#" class="btn btn--solid">Explore Solstice OS
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#" class="btn btn--ghost">Shop Genesis</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer line="consumer" />
+</BaseLayout>
+
+<style>
+  /* ═══════════════════════════════════════════════════════════════
+     IRIS PAGE — consumer warmth, iridescent signature
+     ═══════════════════════════════════════════════════════════════ */
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* IRIS iridescent signature border — peach→pink→lavender→blue→mint→gold.
+     Animated angle (no transforms) so the ring shimmers around any panel. */
+  @property --iris-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+  .iris-edge { position: relative; }
+  .iris-edge::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.6px;
+    background: conic-gradient(from var(--iris-angle),
+      #ffd2a8, #ff9ec7, #c9b6ff, #9fc7ff, #b6f2d8, #ffe6a8, #ffd2a8);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+    animation: iris-spin 7s linear infinite;
+  }
+  @keyframes iris-spin { to { --iris-angle: 360deg; } }
+
+  /* IRIS emblem soft glow pulse (shared) */
+  .iris-emblem-glow img { display: block; }
+  .iris-emblem-glow {
+    filter: drop-shadow(0 0 18px rgba(157, 123, 255, 0.34));
+    animation: iris-glow 4.2s ease-in-out infinite;
+  }
+  @keyframes iris-glow {
+    0%, 100% { filter: drop-shadow(0 0 16px rgba(157, 123, 255, 0.30)); }
+    50%      { filter: drop-shadow(0 0 30px rgba(255, 158, 199, 0.46)); }
+  }
+
+  /* Shared bubble panel */
+  .iris-panel {
+    border: 1px solid rgba(157, 123, 255, 0.16);
+    border-radius: 22px;
+    padding: clamp(var(--space-6), 3.5vw, var(--space-8));
+    background:
+      radial-gradient(140% 110% at 50% 0%, rgba(157, 123, 255, 0.05), transparent 70%),
+      rgba(255, 255, 255, 0.012);
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 0.8rem 1.4rem;
+    border-radius: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all var(--duration-fast, 150ms) var(--ease-out, ease);
+  }
+  .btn svg { transition: transform var(--duration-fast, 150ms) var(--ease-out, ease); }
+  .btn:hover svg { transform: translateX(3px); }
+  .btn--solid {
+    color: #1a0f22;
+    background: linear-gradient(95deg, var(--pink, #ff86c8), var(--purple, #9d7bff));
+    box-shadow: 0 8px 26px rgba(157, 123, 255, 0.28);
+  }
+  .btn--solid:hover { filter: brightness(1.08); }
+  .btn--ghost {
+    color: var(--purple, #9d7bff);
+    border: 1.5px solid currentColor;
+  }
+  .btn--ghost:hover { background: rgba(157, 123, 255, 0.1); }
+
+  /* ── HERO ──────────────────────────────────────────────────── */
+  .iris-hero { padding-block: clamp(var(--space-8), 6vh, var(--space-12)) var(--space-10); }
+  .iris-hero__inner {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: clamp(var(--space-6), 4vw, var(--space-10));
+    align-items: center;
+  }
+  .iris-hero__orb { width: clamp(120px, 14vw, 180px); margin-bottom: var(--space-4); }
+  .iris-hero__orb img { width: 100%; height: auto; }
+  .iris-hero__wordmark {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 0.4em;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+  }
+  .iris-hero__expand {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--text-tertiary, rgba(255, 255, 255, 0.5));
+    margin-bottom: var(--space-5);
+  }
+  .iris-hero__title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.8rem, 6.5vw, 4.6rem);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-3);
+  }
+  .iris-hero__meet { color: var(--text-primary); }
+  .iris-hero__name {
+    background: linear-gradient(95deg, var(--pink, #ff86c8), var(--purple, #9d7bff));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .iris-hero__tagline {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    background: linear-gradient(95deg, var(--pink, #ff86c8), var(--purple, #9d7bff));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: var(--space-5);
+  }
+  .iris-hero__desc {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 46ch;
+    margin-bottom: var(--space-6);
+  }
+  .iris-hero__cta { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+
+  /* Solstice home recreation */
+  .iris-hero__screen { width: 100%; }
+  .sol {
+    border-radius: 18px;
+    overflow: hidden;
+    background: #0c0a16;
+    aspect-ratio: 16 / 11;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+    font-family: var(--font-body);
+  }
+  .sol__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0.85rem;
+    font-size: 0.62rem;
+    color: rgba(255, 255, 255, 0.65);
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .sol__brand { font-family: var(--font-display); font-weight: 800; letter-spacing: 0.2em; }
+  .sol__glyphs { display: inline-flex; gap: 4px; }
+  .sol__glyphs i { width: 5px; height: 5px; border-radius: 1px; background: rgba(255, 255, 255, 0.4); }
+  .sol__body { flex: 1; display: grid; grid-template-columns: 26px 1fr 34%; min-height: 0; }
+  .sol__rail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    padding-top: 10px;
+    background: rgba(0, 0, 0, 0.25);
+  }
+  .sol__rail-dot { width: 11px; height: 11px; border-radius: 4px; background: rgba(255, 255, 255, 0.16); }
+  .sol__rail-dot.is-on { background: linear-gradient(var(--pink, #ff86c8), var(--purple, #9d7bff)); }
+  .sol__scene {
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, #3a2350 0%, #6b3a6e 34%, #c8567f 60%, #ee8d63 80%, #f3c98a 100%);
+  }
+  .sol__welcome { position: absolute; top: 12px; left: 14px; display: flex; flex-direction: column; z-index: 2; }
+  .sol__welcome-sm { font-size: 0.62rem; color: rgba(255, 255, 255, 0.85); }
+  .sol__welcome-lg { font-family: var(--font-serif); font-style: italic; font-size: 0.95rem; color: #fff; }
+  .sol__sun {
+    position: absolute;
+    left: 50%;
+    top: 52%;
+    width: 46%;
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 2px solid rgba(255, 246, 224, 0.9);
+    box-shadow: 0 0 24px rgba(255, 230, 180, 0.6), inset 0 0 18px rgba(255, 230, 180, 0.4);
+  }
+  .sol__water {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 34%;
+    background: linear-gradient(180deg, rgba(255, 220, 170, 0.42), rgba(120, 60, 110, 0.2));
+    mix-blend-mode: screen;
+  }
+  .sol__iris {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 8px;
+    background: rgba(20, 14, 30, 0.7);
+    border-left: 1px solid rgba(157, 123, 255, 0.2);
+  }
+  .sol__iris-orb { width: 38px; }
+  .sol__iris-orb img { width: 100%; height: auto; }
+  .sol__iris-name { font-family: var(--font-display); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.28em; color: #fff; }
+  .sol__iris-ready { font-family: var(--font-serif); font-style: italic; font-size: 0.6rem; color: rgba(255, 255, 255, 0.7); margin-bottom: 3px; }
+  .sol__chip { width: 100%; height: 14px; border-radius: 5px; background: rgba(157, 123, 255, 0.14); border: 1px solid rgba(157, 123, 255, 0.12); }
+  .sol__ask {
+    width: 100%;
+    margin-top: auto;
+    padding: 5px 7px;
+    border-radius: 8px;
+    font-size: 0.56rem;
+    color: rgba(255, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(182, 242, 216, 0.3);
+  }
+  .sol__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.58rem;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  /* ── WHAT IS IRIS ──────────────────────────────────────────── */
+  .iris-what { padding-block: var(--space-8); }
+  .iris-what__panel { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(var(--space-6), 4vw, var(--space-10)); align-items: center; }
+  .iris-what__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pink, #ff86c8);
+    margin-bottom: var(--space-4);
+  }
+  .iris-what__lede { font-family: var(--font-body); font-size: 0.98rem; line-height: 1.7; color: var(--text-secondary); }
+  .iris-what__lede + .iris-what__lede { margin-top: var(--space-3); }
+  .iris-what__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(var(--space-5), 2.5vw, var(--space-7)); }
+  .iris-pillar__icon { display: block; width: 30px; height: 30px; color: var(--purple, #9d7bff); margin-bottom: var(--space-3); }
+  .iris-pillar__icon svg { width: 100%; height: 100%; }
+  .iris-pillar__title { font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-primary); margin-bottom: var(--space-2); }
+  .iris-pillar__body { font-family: var(--font-body); font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary); }
+
+  /* ── SURFACES ──────────────────────────────────────────────── */
+  .iris-surfaces { padding-block: var(--space-10); }
+  .iris-surfaces__head { text-align: center; margin-bottom: var(--space-8); }
+  .iris-surfaces__title { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.7rem, 3.4vw, 2.6rem); letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: var(--space-3); }
+  .iris-surfaces__sub { font-family: var(--font-body); font-size: 0.98rem; color: var(--text-secondary); }
+  .iris-surfaces__grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+  .surface {
+    border: 1px solid rgba(157, 123, 255, 0.16);
+    border-radius: 16px;
+    padding: var(--space-3);
+    background: rgba(255, 255, 255, 0.012);
+    cursor: pointer;
+    outline: none;
+    transition: border-color var(--duration-fast, 150ms) var(--ease-out, ease),
+                transform var(--duration-fast, 150ms) var(--ease-out, ease);
+  }
+  .surface:hover, .surface:focus-visible, .surface.is-playing {
+    border-color: rgba(255, 158, 199, 0.45);
+    transform: translateY(-3px);
+  }
+  .surface__stage {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    border-radius: 11px;
+    overflow: hidden;
+    background: #0b0913;
+    margin-bottom: var(--space-3);
+  }
+  .surface__caption { padding: 0 var(--space-1) var(--space-1); }
+  .surface__title { font-family: var(--font-mono); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-primary); margin-bottom: var(--space-2); }
+  .surface__n { color: var(--pink, #ff86c8); margin-right: 3px; }
+  .surface__body { font-family: var(--font-body); font-size: 0.8rem; line-height: 1.55; color: var(--text-secondary); }
+
+  /* Vignette shared */
+  .vg { position: absolute; inset: 0; font-family: var(--font-body); }
+
+  /* — Home vignette — */
+  .vg--home { display: flex; flex-direction: column; align-items: center; padding: 14px 12px; background: radial-gradient(120% 80% at 50% 0%, #1a1430, #0b0913); }
+  .vg-home__orb { width: 50px; margin-top: 6px; }
+  .vg-home__orb img { width: 100%; height: auto; }
+  .vg-home__name { font-family: var(--font-display); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.3em; color: #fff; margin-top: 8px; }
+  .vg-home__ready { font-family: var(--font-serif); font-style: italic; font-size: 0.66rem; color: rgba(255, 255, 255, 0.65); margin-bottom: 10px; }
+  .vg-chip {
+    width: 100%;
+    padding: 6px 8px;
+    margin-bottom: 6px;
+    border-radius: 7px;
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.78);
+    background: rgba(157, 123, 255, 0.12);
+    border: 1px solid rgba(157, 123, 255, 0.16);
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  .vg-home__ask {
+    width: 100%;
+    margin-top: auto;
+    height: 24px;
+    border-radius: 8px;
+    border: 1px solid rgba(182, 242, 216, 0.35);
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+  }
+  .vg-caret { width: 1.5px; height: 12px; background: var(--pink, #ff86c8); opacity: 0; }
+  .vg-home__status { font-size: 0.55rem; color: #7fdcae; margin-top: 6px; align-self: flex-start; }
+
+  /* — App Lens vignette — */
+  .vg--lens { background: radial-gradient(120% 100% at 30% 20%, #2a1430, #0b0913); }
+  .vg-lens__app { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+  .vg-lens__art {
+    width: 46%; aspect-ratio: 1; border-radius: 10px;
+    background: linear-gradient(135deg, #7a1f2b, #c2403a 55%, #1a0e10);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  }
+  .vg-lens__track { font-family: var(--font-display); font-weight: 700; font-size: 0.72rem; color: #fff; margin-top: 6px; }
+  .vg-lens__artist { font-size: 0.6rem; color: rgba(255,255,255,0.6); }
+  .vg-lens__orb { position: absolute; top: 8px; right: 8px; width: 20px; }
+  .vg-lens__orb img { width: 100%; height: auto; }
+  .vg-lens__panel {
+    position: absolute; top: 0; right: 0; bottom: 0; width: 76%;
+    border-radius: 11px 0 0 11px;
+    background: rgba(18, 16, 34, 0.92);
+    backdrop-filter: blur(4px);
+    display: flex; flex-direction: column; gap: 7px;
+    padding: 12px 11px;
+    transform: translateX(100%);
+    transition: transform 480ms var(--ease-out, cubic-bezier(.22,1,.36,1));
+  }
+  .vg-lens__ctx { font-size: 0.56rem; letter-spacing: 0.04em; color: #c9b6ff; }
+  .vg-lens__bubble {
+    font-family: var(--font-serif);
+    font-size: 0.64rem; line-height: 1.5; color: #f3eefc;
+    background: rgba(157, 123, 255, 0.16);
+    border-radius: 9px; padding: 7px 9px;
+    opacity: 0; transform: translateY(6px);
+  }
+  .vg-lens__askbar { margin-top: auto; height: 20px; border-radius: 7px; background: rgba(0,0,0,0.3); border: 1px solid rgba(182,242,216,0.3); font-size: 0.52rem; color: rgba(255,255,255,0.4); display: flex; align-items: center; padding-left: 7px; }
+
+  /* — Margin vignette — */
+  .vg--margin { background: #f3ecd9; padding: 14px 12px; display: flex; flex-direction: column; gap: 7px; }
+  .vg-margin__title { font-family: var(--font-display); font-weight: 700; font-size: 0.8rem; color: #2a2418; }
+  .vg-margin__line { height: 7px; border-radius: 3px; background: #c9bfa3; }
+  .vg-margin__line--short { width: 60%; }
+  .vg-margin__line--hl { background: #e7c97a; position: relative; }
+  .vg-margin__line--hl::after { content: ""; position: absolute; inset: 0; background: #d8a93f; transform: scaleX(0); transform-origin: left; border-radius: 3px; }
+  .vg-margin__panel {
+    margin-top: auto;
+    border-radius: 11px;
+    background: #181227;
+    padding: 9px;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.3);
+    opacity: 0; transform: translateY(10px) scale(0.96);
+    transition: opacity 360ms ease, transform 360ms var(--ease-out, cubic-bezier(.22,1,.36,1));
+  }
+  .vg-margin__ops { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 7px; }
+  .vg-margin__ops i { font-style: normal; font-size: 0.54rem; padding: 3px 6px; border-radius: 20px; color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.08); }
+  .vg-margin__ops i.is-active { background: linear-gradient(95deg, #c2632a, #b14d22); color: #fff; }
+  .vg-margin__replace { display: block; text-align: center; font-size: 0.56rem; color: #f0c89a; padding: 5px; border-radius: 8px; background: rgba(194, 99, 42, 0.28); }
+
+  /* — Reading Lens vignette — */
+  .vg--reading { background: radial-gradient(120% 100% at 50% 0%, #161033, #060510); padding: 12px 11px; display: flex; flex-direction: column; }
+  .vg-reading__url { font-family: var(--font-mono); font-size: 0.52rem; color: rgba(255,200,150,0.6); border: 1px solid rgba(255,200,150,0.2); border-radius: 20px; padding: 4px 9px; text-align: center; margin-bottom: 10px; }
+  .vg-reading__card {
+    margin: auto 0;
+    border-radius: 12px;
+    background: rgba(26, 18, 48, 0.92);
+    border: 1px solid rgba(201, 182, 255, 0.22);
+    padding: 11px;
+    display: flex; flex-direction: column; gap: 7px;
+    opacity: 0; transform: translateY(10px) scale(0.96);
+    transition: opacity 360ms ease, transform 360ms var(--ease-out, cubic-bezier(.22,1,.36,1));
+  }
+  .vg-reading__head { font-family: var(--font-display); font-weight: 700; font-size: 0.68rem; color: #f0b87a; }
+  .vg-reading__toggle { display: flex; gap: 5px; }
+  .vg-reading__toggle i { font-style: normal; font-size: 0.54rem; padding: 3px 8px; border-radius: 20px; color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.07); }
+  .vg-reading__toggle i.is-active { background: #f0c79a; color: #2a1a0e; }
+  .vg-reading__line { height: 6px; border-radius: 3px; background: rgba(255,255,255,0.2); opacity: 0; }
+  .vg-reading__line--short { width: 55%; }
+
+  /* — Seeing Lens vignette — */
+  .vg--seeing { background: #0b0913; }
+  .vg-seeing__photo { position: absolute; inset: 0; background: linear-gradient(180deg, #bfe0f2 0%, #7fb8d6 38%, #3f7fa0 64%, #234a63 100%); }
+  .vg-seeing__photo::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 42%; background: linear-gradient(180deg, rgba(255,255,255,0.25), rgba(20,40,60,0.5)); }
+  .vg-seeing__orb { position: absolute; top: 8px; right: 8px; width: 20px; z-index: 3; }
+  .vg-seeing__orb img { width: 100%; height: auto; }
+  .vg-seeing__panel {
+    position: absolute; left: 8px; right: 8px; bottom: 8px;
+    border-radius: 11px;
+    background: rgba(18, 16, 34, 0.9);
+    backdrop-filter: blur(4px);
+    padding: 10px;
+    display: flex; flex-direction: column; gap: 6px;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity 380ms ease, transform 380ms var(--ease-out, cubic-bezier(.22,1,.36,1));
+  }
+  .vg-seeing__ctx { font-size: 0.56rem; color: #c9b6ff; }
+  .vg-seeing__bubble { font-family: var(--font-serif); font-size: 0.64rem; line-height: 1.5; color: #f3eefc; }
+
+  /* ── PLAY STATE (hover / focus / tap) ──────────────────────── */
+  .surface:hover .vg-chip,
+  .surface:focus-visible .vg-chip,
+  .surface.is-playing .vg-chip {
+    animation: vg-chip-in 360ms var(--ease-out, ease) forwards;
+    animation-delay: calc(var(--i) * 130ms);
+  }
+  @keyframes vg-chip-in { to { opacity: 1; transform: translateY(0); } }
+  .surface:hover .vg-caret,
+  .surface:focus-visible .vg-caret,
+  .surface.is-playing .vg-caret { animation: vg-blink 0.9s step-end 520ms infinite; }
+  @keyframes vg-blink { 50% { opacity: 1; } }
+
+  .surface:hover .vg-lens__panel,
+  .surface:focus-visible .vg-lens__panel,
+  .surface.is-playing .vg-lens__panel { transform: translateX(0); }
+  .surface:hover .vg-lens__bubble,
+  .surface:focus-visible .vg-lens__bubble,
+  .surface.is-playing .vg-lens__bubble { animation: vg-rise 420ms var(--ease-out, ease) 360ms forwards; }
+  @keyframes vg-rise { to { opacity: 1; transform: translateY(0); } }
+
+  .surface:hover .vg-margin__line--hl::after,
+  .surface:focus-visible .vg-margin__line--hl::after,
+  .surface.is-playing .vg-margin__line--hl::after { animation: vg-hl 420ms var(--ease-out, ease) forwards; }
+  @keyframes vg-hl { to { transform: scaleX(1); } }
+  .surface:hover .vg-margin__panel,
+  .surface:focus-visible .vg-margin__panel,
+  .surface.is-playing .vg-margin__panel { opacity: 1; transform: translateY(0) scale(1); transition-delay: 360ms; }
+
+  .surface:hover .vg-reading__card,
+  .surface:focus-visible .vg-reading__card,
+  .surface.is-playing .vg-reading__card { opacity: 1; transform: translateY(0) scale(1); }
+  .surface:hover .vg-reading__line,
+  .surface:focus-visible .vg-reading__line,
+  .surface.is-playing .vg-reading__line { animation: vg-fade 300ms ease forwards; }
+  .surface:hover .vg-reading__line:nth-of-type(1),
+  .surface.is-playing .vg-reading__line:nth-of-type(1) { animation-delay: 320ms; }
+  .vg-reading__line:nth-of-type(4) { } /* spacer guard */
+  @keyframes vg-fade { to { opacity: 1; } }
+
+  .surface:hover .vg-seeing__panel,
+  .surface:focus-visible .vg-seeing__panel,
+  .surface.is-playing .vg-seeing__panel { opacity: 1; transform: translateY(0); }
+
+  /* ── INFO PANELS ───────────────────────────────────────────── */
+  .iris-info { padding-block: var(--space-8); }
+  .iris-info__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-5); align-items: start; }
+  .iris-info__panel { padding: clamp(var(--space-5), 2vw, var(--space-6)); }
+  .iris-info__title { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--pink, #ff86c8); margin-bottom: var(--space-4); }
+  .iris-info__lede { font-family: var(--font-body); font-size: 0.88rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: var(--space-4); }
+  .iris-info__foot { font-family: var(--font-serif); font-style: italic; font-size: 0.82rem; color: var(--text-tertiary, rgba(255,255,255,0.55)); margin-top: var(--space-4); }
+
+  .iris-day__item { display: flex; gap: var(--space-3); margin-bottom: var(--space-4); }
+  .iris-day__icon { flex: none; width: 26px; height: 26px; color: var(--purple, #9d7bff); }
+  .iris-day__icon svg { width: 100%; height: 100%; }
+  .iris-day__q { font-family: var(--font-body); font-weight: 600; font-size: 0.86rem; color: var(--text-primary); margin-bottom: 2px; }
+  .iris-day__sub { font-family: var(--font-body); font-size: 0.78rem; line-height: 1.5; color: var(--text-secondary); }
+
+  .iris-ops__row { display: flex; align-items: baseline; gap: var(--space-3); margin-bottom: var(--space-3); }
+  .iris-ops__pill { flex: none; font-family: var(--font-mono); font-size: 0.66rem; padding: 3px 9px; border-radius: 20px; color: var(--purple, #9d7bff); border: 1px solid rgba(157, 123, 255, 0.4); }
+  .iris-ops__desc { font-family: var(--font-body); font-size: 0.8rem; color: var(--text-secondary); }
+
+  .iris-principles__item { display: flex; gap: var(--space-3); margin-bottom: var(--space-4); }
+  .iris-principles__icon { flex: none; width: 24px; height: 24px; color: var(--purple, #9d7bff); }
+  .iris-principles__icon svg { width: 100%; height: 100%; }
+  .iris-principles__title { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-primary); margin-bottom: 2px; }
+  .iris-principles__body { font-family: var(--font-body); font-size: 0.78rem; line-height: 1.5; color: var(--text-secondary); }
+
+  .iris-pref { margin-bottom: var(--space-4); }
+  .iris-pref__label { display: block; font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-tertiary, rgba(255,255,255,0.55)); margin-bottom: var(--space-2); }
+  .iris-seg { display: flex; gap: 4px; }
+  .iris-seg i { flex: 1; text-align: center; font-style: normal; font-family: var(--font-body); font-size: 0.72rem; padding: 5px 4px; border-radius: 7px; color: var(--text-secondary); background: rgba(255, 255, 255, 0.05); }
+  .iris-seg i.is-active { background: linear-gradient(95deg, var(--pink, #ff86c8), var(--purple, #9d7bff)); color: #1a0f22; font-weight: 600; }
+  .iris-pref__open { display: inline-flex; align-items: center; gap: var(--space-2); margin-top: var(--space-2); font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.06em; color: var(--purple, #9d7bff); text-decoration: none; }
+  .iris-pref__open svg { transition: transform var(--duration-fast, 150ms) var(--ease-out, ease); }
+  .iris-pref__open:hover svg { transform: translateX(3px); }
+
+  /* ── CLOSING BAND ──────────────────────────────────────────── */
+  .iris-close { padding-block: var(--space-8) var(--space-12); }
+  .iris-close__panel { display: flex; align-items: center; gap: clamp(var(--space-4), 3vw, var(--space-7)); flex-wrap: wrap; }
+  .iris-close__orb { flex: none; width: 64px; }
+  .iris-close__orb img { width: 100%; height: auto; }
+  .iris-close__copy { flex: 1; min-width: 240px; }
+  .iris-close__head { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.2rem, 2.4vw, 1.7rem); color: var(--text-primary); margin-bottom: var(--space-1); }
+  .iris-close__sub { font-family: var(--font-body); font-size: 0.95rem; color: var(--text-secondary); }
+  .iris-close__cta { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+  /* ═══════════════════════════════════════════════════════════════
+     RESPONSIVE
+     ═══════════════════════════════════════════════════════════════ */
+  @media (max-width: 980px) {
+    .iris-hero__inner { grid-template-columns: 1fr; }
+    .iris-hero__screen { max-width: 540px; margin-inline: auto; }
+    .iris-what__panel { grid-template-columns: 1fr; }
+    .iris-surfaces__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .iris-info__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 620px) {
+    .iris-what__grid { grid-template-columns: 1fr 1fr; }
+    .iris-surfaces__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .iris-info__grid { grid-template-columns: 1fr; }
+    .iris-close__panel { flex-direction: column; text-align: center; align-items: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .iris-edge::before,
+    .iris-emblem-glow { animation: none; }
+    .vg-chip, .vg-lens__bubble, .vg-reading__line { opacity: 1; transform: none; }
+    .vg-lens__panel, .vg-margin__panel, .vg-reading__card, .vg-seeing__panel { transform: none; opacity: 1; }
+    .vg-margin__line--hl::after { transform: scaleX(1); }
+    .surface:hover, .surface.is-playing { transform: none; }
+  }
+</style>
+
+<script>
+  // Tap-to-play on touch / click: toggles the same state hover uses.
+  document.querySelectorAll('.surface').forEach((card) => {
+    card.addEventListener('click', () => card.classList.toggle('is-playing'));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.classList.toggle('is-playing');
+      }
+    });
+  });
+</script>
