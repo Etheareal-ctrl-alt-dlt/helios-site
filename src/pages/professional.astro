@@ -245,7 +245,7 @@ const valueProps = [
 
   .pro-hero__inner {
     display: grid;
-    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.4fr);
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
     gap: clamp(var(--space-6), 4vw, var(--space-10));
     align-items: center;
   }
@@ -325,28 +325,19 @@ const valueProps = [
     transform: translateY(2px);
   }
 
-  /* Hero visual — Atlas+Titan composition */
+  /* Hero visual — Atlas + Titan composition.
+     The image is a pure-black square that matches the page background,
+     so it needs NO brightness lift (that would raise its black to gray
+     and expose the square edge) and NO amber drop-shadow (that would
+     trace a glowing rectangle around the image bounds). The product's
+     own baked-in reflection and lighting carry all the depth. */
   .pro-hero__visual {
     position: relative;
-    /* Let the image scale beyond its container without clipping
-       the right-side glow */
-    overflow: visible;
   }
   .pro-hero__visual-img {
-    width: 135%;          /* Significantly larger than container */
+    width: 100%;
     height: auto;
     display: block;
-    /* Push the image to the RIGHT edge of the viewport (not symmetric).
-       This pulls the products away from the headline. */
-    margin-left: auto;
-    margin-right: -25%;
-    /* Brightness + contrast lift to pull more amber out of the dark
-       composite, plus a more pronounced amber bloom underneath */
-    filter:
-      brightness(1.20)
-      contrast(1.06)
-      drop-shadow(0 16px 48px rgba(255, 176, 0, 0.14))
-      drop-shadow(0 0 32px rgba(255, 176, 0, 0.08));
   }
 
   /* ═══════════════════════════════════════════════════════════════
