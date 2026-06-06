@@ -1,0 +1,286 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { path } from '../utils/url';
+
+// Founded 1993. The three principles, written at the start.
+const principles = [
+  { n: '01', title: 'Control over convenience', body: 'Nothing that matters is hidden from you. The system does what you ask, when you ask it, without guessing.' },
+  { n: '02', title: 'Precision over accessibility', body: 'We optimize for capability, not for the lowest common denominator. The experience is sharp on purpose.' },
+  { n: '03', title: 'Mastery over automation', body: 'The machine rewards skill. The more you learn, the more it gives back.' },
+];
+
+// Two lines, one discipline.
+const lines = [
+  {
+    key: 'pro',
+    name: 'Professional Line',
+    products: 'Atlas · Titan',
+    tagline: 'Power to the Professional',
+    body: 'Dark, direct, and uncompromising. Aurora OS and HERMES assume you already know what you want, and get out of the way so you can do it faster.',
+    href: path('/professional'),
+  },
+  {
+    key: 'consumer',
+    name: 'Consumer Line',
+    products: 'Genesis · Nova',
+    tagline: 'Power Made Simple',
+    body: 'Warm, graphical, and welcoming. Solstice OS and IRIS carry the very same engineering, with the complexity handled for you instead of handed to you.',
+    href: path('/consumer'),
+  },
+];
+
+// How we got here.
+const timeline = [
+  { year: '1993', title: 'Helios is founded', body: 'A small collective of systems engineers and interface designers sets out to build computers that reward skill. The three principles are written down. The original amber wordmark and "Power to the Professional" are born.' },
+  { year: '1994', title: 'Atlas ships', body: 'The Atlas Portable Workstation launches running Aurora OS v1.0, with the HERMES assistant built in.' },
+  { year: '1997', title: 'Titan arrives', body: 'Aurora OS expands to the desktop with the Titan Workstation and the optional Titan Display.' },
+  { year: '2000', title: 'Project Genesis begins', body: 'Helios sees the opportunity in consumer portables, and quietly starts work on a warmer AI companion under the working name IRIS.' },
+  { year: '2001', title: 'A second identity', body: 'The starburst logo and "Power Made Simple" debut. The Genesis laptop ships in four colors with Solstice OS, and IRIS woven through every surface.' },
+  { year: '2002', title: 'Nova completes the lineup', body: 'The Nova all-in-one brings the Solstice and IRIS experience home, with a color-matched keyboard and mouse.' },
+];
+
+const facts = ['Est. 1993', 'Two product lines', 'Two operating systems', 'One philosophy'];
+---
+
+<BaseLayout
+  title="Company — Helios Computer Corporation"
+  description="Helios Computer Corporation has built computers for operators since 1993. Two product lines, two operating systems, one philosophy: control, precision, and mastery."
+  line="professional"
+>
+  <Nav current="company" line="homepage" />
+
+  <!-- ════════════════════════════════════════════════════════
+       HERO
+       ════════════════════════════════════════════════════════ -->
+  <section class="co-hero" aria-labelledby="co-hero-title">
+    <div class="container co-narrow">
+      <p class="co-eyebrow">Helios Computer Corporation</p>
+      <h1 id="co-hero-title" class="co-hero__title">Power, on your terms.</h1>
+      <p class="co-hero__lede">
+        Since 1993, Helios has built computers for operators: people who want to
+        understand their machines and stay in command of them. Two product lines,
+        two operating systems, one stubborn philosophy.
+      </p>
+      <ul class="co-facts">
+        {facts.map((f) => (<li class="co-facts__item">{f}</li>))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       WHO WE ARE
+       ════════════════════════════════════════════════════════ -->
+  <section class="co-block" aria-labelledby="co-who">
+    <div class="container co-narrow">
+      <h2 id="co-who" class="co-h2">Who we are</h2>
+      <p class="co-p">
+        Helios was founded in 1993 by a small collective of systems engineers and
+        interface designers who were unhappy with where personal computing was
+        heading. As graphical interfaces became the default, they watched
+        professionals get underserved: tools were being smoothed over for everyone
+        and sharpened for no one.
+      </p>
+      <p class="co-p">
+        So Helios built the opposite. Systems that prioritize precision, speed, and
+        mastery, and hand complete control to the operator. The goal was never to
+        make computing easier. It was to make it reward you for getting good at it.
+      </p>
+      <p class="co-p">
+        By 2001, Helios reached a second conclusion: the same engineering that
+        powered its professional tools could be opened up to everyone. Project
+        Genesis carried the company into the consumer market, not as a compromise
+        but as an evolution. Warm where the professional line is cold. Inviting
+        where it is exclusive. Simple, without ever being lesser.
+      </p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       THE THREE PRINCIPLES
+       ════════════════════════════════════════════════════════ -->
+  <section class="co-block" aria-labelledby="co-principles">
+    <div class="container">
+      <h2 id="co-principles" class="co-h2 co-h2--center">Three principles, written in 1993.</h2>
+      <div class="co-principles">
+        {principles.map((p) => (
+          <div class="co-principle">
+            <span class="co-principle__n">{p.n}</span>
+            <h3 class="co-principle__title">{p.title}</h3>
+            <p class="co-principle__body">{p.body}</p>
+          </div>
+        ))}
+      </div>
+      <p class="co-p co-p--center co-narrow co-center">
+        These principles never get simplified. On the professional line, the operator
+        is expected to know their tools. On the consumer line, the tools quietly
+        support the operator instead. Same philosophy, different presentation.
+      </p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       TWO LINES, ONE DISCIPLINE
+       ════════════════════════════════════════════════════════ -->
+  <section class="co-block" aria-labelledby="co-lines">
+    <div class="container">
+      <h2 id="co-lines" class="co-h2 co-h2--center">Two lines. One discipline.</h2>
+      <div class="co-lines">
+        {lines.map((l) => (
+          <article class:list={['cl-card', `cl-card--${l.key}`]}>
+            <p class="cl-card__products">{l.products}</p>
+            <h3 class="cl-card__name">{l.name}</h3>
+            <p class:list={['cl-card__tag', `cl-card__tag--${l.key}`]}>{l.tagline}</p>
+            <p class="cl-card__body">{l.body}</p>
+            <a href={l.href} class:list={['cl-card__link', `cl-card__link--${l.key}`]}>
+              Explore the {l.key === 'pro' ? 'Professional' : 'Consumer'} Line
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       TIMELINE
+       ════════════════════════════════════════════════════════ -->
+  <section class="co-block" aria-labelledby="co-time">
+    <div class="container co-mid">
+      <h2 id="co-time" class="co-h2">How we got here.</h2>
+      <ol class="co-time">
+        {timeline.map((t) => (
+          <li class="co-time__row">
+            <span class="co-time__year">{t.year}</span>
+            <div class="co-time__content">
+              <h3 class="co-time__title">{t.title}</h3>
+              <p class="co-time__body">{t.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       SLOGANS + CLOSE
+       ════════════════════════════════════════════════════════ -->
+  <section class="co-close" aria-labelledby="co-slogans">
+    <div class="container co-mid">
+      <div class="co-close__card">
+        <p id="co-slogans" class="co-close__eyebrow">Two taglines. One promise, told twice.</p>
+        <p class="co-slogan co-slogan--pro">Power to the Professional.</p>
+        <p class="co-slogan co-slogan--consumer">Power Made Simple.</p>
+        <div class="co-close__cta">
+          <a href={path('/professional')} class="cbtn cbtn--amber">Professional Line</a>
+          <a href={path('/consumer')} class="cbtn cbtn--warm">Consumer Line
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer line="homepage" />
+</BaseLayout>
+
+<style>
+  /* ═══════════════════════════════════════════════════════════════
+     COMPANY PAGE: neutral corporate register. Amber house color,
+     both lines represented, Inter type, VT323 heritage year marks.
+     ═══════════════════════════════════════════════════════════════ */
+  .container { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: var(--space-6); }
+  .co-narrow { max-width: 760px; }
+  .co-mid { max-width: 920px; }
+  .co-center { margin-inline: auto; }
+
+  .co-eyebrow { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--helios-amber); margin-bottom: var(--space-4); }
+
+  /* Buttons */
+  .cbtn {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    padding: 0.8rem 1.5rem; border-radius: 8px;
+    font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+    transition: all var(--duration-fast, 150ms) var(--ease-out, ease);
+  }
+  .cbtn svg { transition: transform var(--duration-fast, 150ms) var(--ease-out, ease); }
+  .cbtn:hover svg { transform: translateX(3px); }
+  .cbtn--amber { color: var(--helios-amber); border: 1.5px solid var(--helios-amber); }
+  .cbtn--amber:hover { background: rgba(255, 176, 0, 0.12); }
+  .cbtn--warm { color: #160f1f; background: linear-gradient(95deg, #ff86c8, #9d7bff); box-shadow: 0 8px 24px rgba(157, 123, 255, 0.24); }
+  .cbtn--warm:hover { filter: brightness(1.07); }
+
+  /* ── HERO ──────────────────────────────────────────────────── */
+  .co-hero { padding-block: clamp(var(--space-9), 7vh, var(--space-12)) var(--space-8); }
+  .co-hero .co-narrow { margin-inline: auto; }
+  .co-hero__title { font-family: var(--font-corporate, var(--font-body)); font-weight: 800; font-size: clamp(2.4rem, 6vw, 4.2rem); line-height: 1.04; letter-spacing: -0.02em; color: var(--text-primary, #f5efe6); margin-bottom: var(--space-5); }
+  .co-hero__lede { font-family: var(--font-corporate, var(--font-body)); font-size: 1.12rem; line-height: 1.75; color: var(--text-secondary, rgba(255, 240, 220, 0.74)); max-width: 60ch; margin-bottom: var(--space-6); }
+  .co-facts { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-5); }
+  .co-facts__item { position: relative; font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-tertiary, rgba(255, 240, 220, 0.55)); padding-left: 1.3em; }
+  .co-facts__item::before { content: ""; position: absolute; left: 0; top: 0.45em; width: 7px; height: 7px; border-radius: 50%; background: var(--helios-amber); }
+
+  /* ── PROSE BLOCKS ──────────────────────────────────────────── */
+  .co-block { padding-block: var(--space-8); }
+  .co-block .co-narrow { margin-inline: auto; }
+  .co-h2 { font-family: var(--font-corporate, var(--font-body)); font-weight: 800; font-size: clamp(1.5rem, 3vw, 2.2rem); letter-spacing: -0.01em; color: var(--text-primary, #f5efe6); margin-bottom: var(--space-5); }
+  .co-h2--center { text-align: center; margin-bottom: var(--space-8); }
+  .co-p { font-family: var(--font-corporate, var(--font-body)); font-size: 1.04rem; line-height: 1.8; color: var(--text-secondary, rgba(255, 240, 220, 0.74)); margin-bottom: var(--space-4); }
+  .co-p:last-child { margin-bottom: 0; }
+  .co-p--center { text-align: center; margin-top: var(--space-7); max-width: 60ch; }
+
+  /* ── PRINCIPLES ────────────────────────────────────────────── */
+  .co-principles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
+  .co-principle { border: 1px solid rgba(255, 176, 0, 0.2); border-radius: 14px; padding: clamp(var(--space-5), 2.5vw, var(--space-7)); background: radial-gradient(140% 110% at 50% 0%, rgba(255, 176, 0, 0.04), transparent 70%), rgba(255, 176, 0, 0.012); }
+  .co-principle__n { font-family: var(--font-terminal); font-size: 2.6rem; line-height: 1; color: var(--helios-amber); text-shadow: 0 0 18px rgba(255, 176, 0, 0.3); }
+  .co-principle__title { font-family: var(--font-corporate, var(--font-body)); font-weight: 700; font-size: 1.1rem; color: var(--text-primary, #f5efe6); margin: var(--space-3) 0 var(--space-2); }
+  .co-principle__body { font-family: var(--font-corporate, var(--font-body)); font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary, rgba(255, 240, 220, 0.72)); }
+
+  /* ── TWO LINES ─────────────────────────────────────────────── */
+  .co-lines { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+  .cl-card { border-radius: 18px; padding: clamp(var(--space-6), 3vw, var(--space-8)); border: 1px solid rgba(255, 255, 255, 0.1); }
+  .cl-card--pro { background: radial-gradient(130% 120% at 0% 0%, rgba(255, 176, 0, 0.1), transparent 58%), rgba(255, 176, 0, 0.02); border-color: rgba(255, 176, 0, 0.22); }
+  .cl-card--consumer { background: radial-gradient(130% 120% at 100% 0%, rgba(157, 123, 255, 0.14), transparent 58%), rgba(157, 123, 255, 0.03); border-color: rgba(157, 123, 255, 0.22); }
+  .cl-card__products { font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-tertiary, rgba(255, 255, 255, 0.5)); margin-bottom: var(--space-2); }
+  .cl-card__name { font-family: var(--font-corporate, var(--font-body)); font-weight: 800; font-size: 1.4rem; color: var(--text-primary, #f5efe6); margin-bottom: var(--space-3); }
+  .cl-card__tag { font-family: var(--font-mono); font-size: 0.86rem; font-weight: 600; letter-spacing: 0.04em; margin-bottom: var(--space-4); }
+  .cl-card__tag--pro { color: var(--helios-amber); }
+  .cl-card__tag--consumer { background: linear-gradient(95deg, #ff86c8, #9d7bff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .cl-card__body { font-family: var(--font-corporate, var(--font-body)); font-size: 0.98rem; line-height: 1.72; color: var(--text-secondary, rgba(255, 255, 255, 0.76)); margin-bottom: var(--space-5); }
+  .cl-card__link { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; }
+  .cl-card__link svg { transition: transform var(--duration-fast, 150ms) var(--ease-out, ease); }
+  .cl-card__link:hover svg { transform: translateX(3px); }
+  .cl-card__link--pro { color: var(--helios-amber); }
+  .cl-card__link--consumer { color: #c9a4ff; }
+
+  /* ── TIMELINE ──────────────────────────────────────────────── */
+  .co-time { list-style: none; margin-top: var(--space-2); }
+  .co-time__row { display: grid; grid-template-columns: clamp(54px, 9vw, 88px) 1fr; gap: var(--space-4); }
+  .co-time__year { font-family: var(--font-terminal); font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1; color: var(--helios-amber); padding-top: 0.08em; text-shadow: 0 0 16px rgba(255, 176, 0, 0.28); }
+  .co-time__content { position: relative; padding-left: var(--space-6); padding-bottom: var(--space-7); border-left: 2px solid rgba(255, 176, 0, 0.22); }
+  .co-time__row:last-child .co-time__content { padding-bottom: 0; }
+  .co-time__content::before { content: ""; position: absolute; left: -7px; top: 0.4em; width: 12px; height: 12px; border-radius: 50%; background: var(--helios-amber); box-shadow: 0 0 0 4px rgba(255, 176, 0, 0.1); }
+  .co-time__title { font-family: var(--font-corporate, var(--font-body)); font-weight: 700; font-size: 1.08rem; color: var(--text-primary, #f5efe6); margin-bottom: var(--space-2); }
+  .co-time__body { font-family: var(--font-corporate, var(--font-body)); font-size: 0.96rem; line-height: 1.72; color: var(--text-secondary, rgba(255, 240, 220, 0.72)); max-width: 60ch; }
+
+  /* ── CLOSE / SLOGANS ───────────────────────────────────────── */
+  .co-close { padding-block: var(--space-8) var(--space-12); }
+  .co-close .co-mid { margin-inline: auto; }
+  .co-close__card { text-align: center; border-radius: 22px; padding: clamp(var(--space-7), 4vw, var(--space-10)); border: 1px solid rgba(255, 255, 255, 0.1); background: radial-gradient(120% 130% at 0% 50%, rgba(255, 176, 0, 0.08), transparent 52%), radial-gradient(120% 130% at 100% 50%, rgba(157, 123, 255, 0.1), transparent 52%), rgba(255, 255, 255, 0.012); }
+  .co-close__eyebrow { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-tertiary, rgba(255, 240, 220, 0.55)); margin-bottom: var(--space-5); }
+  .co-slogan { font-family: var(--font-corporate, var(--font-body)); font-weight: 800; font-size: clamp(1.6rem, 4vw, 2.6rem); line-height: 1.1; letter-spacing: -0.01em; }
+  .co-slogan--pro { color: var(--helios-amber); }
+  .co-slogan--consumer { background: linear-gradient(95deg, #ff86c8, #9d7bff 75%); -webkit-background-clip: text; background-clip: text; color: transparent; margin-top: var(--space-2); }
+  .co-close__cta { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-4); margin-top: var(--space-7); }
+
+  /* ── RESPONSIVE ────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .co-principles { grid-template-columns: 1fr; }
+    .co-lines { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .co-close__cta { flex-direction: column; align-items: stretch; }
+    .co-close__cta .cbtn { justify-content: center; }
+  }
+</style>
