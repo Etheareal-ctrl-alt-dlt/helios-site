@@ -1,0 +1,387 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import OSNav from '../components/OSNav.astro';
+import Footer from '../components/Footer.astro';
+import { path } from '../utils/url';
+
+// ── "The system that stays with you" — five OS-level features ──
+const system = [
+  { icon: 'shell',   title: 'A Shell That Stays With You', body: 'The rail, status bar, and Helios wordmark are always present.' },
+  { icon: 'time',    title: 'Color That Moves With Time',  body: 'Accents shift from morning to night, crafted for every hour of your day.' },
+  { icon: 'connect', title: 'Everything Connected',        body: 'Apps, AI, and services share one design language and one experience.' },
+  { icon: 'iris',    title: 'IRIS Is Everywhere',          body: 'Not a separate app. A companion woven into every surface.' },
+  { icon: 'shield',  title: 'Yours. Always.',              body: 'Your privacy is respected. You confirm the final tap. Solstice follows your lead.' },
+];
+
+// ── Home View bullets ─────────────────────────────────────────
+const dayPoints = [
+  'Glanceable weather and sky notes',
+  'Quick access to your favorite apps',
+  'IRIS suggestions based on context and time of day',
+  'Nothing you don’t want. Everything you need.',
+];
+
+// ── IRIS, framed as a system feature (not a lens tour) ────────
+const irisPoints = [
+  { title: 'Built into the Shell',       body: 'IRIS is one tap from the Home View — never a separate program to launch.' },
+  { title: 'One working memory',         body: 'What you talk about on one surface carries to the next, across the last half hour.' },
+  { title: 'Speaks Solstice’s language', body: 'The same warm palette and rounded design. She never feels bolted on.' },
+];
+
+// ── "Designed for real life" ──────────────────────────────────
+const realLife = [
+  { icon: 'sparkle', title: 'Beautiful by design', body: 'Elegant interfaces that look as good as they perform.' },
+  { icon: 'link',    title: 'Stay connected',      body: 'Built-in networking keeps you close to what matters.' },
+  { icon: 'heart',   title: 'Easy to live with',   body: 'Solstice OS makes everything feel natural.' },
+  { icon: 'lock',    title: 'Safe and secure',     body: 'Your data stays yours. We don’t train on your life.' },
+];
+
+const engineering = ['Reliable like Aurora', 'Intuitive by design', 'Power Made Simple'];
+
+const irisEmblem = path('/images/logos/iris-emblem.png');
+---
+
+<BaseLayout
+  title="Solstice OS — Helios Computer Corporation"
+  description="Solstice OS — the warm graphical operating system for the Helios consumer line. Beautifully integrated, effortlessly connected, and always with IRIS by your side."
+  line="consumer"
+>
+  <Nav current="os" line="consumer" />
+  <OSNav current="solstice" />
+
+  <!-- ════════════════════════════════════════════════════════
+       HERO
+       ════════════════════════════════════════════════════════ -->
+  <section class="so-hero" aria-labelledby="so-hero-title">
+    <div class="container so-hero__inner">
+      <div class="so-hero__lead">
+        <h1 id="so-hero-title" class="so-hero__title">
+          <span class="so-hero__name">Solstice OS</span>
+        </h1>
+        <p class="so-hero__slogan">Power Made Simple.</p>
+        <p class="so-hero__desc">
+          Solstice OS brings the engineering discipline of Helios into a graphical
+          environment designed for real life. Beautifully integrated. Effortlessly
+          connected. Warm, capable, and always with IRIS by your side.
+        </p>
+        <div class="so-hero__cta">
+          <a href="#system" class="btn btn--solid">Explore Solstice OS
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href={path('/iris')} class="btn btn--ghost">AI Companion: IRIS
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="so-shot so-hero__shot">
+        <img src={path('/images/os/solstice-lock.png')} alt="Solstice OS lock screen with sunset wallpaper and the IRIS panel" loading="eager" decoding="async" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       THE SYSTEM THAT STAYS WITH YOU
+       ════════════════════════════════════════════════════════ -->
+  <section id="system" class="so-feat" aria-labelledby="so-feat-title">
+    <div class="container">
+      <h2 id="so-feat-title" class="so-feat__title">The System That Stays With You.</h2>
+      <div class="so-feat__grid">
+        {system.map((s) => (
+          <div class="so-feat__item">
+            <span class="so-feat__icon" aria-hidden="true">
+              {s.icon === 'shell' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="9" x2="8" y2="20"/></svg>)}
+              {s.icon === 'time' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="5" y1="5" x2="7" y2="7"/><line x1="17" y1="17" x2="19" y2="19"/></svg>)}
+              {s.icon === 'connect' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="2.4"/><circle cx="19" cy="6" r="2.4"/><circle cx="19" cy="18" r="2.4"/><line x1="7.1" y1="10.9" x2="16.9" y2="7.1"/><line x1="7.1" y1="13.1" x2="16.9" y2="16.9"/></svg>)}
+              {s.icon === 'iris' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.4"/></svg>)}
+              {s.icon === 'shield' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 8-7 9-4-1-7-4.6-7-9V6z"/><polyline points="9 12 11.5 14.5 15.5 9.5"/></svg>)}
+            </span>
+            <h3 class="so-feat__name">{s.title}</h3>
+            <p class="so-feat__body">{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       YOUR DAY. YOUR WAY.  +  ALL APPS
+       ════════════════════════════════════════════════════════ -->
+  <section class="so-home" aria-labelledby="so-home-title">
+    <div class="container so-home__inner">
+      <div class="so-home__lead">
+        <h2 id="so-home-title" class="so-home__title">Your Day. Your Way.</h2>
+        <p class="so-home__desc">
+          The Home View is your command center. Morning light. Evening calm.
+          Everything you need is one touch away.
+        </p>
+        <ul class="so-home__points">
+          {dayPoints.map((p) => (<li>{p}</li>))}
+        </ul>
+      </div>
+
+      <div class="so-shot so-home__shot">
+        <img src={path('/images/os/solstice-home.png')} alt="Solstice OS Home View in morning light" loading="lazy" decoding="async" />
+      </div>
+
+      <div class="so-apps">
+        <h3 class="so-apps__title">All Apps</h3>
+        <p class="so-apps__sub">A full workshop, ready on day one.</p>
+        <div class="so-shot so-apps__shot">
+          <img src={path('/images/os/all-apps.png')} alt="The Solstice OS app library" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       IRIS — A SYSTEM FEATURE  (handoff to the IRIS page)
+       ════════════════════════════════════════════════════════ -->
+  <section class="so-iris" aria-labelledby="so-iris-title">
+    <div class="container">
+      <div class="so-iris__panel iris-edge">
+        <div class="so-iris__emblem iris-emblem-glow">
+          <img src={irisEmblem} alt="" aria-hidden="true" />
+        </div>
+        <div class="so-iris__content">
+          <p class="so-iris__eyebrow">Woven Into Solstice</p>
+          <h2 id="so-iris-title" class="so-iris__title">Not an app. A companion built in.</h2>
+          <p class="so-iris__lede">
+            IRIS isn’t a program you open — she’s a first-class part of Solstice OS,
+            present wherever you are and speaking the same warm language as everything
+            around her.
+          </p>
+          <ul class="so-iris__points">
+            {irisPoints.map((p) => (
+              <li class="so-iris__point">
+                <span class="so-iris__dot" aria-hidden="true"></span>
+                <div>
+                  <p class="so-iris__pt">{p.title}</p>
+                  <p class="so-iris__pb">{p.body}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <a href={path('/iris')} class="btn btn--solid">Meet IRIS
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <p class="so-iris__handoff">See IRIS on every surface — Home, App Lens, Margin, and more — on her own page.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       DESIGNED FOR REAL LIFE  +  BUILT ON HELIOS ENGINEERING
+       ════════════════════════════════════════════════════════ -->
+  <section class="so-bottom" aria-label="Design philosophy and engineering">
+    <div class="container so-bottom__inner">
+
+      <div class="iris-panel so-real">
+        <h2 class="so-panel__title">Designed For Real Life.</h2>
+        <div class="so-real__grid">
+          {realLife.map((r) => (
+            <div class="so-real__item">
+              <span class="so-real__icon" aria-hidden="true">
+                {r.icon === 'sparkle' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>)}
+                {r.icon === 'link' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a3 3 0 0 1 3-3h3a3 3 0 0 1 0 6h-1.5"/><path d="M15 12a3 3 0 0 1-3 3H9a3 3 0 0 1 0-6h1.5"/></svg>)}
+                {r.icon === 'heart' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.4-7 10-7 10z"/></svg>)}
+                {r.icon === 'lock' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>)}
+              </span>
+              <div>
+                <p class="so-real__name">{r.title}</p>
+                <p class="so-real__body">{r.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="iris-panel so-eng">
+        <h2 class="so-panel__title">Built On Helios Engineering.</h2>
+        <p class="so-eng__lede">
+          Solstice OS is the consumer face of Helios technology. The same care,
+          standards, and reliability — made simple.
+        </p>
+        <ul class="so-eng__checks">
+          {engineering.map((e) => (
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 12 10 17 19 7"/></svg>{e}</li>
+          ))}
+        </ul>
+        <div class="so-eng__emblem iris-emblem-glow" aria-hidden="true">
+          <img src={irisEmblem} alt="" />
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       CLOSING BAND
+       ════════════════════════════════════════════════════════ -->
+  <section class="so-cta" aria-label="Solstice on Genesis and Nova">
+    <div class="container so-cta__inner">
+      <div class="so-cta__lead">
+        <span class="so-cta__emblem iris-emblem-glow" aria-hidden="true"><img src={irisEmblem} alt="" /></span>
+        <div>
+          <p class="so-cta__title">Power Made Simple.</p>
+          <p class="so-cta__sub">Solstice OS comes standard on Genesis and Nova.</p>
+        </div>
+      </div>
+      <div class="so-cta__btns">
+        <a href={path('/consumer')} class="btn btn--ghost">Explore Genesis</a>
+        <a href={path('/consumer')} class="btn btn--solid">Explore Nova
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer line="consumer" />
+</BaseLayout>
+
+<style>
+  /* ═══════════════════════════════════════════════════════════════
+     SOLSTICE OS PAGE — consumer / warm graphical register
+     ═══════════════════════════════════════════════════════════════ */
+  .container { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: var(--space-6); }
+
+  /* iridescent signature border (shared with IRIS surfaces) */
+  @property --iris-angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+  .iris-edge { position: relative; }
+  .iris-edge::before {
+    content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.6px;
+    background: conic-gradient(from var(--iris-angle), #ffd2a8, #ff9ec7, #c9b6ff, #9fc7ff, #b6f2d8, #ffe6a8, #ffd2a8);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    pointer-events: none; animation: iris-spin 7s linear infinite;
+  }
+  @keyframes iris-spin { to { --iris-angle: 360deg; } }
+
+  .iris-emblem-glow { filter: drop-shadow(0 0 18px rgba(157, 123, 255, 0.34)); animation: iris-glow 4.2s ease-in-out infinite; }
+  .iris-emblem-glow img { display: block; width: 100%; height: auto; }
+  @keyframes iris-glow {
+    0%, 100% { filter: drop-shadow(0 0 16px rgba(157, 123, 255, 0.30)); }
+    50%      { filter: drop-shadow(0 0 30px rgba(255, 158, 199, 0.46)); }
+  }
+
+  .iris-panel {
+    border: 1px solid rgba(157, 123, 255, 0.16); border-radius: 22px;
+    padding: clamp(var(--space-5), 3vw, var(--space-8));
+    background: radial-gradient(140% 110% at 50% 0%, rgba(157, 123, 255, 0.05), transparent 70%), rgba(255, 255, 255, 0.012);
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    padding: 0.8rem 1.4rem; border-radius: 10px;
+    font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+    transition: all var(--duration-fast, 150ms) var(--ease-out, ease);
+  }
+  .btn svg { transition: transform var(--duration-fast, 150ms) var(--ease-out, ease); }
+  .btn:hover svg { transform: translateX(3px); }
+  .btn--solid { color: #1a0f22; background: linear-gradient(95deg, var(--pink, #ff86c8), var(--purple, #9d7bff)); box-shadow: 0 8px 26px rgba(157, 123, 255, 0.28); }
+  .btn--solid:hover { filter: brightness(1.08); }
+  .btn--ghost { color: var(--purple, #9d7bff); border: 1.5px solid currentColor; }
+  .btn--ghost:hover { background: rgba(157, 123, 255, 0.1); }
+
+  /* Screenshot frame */
+  .so-shot { border-radius: 18px; overflow: hidden; border: 1px solid rgba(157, 123, 255, 0.18); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4); background: rgba(255, 255, 255, 0.02); }
+  .so-shot img { display: block; width: 100%; height: auto; }
+
+  .so-panel__title { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.4rem, 2.4vw, 1.9rem); letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: var(--space-4); }
+
+  /* ── HERO ──────────────────────────────────────────────────── */
+  .so-hero { padding-block: clamp(var(--space-8), 5vh, var(--space-12)) var(--space-10); }
+  .so-hero .container { max-width: min(1480px, 95vw); }
+  .so-hero__inner { display: grid; grid-template-columns: 0.82fr 1.3fr; gap: clamp(var(--space-6), 4vw, var(--space-10)); align-items: center; }
+  .so-hero__title { font-family: var(--font-display); font-weight: 900; font-size: clamp(2.8rem, 7vw, 5.2rem); line-height: 0.98; letter-spacing: -0.015em; text-transform: uppercase; margin-bottom: var(--space-2); }
+  .so-hero__name { background: linear-gradient(95deg, var(--pink, #ff86c8), var(--purple, #9d7bff) 70%, #9fc7ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .so-hero__slogan { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.1rem, 2.2vw, 1.5rem); letter-spacing: 0.04em; text-transform: uppercase; color: var(--pink, #ff86c8); margin-bottom: var(--space-5); }
+  .so-hero__desc { font-family: var(--font-body); font-size: 1.02rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-6); max-width: 42ch; }
+  .so-hero__cta { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+
+  /* ── FEATURE ROW ───────────────────────────────────────────── */
+  .so-feat { padding-block: var(--space-8); }
+  .so-feat__title { text-align: center; font-family: var(--font-display); font-weight: 800; font-size: clamp(1.5rem, 3vw, 2.2rem); letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: var(--space-8); }
+  .so-feat__grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--space-5); }
+  .so-feat__icon { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 12px; color: var(--purple, #9d7bff); border: 1px solid rgba(157, 123, 255, 0.25); margin-bottom: var(--space-4); }
+  .so-feat__icon svg { width: 24px; height: 24px; }
+  .so-feat__name { font-family: var(--font-display); font-weight: 700; font-size: 0.98rem; color: var(--text-primary); margin-bottom: var(--space-2); }
+  .so-feat__body { font-family: var(--font-body); font-size: 0.88rem; line-height: 1.6; color: var(--text-secondary); }
+
+  /* ── HOME VIEW + ALL APPS ──────────────────────────────────── */
+  .so-home { padding-block: var(--space-8); }
+  .so-home__inner { display: grid; grid-template-columns: 0.8fr 1.45fr 0.9fr; gap: clamp(var(--space-5), 2.5vw, var(--space-7)); align-items: center; }
+  .so-home__title { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.5rem, 2.8vw, 2.1rem); letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: var(--space-4); }
+  .so-home__desc { font-family: var(--font-body); font-size: 0.98rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-5); }
+  .so-home__points { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); }
+  .so-home__points li { position: relative; padding-left: 1.6em; font-family: var(--font-body); font-size: 0.92rem; line-height: 1.5; color: var(--text-secondary); }
+  .so-home__points li::before { content: ""; position: absolute; left: 0; top: 0.45em; width: 9px; height: 9px; border-radius: 50%; background: linear-gradient(135deg, var(--pink, #ff86c8), var(--purple, #9d7bff)); }
+  .so-apps__title { font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; color: var(--text-primary); margin-bottom: 2px; }
+  .so-apps__sub { font-family: var(--font-body); font-size: 0.84rem; color: var(--text-secondary); margin-bottom: var(--space-4); }
+
+  /* ── IRIS BAND ─────────────────────────────────────────────── */
+  .so-iris { padding-block: var(--space-8); }
+  .so-iris__panel { display: grid; grid-template-columns: 0.7fr 1.6fr; gap: clamp(var(--space-6), 4vw, var(--space-10)); align-items: center; border-radius: 26px; padding: clamp(var(--space-6), 4vw, var(--space-10)); background: radial-gradient(120% 120% at 0% 0%, rgba(157, 123, 255, 0.12), transparent 60%), rgba(157, 123, 255, 0.03); }
+  .so-iris__emblem { width: clamp(150px, 18vw, 230px); margin-inline: auto; }
+  .so-iris__eyebrow { font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--purple, #9d7bff); margin-bottom: var(--space-3); }
+  .so-iris__title { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.7rem, 3.4vw, 2.6rem); line-height: 1.05; letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: var(--space-4); }
+  .so-iris__lede { font-family: var(--font-body); font-size: 1rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-6); max-width: 56ch; }
+  .so-iris__points { list-style: none; display: grid; gap: var(--space-4); margin-bottom: var(--space-6); }
+  .so-iris__point { display: flex; gap: var(--space-3); }
+  .so-iris__dot { flex: none; margin-top: 0.4em; width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(135deg, #ffd2a8, #ff9ec7, #c9b6ff, #9fc7ff); }
+  .so-iris__pt { font-family: var(--font-display); font-weight: 700; font-size: 0.98rem; color: var(--text-primary); margin-bottom: 2px; }
+  .so-iris__pb { font-family: var(--font-body); font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary); }
+  .so-iris__handoff { font-family: var(--font-body); font-size: 0.84rem; line-height: 1.5; color: var(--text-tertiary, rgba(255, 255, 255, 0.5)); margin-top: var(--space-4); }
+
+  /* ── BOTTOM ────────────────────────────────────────────────── */
+  .so-bottom { padding-block: var(--space-8); }
+  .so-bottom__inner { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: var(--space-5); align-items: stretch; }
+  .so-real__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5) var(--space-6); }
+  .so-real__item { display: flex; gap: var(--space-3); }
+  .so-real__icon { flex: none; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 10px; color: var(--purple, #9d7bff); border: 1px solid rgba(157, 123, 255, 0.25); }
+  .so-real__icon svg { width: 20px; height: 20px; }
+  .so-real__name { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; color: var(--text-primary); margin-bottom: 2px; }
+  .so-real__body { font-family: var(--font-body); font-size: 0.86rem; line-height: 1.55; color: var(--text-secondary); }
+  .so-eng { position: relative; overflow: hidden; }
+  .so-eng__lede { font-family: var(--font-body); font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-5); max-width: 44ch; }
+  .so-eng__checks { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); }
+  .so-eng__checks li { display: flex; align-items: center; gap: var(--space-2); font-family: var(--font-body); font-weight: 600; font-size: 0.92rem; color: var(--text-primary); }
+  .so-eng__checks svg { color: var(--pink, #ff86c8); flex: none; }
+  .so-eng__emblem { position: absolute; right: -34px; bottom: -34px; width: 150px; opacity: 0.5; pointer-events: none; }
+
+  /* ── CLOSING BAND ──────────────────────────────────────────── */
+  .so-cta { padding-block: var(--space-8) var(--space-12); }
+  .so-cta__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-6); border: 1px solid rgba(157, 123, 255, 0.18); border-radius: 22px; padding: clamp(var(--space-5), 3vw, var(--space-7)) clamp(var(--space-6), 4vw, var(--space-9)); background: radial-gradient(120% 140% at 0% 50%, rgba(255, 134, 200, 0.1), transparent 55%), rgba(157, 123, 255, 0.04); }
+  .so-cta__lead { display: flex; align-items: center; gap: var(--space-5); }
+  .so-cta__emblem { flex: none; width: 64px; }
+  .so-cta__title { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.4rem, 2.6vw, 2rem); letter-spacing: -0.01em; color: var(--text-primary); }
+  .so-cta__sub { font-family: var(--font-body); font-size: 0.95rem; color: var(--text-secondary); margin-top: 2px; }
+  .so-cta__btns { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+
+  /* ═══════════════════════════════════════════════════════════════
+     RESPONSIVE
+     ═══════════════════════════════════════════════════════════════ */
+  @media (max-width: 1040px) {
+    .so-hero__inner { grid-template-columns: 1fr; }
+    .so-hero__shot { max-width: 680px; }
+    .so-feat__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .so-home__inner { grid-template-columns: 1fr; }
+    .so-home__shot, .so-apps { max-width: 720px; }
+    .so-iris__panel { grid-template-columns: 1fr; text-align: center; }
+    .so-iris__emblem { width: clamp(140px, 32vw, 200px); }
+    .so-iris__lede, .so-iris__points { margin-inline: auto; }
+    .so-iris__point { text-align: left; }
+    .so-bottom__inner { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .so-feat__grid { grid-template-columns: 1fr 1fr; }
+    .so-real__grid { grid-template-columns: 1fr; }
+    .so-cta__inner { flex-direction: column; align-items: flex-start; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .iris-edge::before, .iris-emblem-glow { animation: none; }
+  }
+</style>
