@@ -4,9 +4,9 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { path } from '../utils/url';
 
-// The faux order summary — every line is free.
+// The faux order summary. Every line is free.
 const receipt = [
-  { label: '1× HELIOS machine — hand-built, one of one', value: 'Not for sale' },
+  { label: '1× HELIOS machine (hand-built, one of one)', value: 'Not for sale' },
   { label: 'Several hundred evenings',                    value: 'Already spent' },
   { label: 'An unreasonable amount of learning',          value: 'Worth it' },
   { label: 'Your curiosity',                              value: 'Priceless' },
@@ -14,17 +14,17 @@ const receipt = [
 
 // The actual product: things I couldn't do before this.
 const learned = [
-  { k: 'I learned Linux', v: 'the real kind — the kind where you brick a headless machine at 1am and have to coax it back to life over SSH.' },
-  { k: 'I learned Blender', v: 'modeling every device from scratch, so an Atlas looks like an Atlas and a Genesis looks like a Genesis.' },
-  { k: 'I learned to make real hardware', v: 'designing and 3D-printing the chassis, reprinting until the parts actually fit together.' },
-  { k: 'I wrote two operating systems', v: 'one a terminal-driven amber world, one a warm graphical one — plus the AI companions that live inside them.' },
-  { k: 'I taught myself design', v: 'type, color, layout, a whole brand, and the website you are standing in right now.' },
+  { k: 'I learned Linux', v: 'The real kind. The kind where you brick a headless machine at 1am and have to coax it back to life over SSH.' },
+  { k: 'I learned Blender', v: 'Modeling every device from scratch, so an Atlas looks like an Atlas and a Genesis looks like a Genesis.' },
+  { k: 'I learned to make real hardware', v: 'Designing and 3D-printing the chassis, reprinting until the parts actually fit together.' },
+  { k: 'I wrote two operating systems', v: 'One a terminal-driven amber world, one a warm graphical one, plus the AI companions that live inside them.' },
+  { k: 'I taught myself design', v: 'Type, color, layout, a whole brand, and the website you are standing in right now.' },
 ];
 ---
 
 <BaseLayout
   title="Checkout — Helios Computer Corporation"
-  description="About that Buy button. A note on what HELIOS actually is — and a thank-you for stopping by."
+  description="About that Buy button. A note on what HELIOS actually is, and a thank-you for stopping by."
   line="consumer"
 >
   <Nav line="homepage" />
@@ -40,9 +40,27 @@ const learned = [
       <p class="buy-lede">
         Here's the thing: HELIOS machines are real. There's an Atlas and a Genesis
         on my desk right now, humming along, running operating systems I wrote by
-        hand. But there's exactly <em>one of each</em> — and they live in my apartment.
+        hand. But there's exactly <em>one of each</em>, and they live in my apartment.
         HELIOS isn't a company. It's a project. Mine.
       </p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       PROOF: the real Atlas
+       ════════════════════════════════════════════════════════ -->
+  <section class="buy-proof" aria-label="The real Atlas">
+    <div class="container buy-proof__inner">
+      <p class="buy-proof__intro">This is the actual Atlas. I built it by hand.</p>
+      <div class="buy-proof__grid">
+        <figure class="buy-proof__fig">
+          <img src={path('/images/buy/atlas-real-1.jpg')} alt="The hand-built Helios Atlas, open, with the amber Helios logo on the display bezel" loading="lazy" decoding="async" />
+        </figure>
+        <figure class="buy-proof__fig">
+          <img src={path('/images/buy/atlas-real-2.jpg')} alt="The back of the hand-built Atlas, with HELIOS embossed on the lid above a cooling fan and a USB-C port" loading="lazy" decoding="async" />
+        </figure>
+      </div>
+      <p class="buy-proof__cap">(see, it's real, just not for sale)</p>
     </div>
   </section>
 
@@ -69,7 +87,7 @@ const learned = [
         </div>
         <p class="buy-receipt__note">Looking is free. Always will be.</p>
         <button id="buy-order" class="bbtn bbtn--solid buy-receipt__btn" type="button">Place Order</button>
-        <p id="buy-order-msg" class="buy-receipt__msg" hidden>Order received. There was nothing to charge you — thank you for trying anyway. ♥</p>
+        <p id="buy-order-msg" class="buy-receipt__msg" hidden>Order received. There was nothing to charge you, but thank you for trying anyway. ♥</p>
       </div>
     </div>
   </section>
@@ -81,7 +99,7 @@ const learned = [
     <div class="container buy-narrow">
       <h2 id="buy-what" class="buy-h2">What this actually is</h2>
       <p class="buy-p">
-        HELIOS is an independent worldbuilding project — and, honestly, a flex.
+        HELIOS is an independent worldbuilding project. And, honestly, a flex.
         Two product lines. Two real Raspberry Pi machines. Two operating systems.
         Two AI companions. A full brand, a fictional 1993 founding, and the entire
         site you're browsing. I built all of it to find out whether I could.
@@ -104,7 +122,7 @@ const learned = [
         {learned.map((l) => (
           <li class="buy-learned__item">
             <span class="buy-learned__dot" aria-hidden="true"></span>
-            <p class="buy-learned__text"><strong>{l.k}</strong> — {l.v}</p>
+            <p class="buy-learned__text"><strong>{l.k}.</strong> {l.v}</p>
           </li>
         ))}
       </ul>
@@ -123,8 +141,8 @@ const learned = [
     <div class="container buy-narrow">
       <h2 id="buy-honest" class="buy-h2">I wish I could hand you one</h2>
       <p class="buy-p">
-        As much as I'd love to put a HELIOS in your hands — to actually ship these,
-        to let anyone live in this little world I made — for now it stays here.
+        As much as I'd love to put a HELIOS in your hands, to actually ship these
+        and let anyone live in this little world I made, for now it stays here.
         Within four walls and a 3D printer. One Atlas. One Genesis. Maybe someday
         more. For now, the whole dream runs on two machines and a lot of obstinance.
       </p>
@@ -137,14 +155,14 @@ const learned = [
   <section class="buy-thanks-wrap" aria-labelledby="buy-thanks">
     <div class="container buy-narrow">
       <div class="buy-thanks">
-        <h2 id="buy-thanks" class="buy-thanks__title">But mostly — thank you.</h2>
+        <h2 id="buy-thanks" class="buy-thanks__title">But mostly, thank you.</h2>
         <p class="buy-thanks__body">
           You clicked <em>Buy</em> on a computer from a company that doesn't exist.
-          Which means you took HELIOS seriously enough to want one — and that means
+          Which means you took HELIOS seriously enough to want one, and that means
           more than I can fit on a button. Thanks for being here. Thanks for poking
           around. Thanks for caring about the thing I made.
         </p>
-        <p class="buy-sign">— The HELIOS Engineering Team<span class="buy-sign__star">*</span></p>
+        <p class="buy-sign">With love, the HELIOS Engineering Team<span class="buy-sign__star">*</span></p>
         <p class="buy-sign__note">*it is one (1) person. it is me. hello.</p>
       </div>
       <div class="buy-cta">
@@ -161,7 +179,7 @@ const learned = [
 
 <style>
   /* ═══════════════════════════════════════════════════════════════
-     BUY PAGE — the fourth-wall break. Both lines, one maker.
+     BUY PAGE: the fourth-wall break. Both lines, one maker.
      ═══════════════════════════════════════════════════════════════ */
   .container { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: var(--space-6); }
   .buy-narrow { max-width: 720px; }
@@ -197,6 +215,15 @@ const learned = [
   .buy-hero__sub { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.1rem, 2.4vw, 1.5rem); color: var(--text-primary, #f3eefb); margin-bottom: var(--space-6); }
   .buy-lede { font-family: var(--font-corporate, var(--font-body)); font-size: 1.06rem; line-height: 1.75; color: var(--text-secondary, rgba(255, 255, 255, 0.74)); margin-inline: auto; }
   .buy-lede em { font-style: italic; color: var(--text-primary, #fff); }
+
+  /* ── PROOF (real Atlas photos) ─────────────────────────────── */
+  .buy-proof { padding-block: var(--space-6) var(--space-7); }
+  .buy-proof__inner { max-width: 920px; margin-inline: auto; text-align: center; }
+  .buy-proof__intro { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.05rem, 2.2vw, 1.35rem); color: var(--text-primary, #f3eefb); margin-bottom: var(--space-5); }
+  .buy-proof__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(var(--space-4), 2vw, var(--space-5)); }
+  .buy-proof__fig { margin: 0; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 22px 55px rgba(0, 0, 0, 0.45); background: rgba(255, 255, 255, 0.02); }
+  .buy-proof__fig img { display: block; width: 100%; height: 100%; object-fit: cover; aspect-ratio: 3 / 4; }
+  .buy-proof__cap { font-family: var(--font-corporate, var(--font-body)); font-style: italic; font-size: 0.98rem; color: var(--text-tertiary, rgba(255, 255, 255, 0.55)); margin-top: var(--space-4); }
 
   /* ── RECEIPT ───────────────────────────────────────────────── */
   .buy-receipt-wrap { padding-block: var(--space-7); }
@@ -269,11 +296,12 @@ const learned = [
   @media (max-width: 560px) {
     .buy-cta { flex-direction: column; align-items: stretch; }
     .buy-cta .bbtn { justify-content: center; }
+    .buy-proof__grid { grid-template-columns: 1fr; }
   }
 </style>
 
 <script>
-  // The "Place Order" button — the only purchase you'll ever complete here.
+  // The "Place Order" button: the only purchase you will ever complete here.
   const btn = document.getElementById('buy-order');
   const msg = document.getElementById('buy-order-msg');
   if (btn && msg) {
