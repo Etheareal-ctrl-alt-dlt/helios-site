@@ -331,9 +331,10 @@ atlas &gt; <span class="hh-cur"></span></pre>
 
   /* ── HERO ──────────────────────────────────────────────────── */
   .hh { padding-block: clamp(var(--space-8), 5vh, var(--space-12)) var(--space-10); }
+  .hh .container { max-width: min(1540px, 95vw); }
   .hh__inner {
     display: grid;
-    grid-template-columns: minmax(260px, 0.95fr) minmax(0, 1fr) minmax(0, 1.45fr);
+    grid-template-columns: minmax(210px, 0.7fr) minmax(0, 0.9fr) minmax(0, 1.95fr);
     gap: clamp(var(--space-5), 3vw, var(--space-9));
     align-items: center;
   }
