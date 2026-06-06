@@ -476,11 +476,11 @@ const principles = [
 
   /* ── HERO ──────────────────────────────────────────────────── */
   .iris-hero { padding-block: clamp(var(--space-8), 6vh, var(--space-12)) var(--space-10); }
-  .iris-hero .container { max-width: 1340px; }
+  .iris-hero .container { max-width: min(1560px, 95vw); }
   .iris-hero__inner {
     display: grid;
-    grid-template-columns: 0.82fr 1.5fr;
-    gap: clamp(var(--space-6), 4vw, var(--space-10));
+    grid-template-columns: 0.72fr 1.85fr;
+    gap: clamp(var(--space-5), 3vw, var(--space-8));
     align-items: center;
   }
   .iris-hero__orb { width: clamp(120px, 14vw, 180px); margin-bottom: var(--space-4); }
