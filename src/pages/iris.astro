@@ -17,7 +17,7 @@ const pillars = [
   {
     icon: 'eye',
     title: 'Understands Context',
-    body: 'She sees where you are and what you\u2019re working on.',
+    body: 'She sees where you are and what you’re working on.',
   },
   {
     icon: 'heart',
@@ -43,7 +43,7 @@ const surfaces = [
     n: '2',
     key: 'lens',
     title: 'App Lens',
-    body: 'Tap the IRIS orb in any app. She understands what you\u2019re looking at and can help you right where you are.',
+    body: 'Tap the IRIS orb in any app. She understands what you’re looking at and can help you right where you are.',
   },
   {
     n: '3',
@@ -67,7 +67,7 @@ const surfaces = [
 
 // ── Built into your day ───────────────────────────────────────
 const dayItems = [
-  { icon: 'calendar', q: 'What\u2019s on my schedule tomorrow?', sub: 'IRIS can check your calendar and prepare a plan.' },
+  { icon: 'calendar', q: 'What’s on my schedule tomorrow?', sub: 'IRIS can check your calendar and prepare a plan.' },
   { icon: 'music',    q: 'Play something warm and slow.',        sub: 'IRIS understands what you like and the mood you want.' },
   { icon: 'create',   q: 'Do I have any photos of the ocean?',   sub: 'IRIS can search your library and find what matters.' },
 ];
@@ -83,10 +83,10 @@ const writingOps = [
 
 // ── Privacy / principles ──────────────────────────────────────
 const principles = [
-  { icon: 'memory',   title: 'Working Memory',  body: 'IRIS remembers recent context across your surfaces for a short time \u2014 then lets it go.' },
+  { icon: 'memory',   title: 'Working Memory',  body: 'IRIS remembers recent context across your surfaces for a short time — then lets it go.' },
   { icon: 'tap',      title: 'Final Tap Is Yours', body: 'IRIS can prepare actions like sending mail, but the final tap is always yours.' },
-  { icon: 'boundary', title: 'Clear Boundaries', body: 'IRIS respects what she can\u2019t know and won\u2019t pretend otherwise.' },
-  { icon: 'offline',  title: 'Offline Respect',  body: 'Solstice OS keeps working even when IRIS can\u2019t connect. She\u2019ll be ready when you are.' },
+  { icon: 'boundary', title: 'Clear Boundaries', body: 'IRIS respects what she can’t know and won’t pretend otherwise.' },
+  { icon: 'offline',  title: 'Offline Respect',  body: 'Solstice OS keeps working even when IRIS can’t connect. She’ll be ready when you are.' },
 ];
 ---
 
@@ -118,7 +118,7 @@ const principles = [
         <p class="iris-hero__desc">
           IRIS is the Interactive Response Intelligence System built into Solstice OS.
           She helps you write, search, read, organize, create, and move through your
-          Genesis naturally \u2014 not as a separate app, but as part of the system itself.
+          Genesis naturally — not as a separate app, but as part of the system itself.
         </p>
         <div class="iris-hero__cta">
           <a href="#surfaces" class="btn btn--solid">Explore IRIS
@@ -128,45 +128,15 @@ const principles = [
         </div>
       </div>
 
-      <!-- Live Solstice home recreation -->
+      <!-- Solstice home view (same asset as the OS page) -->
       <div class="iris-hero__screen" aria-hidden="true">
-        <div class="sol iris-edge">
-          <div class="sol__top">
-            <span class="sol__brand">HELIOS</span>
-            <span class="sol__greet">Good afternoon</span>
-            <span class="sol__glyphs"><i></i><i></i><i></i></span>
-          </div>
-          <div class="sol__body">
-            <div class="sol__rail">
-              <span class="sol__rail-dot is-on"></span>
-              <span class="sol__rail-dot"></span>
-              <span class="sol__rail-dot"></span>
-              <span class="sol__rail-dot"></span>
-              <span class="sol__rail-dot"></span>
-            </div>
-            <div class="sol__scene">
-              <div class="sol__welcome">
-                <span class="sol__welcome-sm">Welcome back,</span>
-                <span class="sol__welcome-lg">Operator.</span>
-              </div>
-              <span class="sol__sun"></span>
-              <span class="sol__water"></span>
-            </div>
-            <div class="sol__iris">
-              <span class="sol__iris-orb iris-emblem-glow"><img src={IRIS_EMBLEM} alt="" width="44" height="44" /></span>
-              <span class="sol__iris-name">IRIS</span>
-              <span class="sol__iris-ready">Ready when you are.</span>
-              <span class="sol__chip"></span>
-              <span class="sol__chip"></span>
-              <span class="sol__chip"></span>
-              <span class="sol__ask">Ask IRIS anything\u2026</span>
-            </div>
-          </div>
-          <div class="sol__bottom">
-            <span>83\u00b0 Mainly Clear</span>
-            <span>1:23 PM</span>
-            <span>Nothing playing</span>
-          </div>
+        <div class="iris-hero__shot iris-edge">
+          <img
+            src={path('/images/os/solstice-screen.png')}
+            alt="Solstice OS home view with IRIS panel"
+            loading="eager"
+            decoding="async"
+          />
         </div>
       </div>
 
@@ -180,15 +150,15 @@ const principles = [
     <div class="container">
       <div class="iris-panel iris-what__panel">
         <div class="iris-what__intro">
-          <p class="iris-what__eyebrow">\u2756 What Is IRIS?</p>
+          <p class="iris-what__eyebrow">❖ What Is IRIS?</p>
           <p class="iris-what__lede">
-            IRIS is Helios\u2019 personal intelligent companion in Solstice OS. She understands
-            what you\u2019re doing, what you\u2019re looking at, and what you\u2019re trying to do next.
+            IRIS is Helios’ personal intelligent companion in Solstice OS. She understands
+            what you’re doing, what you’re looking at, and what you’re trying to do next.
             IRIS can answer questions, help you write, find things, control apps, and connect
-            ideas across your day \u2014 all while keeping you in control.
+            ideas across your day — all while keeping you in control.
           </p>
           <p class="iris-what__lede">
-            She\u2019s here when you need her, and she steps back when you don\u2019t.
+            She’s here when you need her, and she steps back when you don’t.
           </p>
         </div>
         <div class="iris-what__grid">
@@ -229,11 +199,11 @@ const principles = [
                   <span class="vg-home__orb iris-emblem-glow"><img src={IRIS_EMBLEM} alt="" width="56" height="56" /></span>
                   <span class="vg-home__name">IRIS</span>
                   <span class="vg-home__ready">Ready when you are.</span>
-                  <span class="vg-home__chip vg-chip" style="--i:0">Today \u00b7 schedule</span>
-                  <span class="vg-home__chip vg-chip" style="--i:1">Music \u00b7 warm & slow</span>
-                  <span class="vg-home__chip vg-chip" style="--i:2">Create \u00b7 ocean photos</span>
+                  <span class="vg-home__chip vg-chip" style="--i:0">Today · schedule</span>
+                  <span class="vg-home__chip vg-chip" style="--i:1">Music · warm & slow</span>
+                  <span class="vg-home__chip vg-chip" style="--i:2">Create · ocean photos</span>
                   <span class="vg-home__ask"><i class="vg-caret"></i></span>
-                  <span class="vg-home__status">\u25cf Connected</span>
+                  <span class="vg-home__status">● Connected</span>
                 </div>
               )}
 
@@ -246,9 +216,9 @@ const principles = [
                     <span class="vg-lens__orb iris-emblem-glow"><img src={IRIS_EMBLEM} alt="" width="22" height="22" /></span>
                   </div>
                   <div class="vg-lens__panel iris-edge">
-                    <span class="vg-lens__ctx">\u25cf Looking at Music</span>
-                    <span class="vg-lens__bubble">Nice choice, Operator \u2014 want to keep this one rolling?</span>
-                    <span class="vg-lens__askbar">Ask IRIS about music\u2026</span>
+                    <span class="vg-lens__ctx">● Looking at Music</span>
+                    <span class="vg-lens__bubble">Nice choice, Operator — want to keep this one rolling?</span>
+                    <span class="vg-lens__askbar">Ask IRIS about music…</span>
                   </div>
                 </div>
               )}
@@ -287,8 +257,8 @@ const principles = [
                   <span class="vg-seeing__photo"></span>
                   <span class="vg-seeing__orb iris-emblem-glow"><img src={IRIS_EMBLEM} alt="" width="22" height="22" /></span>
                   <div class="vg-seeing__panel iris-edge">
-                    <span class="vg-seeing__ctx">\u25cf Looking at Photo</span>
-                    <span class="vg-seeing__bubble">Beautiful shot \u2014 the light on the water feels calm and open.</span>
+                    <span class="vg-seeing__ctx">● Looking at Photo</span>
+                    <span class="vg-seeing__bubble">Beautiful shot — the light on the water feels calm and open.</span>
                   </div>
                 </div>
               )}
@@ -402,7 +372,7 @@ const principles = [
         <span class="iris-close__orb iris-emblem-glow"><img src={IRIS_EMBLEM} alt="" width="68" height="68" /></span>
         <div class="iris-close__copy">
           <p class="iris-close__head">IRIS is the soft glow inside Solstice OS.</p>
-          <p class="iris-close__sub">Built into every Genesis. Ready for every Operator.</p>
+          <p class="iris-close__sub">Built into every Genesis and Nova. Ready for every Operator.</p>
         </div>
         <div class="iris-close__cta">
           <a href="#" class="btn btn--solid">Explore Solstice OS
@@ -565,100 +535,21 @@ const principles = [
   }
   .iris-hero__cta { display: flex; flex-wrap: wrap; gap: var(--space-4); }
 
-  /* Solstice home recreation */
+  /* Solstice home view image (same asset as the OS page) */
   .iris-hero__screen { width: 100%; }
-  .sol {
-    border-radius: 18px;
+  .iris-hero__shot {
+    border-radius: 16px;
     overflow: hidden;
-    background: #0c0a16;
-    aspect-ratio: 16 / 11;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
-    font-family: var(--font-body);
+    line-height: 0;
+    box-shadow:
+      0 0 0 1px rgba(157, 123, 255, 0.2),
+      0 24px 70px rgba(0, 0, 0, 0.5),
+      0 0 50px rgba(157, 123, 255, 0.08);
   }
-  .sol__top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5rem 0.85rem;
-    font-size: 0.62rem;
-    color: rgba(255, 255, 255, 0.65);
-    background: rgba(255, 255, 255, 0.03);
-  }
-  .sol__brand { font-family: var(--font-display); font-weight: 800; letter-spacing: 0.2em; }
-  .sol__glyphs { display: inline-flex; gap: 4px; }
-  .sol__glyphs i { width: 5px; height: 5px; border-radius: 1px; background: rgba(255, 255, 255, 0.4); }
-  .sol__body { flex: 1; display: grid; grid-template-columns: 26px 1fr 34%; min-height: 0; }
-  .sol__rail {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 9px;
-    padding-top: 10px;
-    background: rgba(0, 0, 0, 0.25);
-  }
-  .sol__rail-dot { width: 11px; height: 11px; border-radius: 4px; background: rgba(255, 255, 255, 0.16); }
-  .sol__rail-dot.is-on { background: linear-gradient(var(--pink, #ff86c8), var(--purple, #9d7bff)); }
-  .sol__scene {
-    position: relative;
-    overflow: hidden;
-    background:
-      linear-gradient(180deg, #3a2350 0%, #6b3a6e 34%, #c8567f 60%, #ee8d63 80%, #f3c98a 100%);
-  }
-  .sol__welcome { position: absolute; top: 12px; left: 14px; display: flex; flex-direction: column; z-index: 2; }
-  .sol__welcome-sm { font-size: 0.62rem; color: rgba(255, 255, 255, 0.85); }
-  .sol__welcome-lg { font-family: var(--font-serif); font-style: italic; font-size: 0.95rem; color: #fff; }
-  .sol__sun {
-    position: absolute;
-    left: 50%;
-    top: 52%;
-    width: 46%;
-    aspect-ratio: 1;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    border: 2px solid rgba(255, 246, 224, 0.9);
-    box-shadow: 0 0 24px rgba(255, 230, 180, 0.6), inset 0 0 18px rgba(255, 230, 180, 0.4);
-  }
-  .sol__water {
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    height: 34%;
-    background: linear-gradient(180deg, rgba(255, 220, 170, 0.42), rgba(120, 60, 110, 0.2));
-    mix-blend-mode: screen;
-  }
-  .sol__iris {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-    padding: 10px 8px;
-    background: rgba(20, 14, 30, 0.7);
-    border-left: 1px solid rgba(157, 123, 255, 0.2);
-  }
-  .sol__iris-orb { width: 38px; }
-  .sol__iris-orb img { width: 100%; height: auto; }
-  .sol__iris-name { font-family: var(--font-display); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.28em; color: #fff; }
-  .sol__iris-ready { font-family: var(--font-serif); font-style: italic; font-size: 0.6rem; color: rgba(255, 255, 255, 0.7); margin-bottom: 3px; }
-  .sol__chip { width: 100%; height: 14px; border-radius: 5px; background: rgba(157, 123, 255, 0.14); border: 1px solid rgba(157, 123, 255, 0.12); }
-  .sol__ask {
+  .iris-hero__shot img {
+    display: block;
     width: 100%;
-    margin-top: auto;
-    padding: 5px 7px;
-    border-radius: 8px;
-    font-size: 0.56rem;
-    color: rgba(255, 255, 255, 0.5);
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(182, 242, 216, 0.3);
-  }
-  .sol__bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.4rem 0.85rem;
-    font-size: 0.58rem;
-    color: rgba(255, 255, 255, 0.6);
-    background: rgba(0, 0, 0, 0.3);
+    height: auto;
   }
 
   /* ── WHAT IS IRIS ──────────────────────────────────────────── */
@@ -890,7 +781,7 @@ const principles = [
 
   /* ── INFO PANELS ───────────────────────────────────────────── */
   .iris-info { padding-block: var(--space-8); }
-  .iris-info__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-5); align-items: start; }
+  .iris-info__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-5); align-items: stretch; }
   .iris-info__panel { padding: clamp(var(--space-5), 2vw, var(--space-6)); }
   .iris-info__title { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--pink, #ff86c8); margin-bottom: var(--space-4); }
   .iris-info__lede { font-family: var(--font-body); font-size: 0.88rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: var(--space-4); }
