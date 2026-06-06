@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
+import OSNav from '../components/OSNav.astro';
 import Footer from '../components/Footer.astro';
 import { path } from '../utils/url';
 
@@ -43,6 +44,7 @@ const valueProps = [
   line="consumer"
 >
   <Nav current="os" line="homepage" />
+  <OSNav />
 
   <!-- ════════════════════════════════════════════════════════
        HERO — gradient headline bridging both identities
@@ -124,7 +126,7 @@ const valueProps = [
             human touch — and IRIS by your side.
           </p>
 
-          <a href="#" class="os-card__cta os-card__cta--solstice">
+          <a href={path('/solstice')} class="os-card__cta os-card__cta--solstice">
             <span>Learn About Solstice OS</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2.25"
