@@ -70,12 +70,7 @@ const missionRight = ['Ethernet or modem ready', 'Works when you do', 'Built by 
         </div>
       </div>
       <div class="au-hero__screen" aria-hidden="true">
-        <img
-          src={path('/images/os/aurora-screen.png')}
-          alt="Aurora OS boot terminal"
-          loading="eager"
-          decoding="async"
-        />
+        <div id="aurora-boot" class="au-boot"></div>
       </div>
     </div>
     <div class="container">
@@ -95,7 +90,7 @@ const missionRight = ['Ethernet or modem ready', 'Works when you do', 'Built by 
               {f.icon === 'terminal' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polyline points="7 9 10 12 7 15"/><line x1="13" y1="15" x2="17" y2="15"/></svg>)}
               {f.icon === 'layers' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 12 15 2 8.5 12 2"/><polyline points="2 14 12 20.5 22 14"/></svg>)}
               {f.icon === 'gauge' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14a6 6 0 1 1 6-6"/><path d="M3 14a9 9 0 0 1 18 0"/><line x1="12" y1="14" x2="15.5" y2="9.5"/></svg>)}
-              {f.icon === 'caduceus' && (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="4" x2="12" y2="21"/><circle cx="12" cy="3" r="1.4"/><path d="M7 6c2-1 3.2 0 5 1.6C13.8 6 15 5 17 6"/><path d="M9 9.5c0 2.2 6 2.2 6 4.4S9 16.1 9 18.3"/><path d="M15 9.5c0 2.2-6 2.2-6 4.4s6 2.2 6 4.4"/></svg>)}
+              {f.icon === 'caduceus' && (<span class="au-card__wordmark">HERMES</span>)}
             </span>
             <h3 class="au-card__title">{f.title}</h3>
             <p class="au-card__body">{f.body}</p>
@@ -148,11 +143,9 @@ const missionRight = ['Ethernet or modem ready', 'Works when you do', 'Built by 
 
       <div class="au-panel au-hermes">
         <div class="au-hermes__head">
-          <span class="au-hermes__emblem" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10.5"/><line x1="12" y1="5" x2="12" y2="19"/><circle cx="12" cy="4.3" r="1.1"/><path d="M8 6.6c1.6-0.8 2.6 0 4 1.3 1.4-1.3 2.4-2.1 4-1.3"/><path d="M9.5 9.4c0 1.9 5 1.9 5 3.8s-5 1.9-5 3.8"/><path d="M14.5 9.4c0 1.9-5 1.9-5 3.8s5 1.9 5 3.8"/></svg>
-          </span>
+          <span class="au-hermes__wordmark" aria-hidden="true">HERMES</span>
           <div>
-            <h2 class="au-hermes__title">HERMES — Assistance Without Interference</h2>
+            <h2 class="au-hermes__title">Assistance Without Interference</h2>
             <p class="au-hermes__desc">
               HERMES lives inside Aurora OS. He interprets commands, recommends next
               steps, and explains the system. He never takes over.
@@ -230,9 +223,12 @@ atlas &gt; <span class="au-cur"></span></pre>
           <ul class="au-mission__list">{missionLeft.map((m) => (<li>{m}</li>))}</ul>
           <ul class="au-mission__list">{missionRight.map((m) => (<li>{m}</li>))}</ul>
         </div>
-        <a href="#" class="abtn abtn--solid au-mission__cta">Explore Aurora OS
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+        <div class="au-mission__cta">
+          <a href={path('/hermes')} class="abtn abtn--solid">Meet HERMES
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href={path('/professional')} class="abtn abtn--ghost">See Atlas + Titan</a>
+        </div>
       </div>
 
     </div>
@@ -282,20 +278,29 @@ atlas &gt; <span class="au-cur"></span></pre>
 
   /* ── HERO ──────────────────────────────────────────────────── */
   .au-hero { padding-block: clamp(var(--space-8), 5vh, var(--space-12)) var(--space-8); }
-  .au-hero__inner { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(var(--space-6), 4vw, var(--space-10)); align-items: center; }
+  .au-hero__inner { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(var(--space-6), 4vw, var(--space-10)); align-items: start; }
   .au-hero__eyebrow { font-family: var(--font-mono); font-size: 0.82rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--helios-amber); margin-bottom: var(--space-4); }
   .au-hero__title { font-family: var(--font-terminal); font-weight: 400; font-size: clamp(2.8rem, 6vw, 5rem); line-height: 0.98; text-transform: uppercase; color: var(--helios-amber); text-shadow: 0 0 26px rgba(255, 176, 0, 0.32); margin-bottom: var(--space-5); }
   .au-hero__desc { font-family: var(--font-mono); font-size: 0.95rem; line-height: 1.8; color: var(--text-secondary, rgba(255, 240, 220, 0.72)); margin-bottom: var(--space-6); max-width: 48ch; }
   .au-hero__cta { display: flex; flex-wrap: wrap; gap: var(--space-4); }
-  .au-hero__screen img { display: block; width: 100%; height: auto; }
+  .au-hero__screen { padding-top: var(--space-2); }
+  .au-boot { min-height: 24rem; font-family: var(--font-mono); }
+  .ab { font-size: 0.8rem; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+  .ab--b { color: var(--helios-amber); text-shadow: 0 0 12px rgba(255, 176, 0, 0.3); }
+  .ab--a { color: rgba(255, 176, 0, 0.92); }
+  .ab--h { color: var(--helios-amber); }
+  .ab--dim { color: rgba(255, 138, 56, 0.78); }
+  .ab--sp { height: 0.7em; }
+  .ab-rule { height: 2px; max-width: 62%; background: rgba(255, 138, 40, 0.55); margin: 0.5em 0; }
   .au-hero__strip { font-family: var(--font-mono); font-size: 0.86rem; letter-spacing: 0.04em; color: rgba(255, 176, 0, 0.7); margin-top: var(--space-7); padding-top: var(--space-5); border-top: 1px solid rgba(255, 176, 0, 0.16); }
 
   /* ── FEATURE CARDS ─────────────────────────────────────────── */
   .au-feat { padding-block: var(--space-8); }
   .au-feat__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-5); }
   .au-card { border: 1px solid rgba(255, 176, 0, 0.2); border-radius: 12px; padding: var(--space-5); background: rgba(255, 176, 0, 0.012); }
-  .au-card__icon { display: block; width: 30px; height: 30px; color: var(--helios-amber); margin-bottom: var(--space-4); }
-  .au-card__icon svg { width: 100%; height: 100%; }
+  .au-card__icon { display: flex; align-items: center; height: 34px; color: var(--helios-amber); margin-bottom: var(--space-4); }
+  .au-card__icon svg { width: 30px; height: 30px; }
+  .au-card__wordmark { font-family: var(--font-terminal); font-size: 1.7rem; line-height: 1; color: var(--helios-amber); text-shadow: 0 0 14px rgba(255, 176, 0, 0.32); }
   .au-card__title { font-family: var(--font-mono); font-size: 0.84rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--helios-amber); margin-bottom: var(--space-3); }
   .au-card__body { font-family: var(--font-mono); font-size: 0.82rem; line-height: 1.7; color: var(--text-secondary, rgba(255, 240, 220, 0.7)); }
 
@@ -324,9 +329,8 @@ atlas &gt; <span class="au-cur"></span></pre>
   /* ── HERMES + PRINCIPLES ───────────────────────────────────── */
   .au-mid { padding-block: var(--space-8); }
   .au-mid__inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: var(--space-5); align-items: stretch; }
-  .au-hermes__head { display: flex; gap: var(--space-4); margin-bottom: var(--space-4); }
-  .au-hermes__emblem { flex: none; width: 56px; height: 56px; color: var(--helios-amber); }
-  .au-hermes__emblem svg { width: 100%; height: 100%; }
+  .au-hermes__head { display: flex; gap: var(--space-4); align-items: baseline; margin-bottom: var(--space-4); }
+  .au-hermes__wordmark { flex: none; font-family: var(--font-terminal); font-size: clamp(2rem, 3vw, 2.7rem); line-height: 1; color: var(--helios-amber); text-shadow: 0 0 18px rgba(255, 176, 0, 0.34); }
   .au-hermes__title { font-family: var(--font-mono); font-size: 0.92rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--helios-amber); margin-bottom: var(--space-2); line-height: 1.35; }
   .au-hermes__desc { font-family: var(--font-mono); font-size: 0.82rem; line-height: 1.65; color: var(--text-secondary, rgba(255, 240, 220, 0.7)); }
   .au-mini { font-family: var(--font-mono); font-size: 0.76rem; line-height: 1.7; color: var(--helios-amber); background: #0a0805; border: 1px solid rgba(255, 176, 0, 0.18); border-radius: 8px; padding: var(--space-4); margin: 0; white-space: pre-wrap; }
@@ -352,7 +356,7 @@ atlas &gt; <span class="au-cur"></span></pre>
   .au-mission__list { list-style: none; }
   .au-mission__list li { font-family: var(--font-mono); font-size: 0.82rem; line-height: 1.7; color: var(--text-primary, #f3e9da); padding-left: 1.4em; position: relative; }
   .au-mission__list li::before { content: ">"; position: absolute; left: 0; color: var(--helios-amber); }
-  .au-mission__cta { margin-top: var(--space-2); }
+  .au-mission__cta { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-2); }
 
   /* ═══════════════════════════════════════════════════════════════
      RESPONSIVE
@@ -436,5 +440,56 @@ atlas &gt; <span class="au-cur"></span></pre>
       es.forEach((e) => { if (e.isIntersecting && !started) { started = true; render(reduce); io.disconnect(); } });
     }, { threshold: 0.25 });
     io.observe(body);
+  }
+
+  // Hero boot — types the Aurora boot sequence on load (mimics power-on).
+  const boot = document.getElementById('aurora-boot');
+  if (boot) {
+    const blines = [
+      { c: 'b',   t: 'HELIOS COMPUTER CORPORATION' },
+      { c: 'b',   t: 'Atlas Portable Workstation' },
+      { c: 'sp' },
+      { c: 'a',   t: 'Aurora OS v1.0' },
+      { c: 'dim', t: '(c) 1993 Helios Computer Corporation. All rights reserved.' },
+      { c: 'rule' },
+      { c: 'a',   t: 'Initializing system components...' },
+      { c: 'a',   t: '  Memory check ................ OK' },
+      { c: 'a',   t: '  Storage subsystem ........... OK' },
+      { c: 'a',   t: '  Network interface ........... OK' },
+      { c: 'a',   t: '  Display adapter ............. OK' },
+      { c: 'a',   t: '  HERMES AI subsystem ......... STANDBY' },
+      { c: 'rule' },
+      { c: 'a',   t: 'All systems nominal.' },
+      { c: 'a',   t: 'Welcome to Aurora OS, Operator.' },
+      { c: 'sp' },
+      { c: 'h',   t: 'HERMES > Good morning, Operator—Tuesday, April 21, 2026; systems are ready, unlike most humans before coffee.' },
+    ];
+    const bReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function bPrompt() {
+      const p = document.createElement('div');
+      p.className = 'ab ab--a';
+      p.innerHTML = 'atlas &gt; <span class="au-cur"></span>';
+      boot.appendChild(p);
+    }
+    function bRender(instant) {
+      let i = 0;
+      (function next() {
+        if (i >= blines.length) { bPrompt(); return; }
+        const l = blines[i++];
+        if (l.c === 'rule') { const r = document.createElement('div'); r.className = 'ab-rule'; boot.appendChild(r); setTimeout(next, instant ? 0 : 60); return; }
+        if (l.c === 'sp')   { const s = document.createElement('div'); s.className = 'ab ab--sp'; boot.appendChild(s); setTimeout(next, instant ? 0 : 40); return; }
+        const d = document.createElement('div');
+        d.className = 'ab ab--' + l.c;
+        boot.appendChild(d);
+        if (instant) { d.textContent = l.t; next(); return; }
+        let c = 0;
+        (function type() {
+          d.textContent = l.t.slice(0, ++c);
+          if (c < l.t.length) setTimeout(type, 7);
+          else setTimeout(next, 70);
+        })();
+      })();
+    }
+    bRender(bReduce);
   }
 </script>
