@@ -333,20 +333,20 @@ atlas &gt; <span class="hh-cur"></span></pre>
   .hh { padding-block: clamp(var(--space-8), 5vh, var(--space-12)) var(--space-10); }
   .hh__inner {
     display: grid;
-    grid-template-columns: minmax(190px, 0.8fr) minmax(0, 1.05fr) minmax(0, 1.5fr);
+    grid-template-columns: minmax(260px, 0.95fr) minmax(0, 1fr) minmax(0, 1.45fr);
     gap: clamp(var(--space-5), 3vw, var(--space-9));
     align-items: center;
   }
 
   /* Vertical typewriter acronym */
-  .hh-ac { display: flex; flex-direction: column; gap: 0.15em; }
+  .hh-ac { display: flex; flex-direction: column; gap: 0.12em; }
   .hh-ac__row { display: flex; align-items: center; }
   .hh-ac__big {
     font-family: var(--font-terminal);
-    font-size: clamp(2.4rem, 4vw, 3.4rem);
+    font-size: clamp(3.4rem, 6vw, 5.2rem);
     line-height: 0.9;
     color: var(--helios-amber);
-    text-shadow: 0 0 18px rgba(255, 176, 0, 0.4);
+    text-shadow: 0 0 22px rgba(255, 176, 0, 0.42);
   }
   .hh-ac__rest {
     display: inline-block;
@@ -354,7 +354,7 @@ atlas &gt; <span class="hh-cur"></span></pre>
     white-space: nowrap;
     width: 0;
     font-family: var(--font-terminal);
-    font-size: clamp(1.3rem, 2vw, 1.8rem);
+    font-size: clamp(1.9rem, 3vw, 2.8rem);
     line-height: 0.9;
     letter-spacing: 0.02em;
     color: rgba(255, 176, 0, 0.82);
