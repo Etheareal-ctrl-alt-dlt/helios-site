@@ -1,0 +1,286 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { path } from '../utils/url';
+
+// The faux order summary — every line is free.
+const receipt = [
+  { label: '1× HELIOS machine — hand-built, one of one', value: 'Not for sale' },
+  { label: 'Several hundred evenings',                    value: 'Already spent' },
+  { label: 'An unreasonable amount of learning',          value: 'Worth it' },
+  { label: 'Your curiosity',                              value: 'Priceless' },
+];
+
+// The actual product: things I couldn't do before this.
+const learned = [
+  { k: 'I learned Linux', v: 'the real kind — the kind where you brick a headless machine at 1am and have to coax it back to life over SSH.' },
+  { k: 'I learned Blender', v: 'modeling every device from scratch, so an Atlas looks like an Atlas and a Genesis looks like a Genesis.' },
+  { k: 'I learned to make real hardware', v: 'designing and 3D-printing the chassis, reprinting until the parts actually fit together.' },
+  { k: 'I wrote two operating systems', v: 'one a terminal-driven amber world, one a warm graphical one — plus the AI companions that live inside them.' },
+  { k: 'I taught myself design', v: 'type, color, layout, a whole brand, and the website you are standing in right now.' },
+];
+---
+
+<BaseLayout
+  title="Checkout — Helios Computer Corporation"
+  description="About that Buy button. A note on what HELIOS actually is — and a thank-you for stopping by."
+  line="homepage"
+>
+  <Nav line="homepage" />
+
+  <!-- ════════════════════════════════════════════════════════
+       THE REVEAL
+       ════════════════════════════════════════════════════════ -->
+  <section class="buy-hero" aria-labelledby="buy-title">
+    <div class="container buy-narrow">
+      <p class="buy-eyebrow">Order Confirmation</p>
+      <h1 id="buy-title" class="buy-hero__title">So you tried to buy a HELIOS.</h1>
+      <p class="buy-hero__sub">I really wish you could. Let me explain.</p>
+      <p class="buy-lede">
+        Here's the thing: HELIOS machines are real. There's an Atlas and a Genesis
+        on my desk right now, humming along, running operating systems I wrote by
+        hand. But there's exactly <em>one of each</em> — and they live in my apartment.
+        HELIOS isn't a company. It's a project. Mine.
+      </p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       THE (FREE) ORDER SUMMARY
+       ════════════════════════════════════════════════════════ -->
+  <section class="buy-receipt-wrap" aria-label="Order summary">
+    <div class="container buy-narrow">
+      <div class="buy-receipt">
+        <p class="buy-receipt__head">Order Summary</p>
+        <ul class="buy-receipt__list">
+          {receipt.map((r) => (
+            <li class="buy-receipt__row">
+              <span class="buy-receipt__lbl">{r.label}</span>
+              <span class="buy-receipt__lead" aria-hidden="true"></span>
+              <span class="buy-receipt__val">{r.value}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="buy-receipt__total">
+          <span class="buy-receipt__lbl">Total</span>
+          <span class="buy-receipt__lead" aria-hidden="true"></span>
+          <span class="buy-receipt__grand">$0.00</span>
+        </div>
+        <p class="buy-receipt__note">Looking is free. Always will be.</p>
+        <button id="buy-order" class="bbtn bbtn--solid buy-receipt__btn" type="button">Place Order</button>
+        <p id="buy-order-msg" class="buy-receipt__msg" hidden>Order received. There was nothing to charge you — thank you for trying anyway. ♥</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       WHAT THIS ACTUALLY IS
+       ════════════════════════════════════════════════════════ -->
+  <section class="buy-block" aria-labelledby="buy-what">
+    <div class="container buy-narrow">
+      <h2 id="buy-what" class="buy-h2">What this actually is</h2>
+      <p class="buy-p">
+        HELIOS is an independent worldbuilding project — and, honestly, a flex.
+        Two product lines. Two real Raspberry Pi machines. Two operating systems.
+        Two AI companions. A full brand, a fictional 1993 founding, and the entire
+        site you're browsing. I built all of it to find out whether I could.
+        Turns out: mostly, yeah.
+      </p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       WHAT I LEARNED  (the real product)
+       ════════════════════════════════════════════════════════ -->
+  <section class="buy-block" aria-labelledby="buy-learn">
+    <div class="container buy-narrow">
+      <h2 id="buy-learn" class="buy-h2">The real product is everything it taught me</h2>
+      <p class="buy-p">
+        When I started, I couldn't do most of this. HELIOS taught me as I built it,
+        one stubborn problem at a time:
+      </p>
+      <ul class="buy-learned">
+        {learned.map((l) => (
+          <li class="buy-learned__item">
+            <span class="buy-learned__dot" aria-hidden="true"></span>
+            <p class="buy-learned__text"><strong>{l.k}</strong> — {l.v}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="buy-p">
+        Every piece of HELIOS is something I didn't know how to do a little while
+        ago. The machines are the souvenir. The skills are the thing I actually
+        walked away with.
+      </p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       THE HONEST BIT
+       ════════════════════════════════════════════════════════ -->
+  <section class="buy-block" aria-labelledby="buy-honest">
+    <div class="container buy-narrow">
+      <h2 id="buy-honest" class="buy-h2">I wish I could hand you one</h2>
+      <p class="buy-p">
+        As much as I'd love to put a HELIOS in your hands — to actually ship these,
+        to let anyone live in this little world I made — for now it stays here.
+        Within four walls and a 3D printer. One Atlas. One Genesis. Maybe someday
+        more. For now, the whole dream runs on two machines and a lot of obstinance.
+      </p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       THANK YOU
+       ════════════════════════════════════════════════════════ -->
+  <section class="buy-thanks-wrap" aria-labelledby="buy-thanks">
+    <div class="container buy-narrow">
+      <div class="buy-thanks">
+        <h2 id="buy-thanks" class="buy-thanks__title">But mostly — thank you.</h2>
+        <p class="buy-thanks__body">
+          You clicked <em>Buy</em> on a computer from a company that doesn't exist.
+          Which means you took HELIOS seriously enough to want one — and that means
+          more than I can fit on a button. Thanks for being here. Thanks for poking
+          around. Thanks for caring about the thing I made.
+        </p>
+        <p class="buy-sign">— The HELIOS Engineering Team<span class="buy-sign__star">*</span></p>
+        <p class="buy-sign__note">*it is one (1) person. it is me. hello.</p>
+      </div>
+      <div class="buy-cta">
+        <a href={path('/')} class="bbtn bbtn--ghost">Back to the Storefront</a>
+        <a href={path('/os')} class="bbtn bbtn--solid">Wander the Machines
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer line="homepage" />
+</BaseLayout>
+
+<style>
+  /* ═══════════════════════════════════════════════════════════════
+     BUY PAGE — the fourth-wall break. Both lines, one maker.
+     ═══════════════════════════════════════════════════════════════ */
+  .container { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: var(--space-6); }
+  .buy-narrow { max-width: 720px; }
+
+  .buy-eyebrow { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-tertiary, rgba(255, 255, 255, 0.45)); margin-bottom: var(--space-4); }
+
+  /* Buttons */
+  .bbtn {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    padding: 0.8rem 1.5rem; border-radius: 10px;
+    font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+    border: none; cursor: pointer;
+    transition: all var(--duration-fast, 150ms) var(--ease-out, ease);
+  }
+  .bbtn svg { transition: transform var(--duration-fast, 150ms) var(--ease-out, ease); }
+  .bbtn:hover svg { transform: translateX(3px); }
+  .bbtn--solid { color: #16101f; background: linear-gradient(100deg, #FFB000, #ff86c8 55%, #9d7bff); box-shadow: 0 8px 26px rgba(255, 134, 200, 0.22); }
+  .bbtn--solid:hover { filter: brightness(1.07); }
+  .bbtn--ghost { color: var(--text-primary, #f5f0ff); border: 1.5px solid rgba(255, 255, 255, 0.28); background: transparent; }
+  .bbtn--ghost:hover { border-color: rgba(255, 255, 255, 0.55); }
+
+  /* ── HERO ──────────────────────────────────────────────────── */
+  .buy-hero { padding-block: clamp(var(--space-9), 7vh, var(--space-12)) var(--space-6); text-align: center; }
+  .buy-hero .buy-narrow { margin-inline: auto; }
+  .buy-hero__title {
+    font-family: var(--font-display); font-weight: 900;
+    font-size: clamp(2.2rem, 6vw, 3.8rem); line-height: 1.02; letter-spacing: -0.015em;
+    background: linear-gradient(100deg, #FFB000, #ff86c8 52%, #9d7bff);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    margin-bottom: var(--space-4);
+  }
+  .buy-hero__sub { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.1rem, 2.4vw, 1.5rem); color: var(--text-primary, #f3eefb); margin-bottom: var(--space-6); }
+  .buy-lede { font-family: var(--font-corporate, var(--font-body)); font-size: 1.06rem; line-height: 1.75; color: var(--text-secondary, rgba(255, 255, 255, 0.74)); margin-inline: auto; }
+  .buy-lede em { font-style: italic; color: var(--text-primary, #fff); }
+
+  /* ── RECEIPT ───────────────────────────────────────────────── */
+  .buy-receipt-wrap { padding-block: var(--space-7); }
+  .buy-receipt-wrap .buy-narrow { margin-inline: auto; }
+  .buy-receipt {
+    border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px;
+    padding: clamp(var(--space-5), 4vw, var(--space-8));
+    background:
+      radial-gradient(120% 120% at 0% 0%, rgba(255, 176, 0, 0.06), transparent 55%),
+      radial-gradient(120% 120% at 100% 100%, rgba(157, 123, 255, 0.08), transparent 55%),
+      rgba(255, 255, 255, 0.015);
+    text-align: center;
+  }
+  .buy-receipt__head { font-family: var(--font-mono); font-size: 0.76rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--text-tertiary, rgba(255, 255, 255, 0.5)); margin-bottom: var(--space-5); }
+  .buy-receipt__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); text-align: left; }
+  .buy-receipt__row, .buy-receipt__total { display: flex; align-items: baseline; gap: 0.6ch; }
+  .buy-receipt__lbl { font-family: var(--font-mono); font-size: 0.86rem; color: var(--text-secondary, rgba(255, 255, 255, 0.78)); }
+  .buy-receipt__lead { flex: 1; min-width: 1.5ch; border-bottom: 1px dotted rgba(255, 255, 255, 0.28); transform: translateY(-0.28em); }
+  .buy-receipt__val { font-family: var(--font-mono); font-size: 0.86rem; color: var(--text-primary, #f3eefb); white-space: nowrap; }
+  .buy-receipt__total { margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid rgba(255, 255, 255, 0.12); }
+  .buy-receipt__grand {
+    font-family: var(--font-mono); font-size: 1.05rem; font-weight: 700; white-space: nowrap;
+    background: linear-gradient(100deg, #FFB000, #ff86c8 55%, #9d7bff);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .buy-receipt__note { font-family: var(--font-corporate, var(--font-body)); font-style: italic; font-size: 0.92rem; color: var(--text-tertiary, rgba(255, 255, 255, 0.55)); margin-top: var(--space-4); }
+  .buy-receipt__btn { margin-top: var(--space-6); }
+  .buy-receipt__btn[disabled] { cursor: default; filter: saturate(0.85) brightness(0.95); }
+  .buy-receipt__msg { font-family: var(--font-corporate, var(--font-body)); font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary, rgba(255, 255, 255, 0.8)); margin-top: var(--space-4); }
+
+  /* ── PROSE BLOCKS ──────────────────────────────────────────── */
+  .buy-block { padding-block: var(--space-7); }
+  .buy-block .buy-narrow { margin-inline: auto; }
+  .buy-h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.4rem, 3vw, 2rem); letter-spacing: -0.01em; color: var(--text-primary, #f3eefb); margin-bottom: var(--space-4); }
+  .buy-p { font-family: var(--font-corporate, var(--font-body)); font-size: 1.02rem; line-height: 1.78; color: var(--text-secondary, rgba(255, 255, 255, 0.74)); margin-bottom: var(--space-4); }
+  .buy-p:last-child { margin-bottom: 0; }
+
+  .buy-learned { list-style: none; display: flex; flex-direction: column; gap: var(--space-4); margin: var(--space-5) 0; }
+  .buy-learned__item { display: flex; gap: var(--space-3); }
+  .buy-learned__dot { flex: none; margin-top: 0.55em; width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(135deg, #FFB000, #ff86c8 55%, #9d7bff); }
+  .buy-learned__text { font-family: var(--font-corporate, var(--font-body)); font-size: 1rem; line-height: 1.7; color: var(--text-secondary, rgba(255, 255, 255, 0.76)); }
+  .buy-learned__text strong { color: var(--text-primary, #fff); font-weight: 700; }
+
+  /* ── THANK YOU ─────────────────────────────────────────────── */
+  .buy-thanks-wrap { padding-block: var(--space-8) var(--space-12); }
+  .buy-thanks-wrap .buy-narrow { margin-inline: auto; }
+  .buy-thanks {
+    border-radius: 20px; padding: clamp(var(--space-6), 4vw, var(--space-9));
+    text-align: center;
+    background:
+      radial-gradient(130% 130% at 50% 0%, rgba(255, 134, 200, 0.12), transparent 60%),
+      rgba(157, 123, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .buy-thanks__title {
+    font-family: var(--font-display); font-weight: 900;
+    font-size: clamp(1.7rem, 4vw, 2.6rem); letter-spacing: -0.01em;
+    background: linear-gradient(100deg, #FFB000, #ff86c8 52%, #9d7bff);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    margin-bottom: var(--space-4);
+  }
+  .buy-thanks__body { font-family: var(--font-corporate, var(--font-body)); font-size: 1.06rem; line-height: 1.8; color: var(--text-secondary, rgba(255, 255, 255, 0.8)); max-width: 60ch; margin-inline: auto; }
+  .buy-thanks__body em { font-style: italic; color: var(--text-primary, #fff); }
+  .buy-sign { font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--text-primary, #f3eefb); margin-top: var(--space-6); }
+  .buy-sign__star { color: #ff86c8; }
+  .buy-sign__note { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-tertiary, rgba(255, 255, 255, 0.5)); margin-top: var(--space-2); }
+
+  .buy-cta { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-4); margin-top: var(--space-7); }
+
+  @media (max-width: 560px) {
+    .buy-cta { flex-direction: column; align-items: stretch; }
+    .buy-cta .bbtn { justify-content: center; }
+  }
+</style>
+
+<script>
+  // The "Place Order" button — the only purchase you'll ever complete here.
+  const btn = document.getElementById('buy-order');
+  const msg = document.getElementById('buy-order-msg');
+  if (btn && msg) {
+    btn.addEventListener('click', () => {
+      btn.textContent = 'Thank you ♥';
+      btn.setAttribute('disabled', 'true');
+      msg.hidden = false;
+    });
+  }
+</script>
