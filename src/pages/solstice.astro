@@ -85,8 +85,9 @@ const irisEmblem = path('/images/logos/iris-emblem.png');
        ════════════════════════════════════════════════════════ -->
   <section id="system" class="so-feat" aria-labelledby="so-feat-title">
     <div class="container">
-      <h2 id="so-feat-title" class="so-feat__title">The System That Stays With You.</h2>
-      <div class="so-feat__grid">
+      <div class="iris-panel so-feat__card">
+        <h2 id="so-feat-title" class="so-feat__title">The System That Stays With You.</h2>
+        <div class="so-feat__grid">
         {system.map((s) => (
           <div class="so-feat__item">
             <span class="so-feat__icon" aria-hidden="true">
@@ -100,6 +101,7 @@ const irisEmblem = path('/images/logos/iris-emblem.png');
             <p class="so-feat__body">{s.body}</p>
           </div>
         ))}
+        </div>
       </div>
     </div>
   </section>
@@ -108,7 +110,8 @@ const irisEmblem = path('/images/logos/iris-emblem.png');
        YOUR DAY. YOUR WAY.  +  ALL APPS
        ════════════════════════════════════════════════════════ -->
   <section class="so-home" aria-labelledby="so-home-title">
-    <div class="container so-home__inner">
+    <div class="container">
+      <div class="iris-panel so-home__inner">
       <div class="so-home__lead">
         <h2 id="so-home-title" class="so-home__title">Your Day. Your Way.</h2>
         <p class="so-home__desc">
@@ -130,6 +133,7 @@ const irisEmblem = path('/images/logos/iris-emblem.png');
         <div class="so-shot so-apps__shot">
           <img src={path('/images/os/all-apps.png')} alt="The Solstice OS app library" loading="lazy" decoding="async" />
         </div>
+      </div>
       </div>
     </div>
   </section>
@@ -345,12 +349,12 @@ const irisEmblem = path('/images/logos/iris-emblem.png');
   .so-real__icon svg { width: 20px; height: 20px; }
   .so-real__name { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; color: var(--text-primary); margin-bottom: 2px; }
   .so-real__body { font-family: var(--font-body); font-size: 0.86rem; line-height: 1.55; color: var(--text-secondary); }
-  .so-eng { position: relative; overflow: hidden; }
+  .so-eng { position: relative; }
   .so-eng__lede { font-family: var(--font-body); font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-5); max-width: 44ch; }
   .so-eng__checks { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); }
   .so-eng__checks li { display: flex; align-items: center; gap: var(--space-2); font-family: var(--font-body); font-weight: 600; font-size: 0.92rem; color: var(--text-primary); }
   .so-eng__checks svg { color: var(--pink, #ff86c8); flex: none; }
-  .so-eng__emblem { position: absolute; right: -34px; bottom: -34px; width: 150px; opacity: 0.5; pointer-events: none; }
+  .so-eng__emblem { position: absolute; right: clamp(18px, 2.5vw, 30px); bottom: clamp(18px, 2.5vw, 30px); width: clamp(88px, 11vw, 120px); opacity: 0.5; pointer-events: none; }
 
   /* ── CLOSING BAND ──────────────────────────────────────────── */
   .so-cta { padding-block: var(--space-8) var(--space-12); }
@@ -380,6 +384,7 @@ const irisEmblem = path('/images/logos/iris-emblem.png');
     .so-feat__grid { grid-template-columns: 1fr 1fr; }
     .so-real__grid { grid-template-columns: 1fr; }
     .so-cta__inner { flex-direction: column; align-items: flex-start; }
+    .so-eng__emblem { display: none; }
   }
   @media (prefers-reduced-motion: reduce) {
     .iris-edge::before, .iris-emblem-glow { animation: none; }
